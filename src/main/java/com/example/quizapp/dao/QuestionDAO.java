@@ -1,13 +1,10 @@
-// QuestionDAO.java
 package com.example.quizapp.dao;
 
 import com.example.quizapp.model.Question;
+import com.example.quizapp.model.Response;
 import com.example.quizapp.database.DatabaseConnector;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,13 +29,13 @@ public class QuestionDAO {
     public void createQuestion(Question question) {
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " + TABLE_NAME + " VALUES (?, ?, ?, ?, ?)")) {
-            preparedStatement.setString(1, question.getQuestionId());
-            preparedStatement.setString(2, question.getQuizId());
+            preparedStatement.setInt(1, question.getQuestionId());
+            preparedStatement.setInt(2, question.getQuizId());
             preparedStatement.setString(3, question.getText());
             preparedStatement.setString(4, question.getImage());
             // Assuming responses are stored in a separate table or as a serialized form
             // Modify this part according to your database schema
-            preparedStatement.setString(5, String.join(",", question.getResponses()));
+            saveResponses(question.getQuestionId(), question.getResponses());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -48,12 +45,14 @@ public class QuestionDAO {
 
     public void updateQuestion(Question updatedQuestion) {
         try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE " + TABLE_NAME + " SET quizId=?, text=?, image=?, responses=? WHERE questionId=?")) {
-            preparedStatement.setString(1, updatedQuestion.getQuizId());
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE " + TABLE_NAME + " SET quizId=?, text=?, image=? WHERE questionId=?")) {
+            preparedStatement.setInt(1, updatedQuestion.getQuizId());
             preparedStatement.setString(2, updatedQuestion.getText());
             preparedStatement.setString(3, updatedQuestion.getImage());
-            preparedStatement.setString(4, String.join(",", updatedQuestion.getResponses()));
-            preparedStatement.setString(5, updatedQuestion.getQuestionId());
+            preparedStatement.setInt(4, updatedQuestion.getQuestionId());
+
+            // Update responses separately
+            updateResponses(updatedQuestion.getQuestionId(), updatedQuestion.getResponses());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -62,11 +61,15 @@ public class QuestionDAO {
     }
 
     public void deleteQuestion(String questionId) {
-        try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM " + TABLE_NAME + " WHERE questionId=?")) {
-            preparedStatement.setString(1, questionId);
+        try (Connection connection = DatabaseConnector.getConnection()) {
+            // Delete responses first
+            deleteResponses(questionId);
 
-            preparedStatement.executeUpdate();
+            // Then delete the question
+            try (PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM " + TABLE_NAME + " WHERE questionId=?")) {
+                preparedStatement.setString(1, questionId);
+                preparedStatement.executeUpdate();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -87,14 +90,34 @@ public class QuestionDAO {
     }
 
     private Question createQuestionFromResultSet(ResultSet resultSet) throws SQLException {
-        String questionId = resultSet.getString("questionId");
-        String quizId = resultSet.getString("quizId");
+        int questionId = resultSet.getInt("questionId");
+        int quizId = resultSet.getInt("quizId");
         String text = resultSet.getString("text");
         String image = resultSet.getString("image");
-        // Assuming responses are stored in a separate table or as a serialized form
-        // Modify this part according to your database schema
-        List<String> responses = List.of(resultSet.getString("responses").split(","));
+        // Load responses from the database
+        List<Response> responses = loadResponses(questionId);
 
         return new Question(questionId, quizId, text, image, responses);
+    }
+
+    private void saveResponses(int questionId, List<Response> responses) {
+        // Implement logic to save responses to the database
+        // Modify this part according to your database schema
+    }
+
+    private void updateResponses(int questionId, List<Response> responses) {
+        // Implement logic to update responses in the database
+        // Modify this part according to your database schema
+    }
+
+    private void deleteResponses(String questionId) {
+        // Implement logic to delete responses from the database
+        // Modify this part according to your database schema
+    }
+
+    private List<Response> loadResponses(int questionId) {
+        // Implement logic to load responses from the database
+        // Modify this part according to your database schema
+        return new ArrayList<>();
     }
 }

@@ -39,6 +39,9 @@
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
   </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/src/main/java/com/example/quizapp/database/create_database_tables.sql" connection-id="13ccd1a6-b1fc-444c-ad5f-eb9a2be4b756" session-id="MAIN" current-schema="mysql" />
+  </component>
   <component name="DBNavigator.Project.ObjectQuickFilterManager">
     <last-used-operator value="EQUAL" />
     <filters />

@@ -1,4 +1,3 @@
-// ModuleDAO.java
 package com.example.quizapp.dao;
 
 import com.example.quizapp.model.Module;
@@ -12,10 +11,10 @@ import java.util.List;
 public class ModuleDAO {
     private static final String TABLE_NAME = "modules";
 
-    public Module getModuleById(String moduleId) {
+    public Module getModuleById(int moduleId) {
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM " + TABLE_NAME + " WHERE moduleId = ?")) {
-            preparedStatement.setString(1, moduleId);
+            preparedStatement.setInt(1, moduleId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     return createModuleFromResultSet(resultSet);
@@ -29,10 +28,11 @@ public class ModuleDAO {
 
     public void createModule(Module module) {
         try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " + TABLE_NAME + " VALUES (?, ?, ?)")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " + TABLE_NAME + " VALUES (?, ?, ?, ?)")) {
             preparedStatement.setInt(1, module.getModuleId());
             preparedStatement.setString(2, module.getModuleName());
-            preparedStatement.setInt(3, module.getTeacherId());
+            preparedStatement.setString(3, module.getModulePassword());
+            preparedStatement.setInt(4, module.getTeacherId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -42,10 +42,11 @@ public class ModuleDAO {
 
     public void updateModule(Module updatedModule) {
         try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE " + TABLE_NAME + " SET moduleName=?, teacherId=? WHERE moduleId=?")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE " + TABLE_NAME + " SET moduleName=?, modulePassword=?, teacherId=? WHERE moduleId=?")) {
             preparedStatement.setString(1, updatedModule.getModuleName());
-            preparedStatement.setInt(2, updatedModule.getTeacherId());
-            preparedStatement.setInt(3, updatedModule.getModuleId());
+            preparedStatement.setString(2, updatedModule.getModulePassword());
+            preparedStatement.setInt(3, updatedModule.getTeacherId());
+            preparedStatement.setInt(4, updatedModule.getModuleId());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -53,10 +54,10 @@ public class ModuleDAO {
         }
     }
 
-    public void deleteModule(String moduleId) {
+    public void deleteModule(int moduleId) {
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM " + TABLE_NAME + " WHERE moduleId=?")) {
-            preparedStatement.setString(1, moduleId);
+            preparedStatement.setInt(1, moduleId);
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -81,12 +82,13 @@ public class ModuleDAO {
     private Module createModuleFromResultSet(ResultSet resultSet) throws SQLException {
         int moduleId = resultSet.getInt("moduleId");
         String moduleName = resultSet.getString("moduleName");
+        String modulePassword = resultSet.getString("modulePassword");
         int teacherId = resultSet.getInt("teacherId");
 
         // Fetch quizzes for the module from the quizzes table
         List<Quiz> quizzes = getQuizzesForModule(moduleId);
 
-        return new Module(moduleId, moduleName, quizzes, teacherId);
+        return new Module(moduleId, moduleName, modulePassword, quizzes, teacherId);
     }
 
     private List<Quiz> getQuizzesForModule(int moduleId) {

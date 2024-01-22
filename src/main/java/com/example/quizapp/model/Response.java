@@ -1,33 +1,35 @@
 package com.example.quizapp.model;
 
 public class Response {
-    private String responseId;
-    private String questionId; // The question to which this response belongs
+    private int responseId;
+    private int questionId; // The question to which this response belongs
     private String text;
+    private String image; // URL or path to the image
     private boolean isCorrect;
 
     // Constructors
-    public Response(String responseId, String questionId, String text, boolean isCorrect) {
+    public Response(int responseId, int questionId, String text, String image, boolean isCorrect) {
         this.responseId = responseId;
         this.questionId = questionId;
         this.text = text;
+        this.image = image;
         this.isCorrect = isCorrect;
     }
 
     // Getters and Setters
-    public String getResponseId() {
+    public int getResponseId() {
         return responseId;
     }
 
-    public void setResponseId(String responseId) {
+    public void setResponseId(int responseId) {
         this.responseId = responseId;
     }
 
-    public String getQuestionId() {
+    public int getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(String questionId) {
+    public void setQuestionId(int questionId) {
         this.questionId = questionId;
     }
 
@@ -37,6 +39,14 @@ public class Response {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public boolean isCorrect() {

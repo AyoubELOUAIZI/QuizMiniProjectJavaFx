@@ -5,13 +5,15 @@ import java.util.List;
 public class Module {
     private int moduleId;
     private String moduleName;
-    private List<Quiz> quizzes; // Assuming quizzes are associated with modules
-    private int teacherId; // Changed to int
+    private String modulePassword; // New field for module password
+    private List<Quiz> quizzes;
+    private int teacherId;
 
     // Constructors
-    public Module(int moduleId, String moduleName, List<Quiz> quizzes, int teacherId) {
+    public Module(int moduleId, String moduleName, String modulePassword, List<Quiz> quizzes, int teacherId) {
         this.moduleId = moduleId;
         this.moduleName = moduleName;
+        this.modulePassword = modulePassword;
         this.quizzes = quizzes;
         this.teacherId = teacherId;
     }
@@ -31,6 +33,14 @@ public class Module {
 
     public void setModuleName(String moduleName) {
         this.moduleName = moduleName;
+    }
+
+    public String getModulePassword() {
+        return modulePassword;
+    }
+
+    public void setModulePassword(String modulePassword) {
+        this.modulePassword = modulePassword;
     }
 
     public List<Quiz> getQuizzes() {

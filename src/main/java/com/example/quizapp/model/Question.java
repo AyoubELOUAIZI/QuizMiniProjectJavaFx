@@ -3,14 +3,14 @@ package com.example.quizapp.model;
 import java.util.List;
 
 public class Question {
-    private String questionId;
-    private String quizId; // Assuming the quiz it belongs to
+    private int questionId;
+    private int quizId; // Assuming the quiz it belongs to
     private String text;
     private String image; // URL or path to the image
-    private List<String> responses; // List of possible responses
+    private List<Response> responses; // List of possible responses
 
     // Constructors
-    public Question(String questionId, String quizId, String text, String image, List<String> responses) {
+    public Question(int questionId, int quizId, String text, String image, List<Response> responses) {
         this.questionId = questionId;
         this.quizId = quizId;
         this.text = text;
@@ -19,19 +19,19 @@ public class Question {
     }
 
     // Getters and Setters
-    public String getQuestionId() {
+    public int getQuestionId() {
         return questionId;
     }
 
-    public void setQuestionId(String questionId) {
+    public void setQuestionId(int questionId) {
         this.questionId = questionId;
     }
 
-    public String getQuizId() {
+    public int getQuizId() {
         return quizId;
     }
 
-    public void setQuizId(String quizId) {
+    public void setQuizId(int quizId) {
         this.quizId = quizId;
     }
 
@@ -51,20 +51,20 @@ public class Question {
         this.image = image;
     }
 
-    public List<String> getResponses() {
+    public List<Response> getResponses() {
         return responses;
     }
 
-    public void setResponses(List<String> responses) {
+    public void setResponses(List<Response> responses) {
         this.responses = responses;
     }
 
     // Additional methods if needed
-    public void addResponse(String response) {
+    public void addResponse(Response response) {
         responses.add(response);
     }
 
-    public void removeResponse(String response) {
+    public void removeResponse(Response response) {
         responses.remove(response);
     }
 

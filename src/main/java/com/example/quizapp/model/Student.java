@@ -1,17 +1,14 @@
-// Student.java
 package com.example.quizapp.model;
 
 import java.util.List;
 
 public class Student extends User {
     private String studentCode; // or 'cne' or any other identifier for students
-    private List<Integer> moduleIds;
 
     // Constructor
-    public Student(int userId, String firstname, String lastname, String email, String password, String studentCode, List<Integer> moduleIds) {
-        super(userId, firstname, lastname, email, password, "student");
+    public Student(int userId, String firstname, String lastname, String email, String password, String studentCode, List<Module> modules) {
+        super(userId, firstname, lastname, email, password, "student", modules);
         this.studentCode = studentCode;
-        this.moduleIds = moduleIds;
     }
 
     // Getter and Setter for studentCode
@@ -23,21 +20,22 @@ public class Student extends User {
         this.studentCode = studentCode;
     }
 
-    // Getter and Setter for moduleIds
-    public List<Integer> getModuleIds() {
-        return moduleIds;
-    }
+    // Additional methods for managing modules specific to students
 
-    public void setModuleIds(List<Integer> moduleIds) {
-        this.moduleIds = moduleIds;
-    }
 
-    // Additional methods if needed
-    public void addModuleId(int moduleId) {
-        moduleIds.add(moduleId);
-    }
+    // You can add more methods based on your application's requirements
 
-    public void removeModuleId(int moduleId) {
-        moduleIds.remove(moduleId);
+    @Override
+    public String toString() {
+        return "Student{" +
+                "studentCode='" + studentCode + '\'' +
+                ", userId=" + getUserId() +
+                ", firstname='" + getFirstname() + '\'' +
+                ", lastname='" + getLastname() + '\'' +
+                ", email='" + getEmail() + '\'' +
+                ", password='" + getPassword() + '\'' +
+                ", role='" + getRole() + '\'' +
+                ", modules=" + getModules() +
+                '}';
     }
 }

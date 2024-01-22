@@ -13,7 +13,7 @@ public class QuizController {
         this.quizDAO = quizDAO;
     }
 
-    public Quiz getQuizById(String quizId) {
+    public Quiz getQuizById(int quizId) {
         return quizDAO.getQuizById(quizId);
     }
 
@@ -25,7 +25,7 @@ public class QuizController {
         quizDAO.updateQuiz(updatedQuiz);
     }
 
-    public void deleteQuiz(String quizId) {
+    public void deleteQuiz(int quizId) {
         quizDAO.deleteQuiz(quizId);
     }
 

@@ -1,4 +1,3 @@
-// ModuleController.java
 package com.example.quizapp.controller;
 
 import com.example.quizapp.dao.ModuleDAO;
@@ -13,7 +12,7 @@ public class ModuleController {
         this.moduleDAO = moduleDAO;
     }
 
-    public Module getModuleById(String moduleId) {
+    public Module getModuleById(int moduleId) {
         return moduleDAO.getModuleById(moduleId);
     }
 
@@ -25,7 +24,7 @@ public class ModuleController {
         moduleDAO.updateModule(updatedModule);
     }
 
-    public void deleteModule(String moduleId) {
+    public void deleteModule(int moduleId) {
         moduleDAO.deleteModule(moduleId);
     }
 
