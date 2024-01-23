@@ -18,6 +18,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class StudentController {
@@ -79,7 +81,7 @@ public class StudentController {
     private void handleLogout() {
         // Clear the session
         UserSession.clearSession();
-
+        clearLoginState();
         // Load the Authentication screen
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/fxml/AuthenticationScreen.fxml")); // replace with your actual path
@@ -95,6 +97,14 @@ public class StudentController {
         } catch (IOException e) {
             e.printStackTrace();
             // Handle the exception, perhaps show an error dialog
+        }
+    }
+
+    private void clearLoginState() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("userLogin.txt"))) {
+            writer.write(""); // Clear the file content
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
     @FXML

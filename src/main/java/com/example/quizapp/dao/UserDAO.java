@@ -225,6 +225,7 @@ public User createUser(User user) {
                     user.setEmail(resultSet.getString("email"));
                     user.setPassword(resultSet.getString("password"));
                     user.setRole(resultSet.getString("role"));
+                    user.setSexe(resultSet.getString("sexe"));
                     return user;
                 }
             }

@@ -15,6 +15,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class TeacherController {
@@ -82,6 +84,7 @@ public class TeacherController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/fxml/AuthenticationScreen.fxml")); // replace with your actual path
             Parent root = loader.load();
+            clearLoginState();
 
             // Get the current stage from any control, like a button
 
@@ -94,9 +97,14 @@ public class TeacherController {
             e.printStackTrace();
             // Handle the exception, perhaps show an error dialog
         }
+    }
 
-
-
+    private void clearLoginState() {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("userLogin.txt"))) {
+            writer.write(""); // Clear the file content
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
