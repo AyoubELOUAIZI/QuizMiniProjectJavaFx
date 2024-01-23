@@ -409,51 +409,9 @@
                     </children>
                 </Pane>
                 <Pane fx:id="student_applications" layoutX="579.0" layoutY="223.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <children>
-                        <TableView fx:id="my_applications_grid" focusTraversable="false" layoutX="20.0" layoutY="20.0" prefHeight="596.0" prefWidth="1010.0" styleClass="gridview">
-                            <columns>
-                                <TableColumn fx:id="etablissement_apps" prefWidth="325.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Etablissement" />
-                                <TableColumn fx:id="fromation_apps" minWidth="6.0" prefWidth="280.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Formation" />
-                                <TableColumn fx:id="ville_apps" prefWidth="150.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Ville" />
-                                <TableColumn fx:id="note_apps" prefWidth="110.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Note" />
-                                <TableColumn fx:id="residuelle_apps" prefWidth="102.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Résiduelle" />
-                                <TableColumn fx:id="delete_apps" prefWidth="40.0" resizable="false" styleClass="gridcolumn" />
-                                <TableColumn fx:id="candidateur_code" prefWidth="109.0" resizable="false" styleClass="gridcolumn" visible="false" />
-                            </columns>
-                        </TableView>
-                    </children>
-                </Pane>
-                <Pane fx:id="student_home" layoutX="569.0" layoutY="213.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <children>
-                        <TableView fx:id="student_grid_home" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="20.0" layoutY="66.0" prefHeight="564.0" prefWidth="1010.0" scaleShape="false" style="-fx-background-color: transparent;" styleClass="gridview">
-                            <columns>
-                                <TableColumn fx:id="etablissement_grid_home" prefWidth="300.0" resizable="false" style="-fx-padding: 7px 10px;" text="Etablissement">
-                                    <styleClass>
-                                        <String fx:value="gridcolumn" />
-                                        <String fx:value="not-btn" />
-                                    </styleClass></TableColumn>
-                                <TableColumn fx:id="formation_grid_home" minWidth="6.0" prefWidth="250.0" resizable="false" style="-fx-padding: 7px 10px;" text="Formation">
-                                    <styleClass>
-                                        <String fx:value="gridcolumn" />
-                                        <String fx:value="not-btn" />
-                                    </styleClass></TableColumn>
-                                <TableColumn fx:id="ville_grid_home" prefWidth="160.0" resizable="false" style="-fx-padding: 7px 10px;" text="Ville">
-                                    <styleClass>
-                                        <String fx:value="gridcolumn" />
-                                        <String fx:value="not-btn" />
-                                    </styleClass></TableColumn>
-                                <TableColumn fx:id="residuelle_grid_home" prefWidth="112.0" resizable="false" style="-fx-padding: 7px 10px;" text="Résiduelle">
-                                    <styleClass>
-                                        <String fx:value="gridcolumn" />
-                                        <String fx:value="not-btn" />
-                                    </styleClass></TableColumn>
-                                <TableColumn fx:id="viewschool_grid_home" prefWidth="90.0" resizable="false" styleClass="gridcolumn" />
-                                <TableColumn fx:id="cp_code" prefWidth="180.0" resizable="false" text="cp_code" visible="false" />
-                                <TableColumn fx:id="apply_grid_home" resizable="false" styleClass="gridcolumn" />
-                                <TableColumn fx:id="school_code" prefWidth="88.0" resizable="false" styleClass="gridcolumn" visible="false" />
-                            </columns>
-                        </TableView>
-                    </children>
+               <children>
+                  <HBox fx:id="quizzesHBox" layoutX="1.0" layoutY="25.0" prefHeight="100.0" prefWidth="1049.0" />
+               </children>
                 </Pane>
             </children>
         </AnchorPane>

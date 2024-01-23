@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class QuizDAO {
-    private static final String TABLE_NAME = "quizzes";
+    private static final String TABLE_NAME = "Quiz";
 
     public Quiz getQuizById(int quizId) {
         try (Connection connection = DatabaseConnector.getConnection();
@@ -101,7 +101,6 @@ public class QuizDAO {
     private Quiz createQuizFromResultSet(ResultSet resultSet) throws SQLException {
         int quizId = resultSet.getInt("quizId");
         String quizName = resultSet.getString("quizName");
-        int moduleId = resultSet.getInt("moduleId");
         // Retrieve timestamp values from the database
         Timestamp createdAt = resultSet.getTimestamp("createdAt");
         Timestamp updatedAt = resultSet.getTimestamp("updatedAt");
@@ -112,7 +111,7 @@ public class QuizDAO {
         List<Question> questions = getQuestionsForQuiz(quizId);
 
         // Create and return a Quiz object
-        return new Quiz(quizId, moduleId,quizName, questions, createdAt, updatedAt, startAt, duration);
+        return new Quiz(quizId,quizName, questions, createdAt, updatedAt, startAt, duration);
     }
 
     private void addQuestionsForQuiz(Quiz quiz) {

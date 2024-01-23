@@ -14,7 +14,7 @@ public class Quiz {
     private int duration; // Duration in minutes
 
     // Constructors
-    public Quiz(int quizId, int moduleId, String quizName, List<Question> questions, Date createdAt, Date updatedAt, Date startAt, int duration) {
+    public Quiz(int quizId, String quizName, List<Question> questions, Date createdAt, Date updatedAt, Date startAt, int duration) {
         this.quizId = quizId;
         this.moduleId = moduleId;
         this.quizName = quizName;

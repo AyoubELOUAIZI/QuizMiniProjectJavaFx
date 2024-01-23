@@ -122,7 +122,7 @@ public User createUser(User user) {
         return user;
     }
 
-    private List<Quiz> getQuizzesForUser(int userId) {
+    public List<Quiz> getQuizzesForUser(int userId) {
         List<Quiz> quizzes = new ArrayList<>();
         // Implement logic to retrieve modules associated with the user from the database
         // Modify this part according to your database schema
@@ -152,7 +152,8 @@ public User createUser(User user) {
     private Quiz getQuizById(int quizId) {
         // Implement logic to retrieve a module by its ID from the database
         // Modify this part according to your database schema
-        return null;
+        QuizDAO quizDAO = new QuizDAO();
+        return quizDAO.getQuizById(quizId);
     }
 
     private void updateModulesForUser(User user) {

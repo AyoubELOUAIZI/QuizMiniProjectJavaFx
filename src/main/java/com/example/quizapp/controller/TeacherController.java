@@ -3,21 +3,26 @@ package com.example.quizapp.controller;
 
 import com.example.quizapp.UserSession;
 import com.example.quizapp.dao.TeacherDAO;
+import com.example.quizapp.dao.UserDAO;
+import com.example.quizapp.model.Quiz;
 import com.example.quizapp.model.Teacher;
 import com.example.quizapp.model.User;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class TeacherController {
     public ImageView profileImageView;
@@ -67,6 +72,8 @@ public class TeacherController {
     @FXML
     private TableView<?> formation_inview;
     // ... (other FXML components)
+    @FXML
+    private HBox quizzesHBox;
 
     // Event handlers
     @FXML
@@ -116,6 +123,8 @@ public class TeacherController {
         // Initialization logic here, like setting user details
         User currentUser = UserSession.getCurrentUser();
         if (currentUser != null) {
+            //Elmahdi add this line
+            handleModuleClick(currentUser.getUserId());
             fullname_toshow.setText(currentUser.getFullName());
             email_toshow.setText(currentUser.getEmail());
             // ... Set other user details
@@ -129,6 +138,47 @@ public class TeacherController {
                 }
 
         }
+    }
+// Elmahdi Updates
+public List<Quiz> retrieveQuizzesForTeacher(int teacherId) {
+    // Implement the logic to fetch quizzes for the specified module
+    // For example, you can use the QuizDAO to get quizzes from the database
+    UserDAO userDAO = new UserDAO();
+    System.out.println("there is  quizzes for teacherId: "+teacherId);
+    System.out.println(userDAO.getQuizzesForUser(teacherId));
+    return userDAO.getQuizzesForUser(teacherId);
+}
+    public void displayQuizzesInHBox(HBox quizzesHBox, int teacherId) {
+        // Clear the existing content in the HBox
+        if(quizzesHBox!=null)quizzesHBox.getChildren().clear();
+
+        // Retrieve the quizzes for the specified module
+        List<Quiz> quizzes = retrieveQuizzesForTeacher(teacherId);
+
+        // Create and add labels for each quiz to the HBox
+        for (Quiz quiz : quizzes) {
+            Label quizLabel = new Label(quiz.getQuizName());
+            quizLabel.setStyle("-fx-background-color: #52b379; -fx-text-fill: white; -fx-padding: 5px;-fx-margin:10;");
+            // Add margin from the top of the label
+            quizLabel.setPadding(new Insets(10, 0, 0, 0)); // Adjust the top margin value as needed
+
+            quizzesHBox.setSpacing(10);
+
+            // You can customize the label properties (styles, event handlers, etc.) here
+             quizzesHBox.getChildren().add(quizLabel);
+        }
+    }
+    @FXML
+    private void handleModuleClick(int teacherId) {
+        // Assume modulNameLabel is a label displaying the module name
+        //String moduleName = modulNameLabel.getText();
+
+        // Get the reference to your HBox (replace 'yourHBox' with the actual ID)
+
+       // HBox quizzesHBox = (HBox) quizzesHBox.getScene().lookup("#quizHBox");
+
+        // Display quizzes in the HBox
+        displayQuizzesInHBox(quizzesHBox, teacherId);
     }
 
 
