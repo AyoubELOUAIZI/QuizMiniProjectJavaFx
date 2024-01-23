@@ -158,10 +158,7 @@ public class AuthenticationController {
     @FXML
     void starting_signup(ActionEvent event) {
         signup1.toFront();
-//        CommonService.fillBacs(bactype_choice, false);
-//        CommonService.fillVilles(bacville_choice, false);
-//        CommonService.fillVilles(studentcity_choice, false);
-        bacyear_choice.getItems().addAll("2022", "2021", "2020");
+
     }
 
 //    StudentInformations signedstudent= new StudentInformations();
