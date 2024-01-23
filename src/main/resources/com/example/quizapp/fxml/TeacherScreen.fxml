@@ -47,7 +47,7 @@
                                 <Image url="@../images/Asset 1@4x.png" />
                             </image>
                         </ImageView>
-                        <Label layoutX="62.0" layoutY="26.0" text="TAWJIH" textFill="WHITE">
+                        <Label layoutX="62.0" layoutY="26.0" text="QCM Quiz" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="11.0" />
                             </font>
