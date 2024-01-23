@@ -108,8 +108,6 @@ public class AuthenticationController {
     }
 
 
-
-
     @FXML
     void starting_signup(ActionEvent event) {
         signup1.toFront();
@@ -153,32 +151,13 @@ public class AuthenticationController {
         UserDAO userDAO = new UserDAO();
 
         User createdUser = userDAO.createUser(newUser);
-
-//            if (createdUser != null) {
-//                // Successfully logged in
-//                // Now you can check the role and perform role-specific actions
-//                String createdUserRole = createdUser.getRole();
-//                if ("STUDENT".equals(createdUserRole)) {
-//                    // Handle student login
-//                    System.out.println("student login");
-//                    System.out.println("user");
-//                    System.out.println(createdUser);
-//                    navigateToStudentScreen();
-//
-//                } else if ("TEACHER".equals(createdUserRole)) {
-//                    // Handle teacher login
-//                    System.out.println("teacher login");
-//                    navigateToTeacherScreen();
-//                }
-
- //   }
 //        this will redirect the user to the login and show a message comfirmation
         if(createdUser != null) {
             backtologin(event);
             Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
             alert.setTitle("Compte Créé avec Succès !");
             alert.setHeaderText("Votre compte a été créé avec succès.");
-            alert.setContentText("Félicitations ! Vous pouvez maintenant vous connecter avec vos identifiants.");
+            alert.setContentText("Félicitations "+firstname.toUpperCase()+" ! Vous pouvez maintenant vous connecter avec vos identifiants.");
             alert.showAndWait();
             password_login.setText(password);
             email_login.setText(email);
