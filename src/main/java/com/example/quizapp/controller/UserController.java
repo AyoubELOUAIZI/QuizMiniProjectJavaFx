@@ -6,7 +6,7 @@ import com.example.quizapp.model.User;
 
 import java.util.List;
 
-public class UserController {
+abstract public class UserController {
     private UserDAO userDAO;
 
     public UserController(UserDAO userDAO) {

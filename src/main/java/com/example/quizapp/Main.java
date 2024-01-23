@@ -25,7 +25,7 @@ public class Main extends Application {
         initializeApplication();
 
         // Close the splash screen after a delay and continue with your main application logic
-        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(7), event -> {
+        Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
             // Close the splash screen
             primaryStage.close();
 
@@ -72,7 +72,7 @@ public class Main extends Application {
 
     private void showMainApplication() throws Exception {
         // Load your main application FXML and show the main window
-        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/com/example/quizapp/fxml/todo_list.fxml"));
+        FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/com/example/quizapp/fxml/AuthenticationScreen.fxml"));
         Parent mainRoot = mainLoader.load();
         Scene mainScene = new Scene(mainRoot);
 

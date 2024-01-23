@@ -1,0 +1,98 @@
+/* JavaFX CSS - Leave this comment until you have at least create one rule which uses -fx-Property */
+.gridview{
+	-fx-background-color: transparent;
+	-fx-alignment: left;
+	-fx-border-color: #1E90FF;
+	-fx-border-radius: 5px;
+	-fx-border-width: 0.1px;
+	-fx-font-size: 13;
+	-fx-valignment: center;
+
+
+}
+.gridview .gridcolumn{
+	-fx-font-weight: 300;
+	-fx-background-color: #fff;
+	-fx-border-color: #1E90FF;
+	-fx-border-width: 0.1px;
+	-fx-text-fill: #3e3e3e;
+	-fx-valignment: center;
+}
+.profile-grid{
+	-fx-font-weight: 300;
+	-fx-background-color: #fff;
+	-fx-border-color: #FFF;
+	-fx-border-width: 0.1px;
+	-fx-text-fill: #3e3e3e;
+	-fx-valignment: center;
+}
+.profile-grid .gridcolumn{
+	-fx-font-weight: 300;
+	-fx-background-color: #fff;
+	-fx-border-color: #FFF;
+	-fx-border-width: 0.1px;
+	-fx-text-fill: #3e3e3e;
+	-fx-valignment: center;
+}
+.fridview .not-btn{
+	-fx-padding: 7px 10px;
+}
+.scroll-bar {
+  	-fx-background-color: #fff;
+  	-fx-color: #fff;
+}
+.combo-box {
+  	-fx-color: #1E90FF;
+  	-fx-background-color: #fff;
+  	-fx-border-color: #1E90FF;
+  	-fx-border-radius: 5px;
+	-fx-border-width: 0.2px;
+	-fx-padding: 0 0 0 30px;
+}
+.search-field{
+	-fx-color: #1E90FF;
+  	-fx-background-color: #fff;
+  	-fx-border-color: #1E90FF;
+  	-fx-border-radius: 5px;
+	-fx-border-width: 0.2px;
+}
+.input{
+	-fx-background-color: #fff;
+	-fx-border-color: #9A9A9A;
+  	-fx-border-radius: 5px;
+	-fx-border-width: 0.5px;
+}
+.choice-box{
+	-fx-border-width: 0.5px;
+	-fx-border-color: #BCBCBC;
+	-fx-border-radius: 5px;
+	-fx-background-color: #fff;
+}
+.nav-btn{
+	-fx-background-color:  #1E90FF;
+	-fx-padding: 8px 10px;
+	-fx-pref-height: 40px;
+	-fx-background-radius: 0;
+}
+.nav-btn:hover{
+	-fx-background-color: #359BFF;
+}
+.cancel-btn{
+	-fx-background-color: #FFF;
+	-fx-background-radius: 20px;
+	-fx-border-color: #FFF;
+}
+.active{
+	-fx-background-color: #FFF;
+	-fx-color: #1E90FF;
+	-fx-text-fill: #1E90FF;
+}
+.active:hover{
+	-fx-background-color: #CCE0F8;
+}
+
+
+
+
+
+

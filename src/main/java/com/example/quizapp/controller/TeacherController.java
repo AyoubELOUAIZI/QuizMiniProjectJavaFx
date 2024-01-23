@@ -3,14 +3,17 @@ package com.example.quizapp.controller;
 
 import com.example.quizapp.dao.TeacherDAO;
 import com.example.quizapp.model.Teacher;
+import javafx.event.ActionEvent;
 
 import java.util.List;
 
 public class TeacherController {
     private TeacherDAO teacherDAO;
 
-    public TeacherController(TeacherDAO teacherDAO) {
-        this.teacherDAO = teacherDAO;
+
+
+    public TeacherController() {
+        this.teacherDAO = new TeacherDAO();
     }
 
     public Teacher getTeacherById(int userId) {
@@ -31,5 +34,9 @@ public class TeacherController {
 
     public List<Teacher> getAllTeachers() {
         return teacherDAO.getAllTeachers();
+    }
+
+    public void handleButtonAction(ActionEvent actionEvent) {
+
     }
 }

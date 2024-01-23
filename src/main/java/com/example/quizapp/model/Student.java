@@ -11,6 +11,10 @@ public class Student extends User {
         this.studentCode = studentCode;
     }
 
+    public Student() {
+
+    }
+
     // Getter and Setter for studentCode
     public String getStudentCode() {
         return studentCode;

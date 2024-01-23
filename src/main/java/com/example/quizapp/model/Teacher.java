@@ -15,6 +15,10 @@ public class Teacher extends User {
         super(userId, firstname, lastname, email, password, "teacher", modules);
     }
 
+    public Teacher() {
+
+    }
+
     // Additional methods if needed
     // ...
 

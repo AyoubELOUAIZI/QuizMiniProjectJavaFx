@@ -111,6 +111,17 @@ CREATE TABLE IF NOT EXISTS Feedback (
 ------------------------executed code works in planets cale---------------------------
 --Because foreign key constraints are not allowed in planets cale
 -- Create tables
+
+CREATE TABLE IF NOT EXISTS User (
+    userId INT PRIMARY KEY AUTO_INCREMENT,
+    firstname VARCHAR(100) NOT NULL,
+    lastname VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password VARCHAR(100) NOT NULL,
+    role VARCHAR(50) NOT NULL,
+);
+
+
 CREATE TABLE IF NOT EXISTS Student (
     userId INT PRIMARY KEY AUTO_INCREMENT,
     firstname VARCHAR(100) NOT NULL,

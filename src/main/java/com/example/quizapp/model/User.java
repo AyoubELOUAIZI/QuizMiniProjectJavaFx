@@ -79,5 +79,6 @@ public class User {
         this.modules = modules;
     }
 
-
+    public User() {
+    }
 }

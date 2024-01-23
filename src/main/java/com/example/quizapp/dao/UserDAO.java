@@ -1,5 +1,7 @@
 package com.example.quizapp.dao;
 
+import com.example.quizapp.model.Student;
+import com.example.quizapp.model.Teacher;
 import com.example.quizapp.model.User;
 import com.example.quizapp.model.Module;
 import com.example.quizapp.database.DatabaseConnector;
@@ -139,5 +141,53 @@ public class UserDAO {
     private void deleteModulesForUser(int userId) {
         // Implement logic to delete modules associated with the user in the database
         // Modify this part according to your database schema
+    }
+
+//    public User loginUser(String email, String password) throws SQLException {
+//        String query = "SELECT * FROM Student WHERE email = ? AND password = ? UNION SELECT * FROM Teacher WHERE email = ? AND password = ?";
+//        try (Connection connection = DatabaseConnector.getConnection();
+//             PreparedStatement statement = connection.prepareStatement(query)) {
+//            statement.setString(1, email);
+//            statement.setString(2, password);
+//            statement.setString(3, email);
+//            statement.setString(4, password);
+//
+//            try (ResultSet resultSet = statement.executeQuery()) {
+//                if (resultSet.next()) {
+//                    User user = new User();
+//                    user.setUserId(resultSet.getInt("userId"));
+//                    user.setFirstname(resultSet.getString("firstname"));
+//                    user.setLastname(resultSet.getString("lastname"));
+//                    user.setEmail(resultSet.getString("email"));
+//                    user.setPassword(resultSet.getString("password"));
+//                    user.setRole(resultSet.getString("role"));
+//                    return user;
+//                }
+//            }
+//        }
+//        return null; // Login failed
+//    }
+
+    public User loginUser(String email, String password) throws SQLException {
+        String query = "SELECT * FROM User WHERE email = ? AND password = ?";
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement statement = connection.prepareStatement(query)) {
+            statement.setString(1, email);
+            statement.setString(2, password);
+
+            try (ResultSet resultSet = statement.executeQuery()) {
+                if (resultSet.next()) {
+                    User user = new User();
+                    user.setUserId(resultSet.getInt("userId"));
+                    user.setFirstname(resultSet.getString("firstname"));
+                    user.setLastname(resultSet.getString("lastname"));
+                    user.setEmail(resultSet.getString("email"));
+                    user.setPassword(resultSet.getString("password"));
+                    user.setRole(resultSet.getString("role"));
+                    return user;
+                }
+            }
+        }
+        return null; // Login failed
     }
 }

@@ -3,9 +3,12 @@ package com.example.quizapp.controller;
 
 import com.example.quizapp.dao.StudentDAO;
 import com.example.quizapp.model.Student;
+import javafx.event.ActionEvent;
 
 public class StudentController {
     private final StudentDAO studentDAO;
+
+
 
     public StudentController() {
         this.studentDAO = new StudentDAO();
@@ -25,5 +28,10 @@ public class StudentController {
 
     public void deleteStudent(int userId) {
         studentDAO.deleteStudent(userId);
+    }
+
+    public void handleButtonAction(ActionEvent event) {
+
+
     }
 }
