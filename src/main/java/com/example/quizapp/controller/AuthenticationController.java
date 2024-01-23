@@ -49,14 +49,14 @@ public class AuthenticationController {
                 UserSession.setCurrentUser(user);
                 // Now you can check the role and perform role-specific actions
                 String role = user.getRole();
-                if ("STUDENT".equals(role)) {
+                if ("STUDENT".equalsIgnoreCase(role)) {
                     // Handle student login
                     System.out.println("student login");
                     System.out.println("user");
                     System.out.println(user);
                     navigateToStudentScreen();
 
-                } else if ("TEACHER".equals(role)) {
+                } else if ("TEACHER".equalsIgnoreCase(role)) {
                     // Handle teacher login
                     System.out.println("teacher login");
                     navigateToTeacherScreen();

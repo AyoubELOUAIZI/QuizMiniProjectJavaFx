@@ -3,7 +3,6 @@
 <?import java.lang.String?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -25,43 +24,24 @@
             <children>
                 <AnchorPane prefHeight="80.0" prefWidth="1222.0">
                     <children>
-                        <Label fx:id="fullname_toshow" layoutX="254.0" layoutY="23.0" text="Jada Mohamed" textFill="WHITE">
+                        <Label fx:id="fullname_toshow" layoutX="254.0" layoutY="23.0" text="ELOUAIZI AYOUB" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <Label fx:id="email_toshow" layoutX="254.0" layoutY="40.0" text="mohamedjada@gmail.com" textFill="WHITE" />
-                        <Label fx:id="cne_toshow" layoutX="508.0" layoutY="23.0" text="D13256789051" textFill="WHITE">
+                        <Label fx:id="email_toshow" layoutX="254.0" layoutY="40.0" text="ayoubelouaizi@gmail.com" textFill="WHITE" />
+                        <Label fx:id="cne_toshow" layoutX="508.0" layoutY="23.0" text="Connecté en tant qu'étudiant." textFill="WHITE">
                             <font>
-                                <Font name="System Bold" size="12.0" />
+                                <Font name="System Bold" size="13.0" />
                             </font>
                         </Label>
-                        <Label fx:id="bactype_toshow" layoutX="508.0" layoutY="40.0" prefHeight="17.0" prefWidth="205.0" text="Baccalauriate Science Of Physics" textFill="WHITE" />
-                        <Label layoutX="812.0" layoutY="23.0" text="Age" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="12.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="age_toshow" layoutX="812.0" layoutY="40.0" prefHeight="17.0" prefWidth="54.0" text="20 year" textFill="WHITE" />
-                        <Label layoutX="923.0" layoutY="23.0" text="Obtenir le bac en" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="12.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="bacyear_toshow" layoutX="923.0" layoutY="40.0" prefHeight="17.0" prefWidth="74.0" text="2021/2022" textFill="WHITE" />
-                        <Label layoutX="1068.0" layoutY="23.0" text="Ville" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="12.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="city_toshow" layoutX="1068.0" layoutY="40.0" prefHeight="17.0" prefWidth="74.0" text="Agadir" textFill="WHITE" />
-                        <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="170.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                        <Label fx:id="bactype_toshow" layoutX="508.0" layoutY="40.0" prefHeight="17.0" prefWidth="205.0" text="2023/2024" textFill="WHITE" />
+                        <ImageView fx:id="studentProfileImageView" fitHeight="60.0" fitWidth="60.0" layoutX="170.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/profile-male.png" />
+                                <Image url="@../images/studentFemale.png" />
                             </image>
                         </ImageView>
                         <Line endX="1.0" endY="1.0" layoutX="510.0" layoutY="39.0" rotate="90.0" startX="-45.0" startY="1.0" stroke="#f7fdffa4" strokeMiterLimit="5.0" />
-                        <Line endX="1.0" endY="1.0" layoutX="814.0" layoutY="39.0" rotate="90.0" startX="-45.0" startY="1.0" stroke="#f7fdffa4" strokeMiterLimit="5.0" />
                         <ImageView fitHeight="60.0" fitWidth="40.0" layoutX="16.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/Asset 1@4x.png" />
@@ -445,11 +425,6 @@
                 </Pane>
                 <Pane fx:id="student_home" layoutX="569.0" layoutY="213.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
-                        <ChoiceBox fx:id="student_schoollist_ville_filter" focusTraversable="false" layoutX="20.0" layoutY="20.0" prefHeight="30.0" prefWidth="250.0" style="-fx-cursor: pointer; -fx-focus-color: transparent; -fx-background-color: fff;" styleClass="combo-box">
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </ChoiceBox>
                         <TableView fx:id="student_grid_home" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="20.0" layoutY="66.0" prefHeight="564.0" prefWidth="1010.0" scaleShape="false" style="-fx-background-color: transparent;" styleClass="gridview">
                             <columns>
                                 <TableColumn fx:id="etablissement_grid_home" prefWidth="300.0" resizable="false" style="-fx-padding: 7px 10px;" text="Etablissement">
@@ -478,11 +453,6 @@
                                 <TableColumn fx:id="school_code" prefWidth="88.0" resizable="false" styleClass="gridcolumn" visible="false" />
                             </columns>
                         </TableView>
-                        <ImageView fitHeight="21.0" fitWidth="21.0" layoutX="24.0" layoutY="25.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/local_filter.png" />
-                            </image>
-                        </ImageView>
                     </children>
                 </Pane>
             </children>
