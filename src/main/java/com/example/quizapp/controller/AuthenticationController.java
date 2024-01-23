@@ -1,7 +1,7 @@
 package com.example.quizapp.controller;
 
 
-import java.io.IOException;
+import java.io.*;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
 
@@ -36,7 +36,48 @@ public class AuthenticationController {
     @FXML
     private PasswordField password_login;
 
-    public void handleLogin() {
+
+    @FXML
+    public void initialize() {
+        User savedUser = loadLoginState();
+        if (savedUser != null) {
+            System.out.println("savedUser");
+            System.out.println(savedUser);
+            // User is logged in, proceed to main screen
+            UserSession.setCurrentUser(savedUser);
+            // Directly navigate to student or teacher screen based on the role
+            if ("STUDENT".equalsIgnoreCase(savedUser.getRole())) {
+                navigateToStudentScreen();
+            } else if ("TEACHER".equalsIgnoreCase(savedUser.getRole())) {
+                navigateToTeacherScreen();
+            }
+        }
+        // Else, stay on the login screen
+    }
+
+
+    private User loadLoginState() {
+        try (BufferedReader reader = new BufferedReader(new FileReader("userLogin.txt"))) {
+            String userIdStr = reader.readLine();
+            System.out.println("readed user Id");
+            System.out.println("---> " + userIdStr);
+            if (userIdStr != null && !userIdStr.isEmpty()) {
+                try {
+                    int userId = Integer.parseInt(userIdStr);
+                    UserDAO userDAO = new UserDAO();
+                    return userDAO.getUserById(userId); // Ensure this method exists
+                } catch (NumberFormatException e) {
+                    System.err.println("Invalid user ID in file: " + userIdStr);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+
+        public void handleLogin() {
         String email = email_login.getText();
         String password = password_login.getText();
 
@@ -47,6 +88,7 @@ public class AuthenticationController {
             if (user != null) {
                 // Successfully logged in
                 UserSession.setCurrentUser(user);
+                saveLoginState(user);
                 // Now you can check the role and perform role-specific actions
                 String role = user.getRole();
                 if ("STUDENT".equalsIgnoreCase(role)) {
@@ -74,6 +116,19 @@ public class AuthenticationController {
             e.printStackTrace(); // Handle the exception appropriately in your application
         }
     }
+
+    private void saveLoginState(User user) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("userLogin.txt"))) {
+            writer.write(String.valueOf(user.getUserId())); // or any unique identifier of the user
+            System.out.println("the user login saved to remember him the next time 💚");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+
+
 
     private void navigateToStudentScreen() {
         try {

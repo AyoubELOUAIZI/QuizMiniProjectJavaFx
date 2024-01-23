@@ -106,4 +106,18 @@ public class User {
     public String getFullName() {
         return lastname+" "+firstname;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "userId=" + userId +
+                ", firstname='" + firstname + '\'' +
+                ", lastname='" + lastname + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", role='" + role + '\'' +
+                ", sexe='" + sexe + '\'' +
+                ", modules=" + modules +
+                '}';
+    }
 }

@@ -132,7 +132,7 @@ public User createUser(User user) {
         String email = resultSet.getString("email");
         String password = resultSet.getString("password");
         String role = resultSet.getString("role");
-        String sex = resultSet.getString("sex");
+        String sex = resultSet.getString("sexe");
 
         // Fetch associated modules
         List<Module> modules = getModulesForUser(userId);
@@ -147,7 +147,7 @@ public User createUser(User user) {
         // Modify this part according to your database schema
 
         // Example: Assume you have a table named "user_modules" with columns userId and moduleId
-        String query = "SELECT moduleId FROM user_modules WHERE userId=?";
+        String query = "SELECT moduleId FROM Module WHERE teacherId=?";
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement
                      = connection.prepareStatement(query)) {
