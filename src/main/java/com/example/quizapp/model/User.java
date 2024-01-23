@@ -18,7 +18,11 @@ public class User {
         this.sexe = sexe;
     }
 
-    public User(int userId, String firstname, String lastname, String email, String password, String role, String sexe, List<Module> modules) {
+    private String sexe;
+    private List<Quiz> quizzes; // List of modules associated with the user
+
+
+    public User(int userId, String firstname, String lastname, String email, String password, String role, String sexe, List<Quiz> quizzes) {
         this.userId = userId;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -26,11 +30,9 @@ public class User {
         this.password = password;
         this.role = role;
         this.sexe = sexe;
-        this.modules = modules;
+        this.quizzes = quizzes;
     }
 
-    private String sexe;
-    private List<Module> modules; // List of modules associated with the user
 
     // Constructor
 //    public User(int userId, String firstname, String lastname, String email, String password, String role, List<Module> modules) {
@@ -92,12 +94,12 @@ public class User {
         this.role = role;
     }
 
-    public List<Module> getModules() {
-        return modules;
+    public List<Quiz> getModules() {
+        return quizzes;
     }
 
-    public void setModules(List<Module> modules) {
-        this.modules = modules;
+    public void setModules(List<Quiz> quizzes) {
+        this.quizzes = quizzes;
     }
 
     public User() {
@@ -117,7 +119,7 @@ public class User {
                 ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 ", sexe='" + sexe + '\'' +
-                ", modules=" + modules +
+                ", quizzes=" + quizzes +
                 '}';
     }
 }

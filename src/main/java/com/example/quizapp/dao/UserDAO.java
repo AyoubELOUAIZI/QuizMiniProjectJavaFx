@@ -1,9 +1,6 @@
 package com.example.quizapp.dao;
-
-import com.example.quizapp.model.Student;
-import com.example.quizapp.model.Teacher;
+import com.example.quizapp.model.Quiz;
 import com.example.quizapp.model.User;
-import com.example.quizapp.model.Module;
 import com.example.quizapp.database.DatabaseConnector;
 
 import java.sql.*;
@@ -28,22 +25,6 @@ public class UserDAO {
         return null;
     }
 
-//    public void createUser(User user) {
-//        try (Connection connection = DatabaseConnector.getConnection();
-//             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " + TABLE_NAME + " VALUES (?, ?, ?, ?, ?, ?,?)")) {
-//            preparedStatement.setInt(1, user.getUserId());
-//            preparedStatement.setString(2, user.getFirstname());
-//            preparedStatement.setString(3, user.getLastname());
-//            preparedStatement.setString(4, user.getEmail());
-//            preparedStatement.setString(5, user.getPassword());
-//            preparedStatement.setString(6, user.getRole());
-//            preparedStatement.setString(7, user.getSexe());
-//
-//            preparedStatement.executeUpdate();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
-//    }
 public User createUser(User user) {
     ResultSet generatedKeys = null;
     try (Connection connection = DatabaseConnector.getConnection();
@@ -135,40 +116,40 @@ public User createUser(User user) {
         String sex = resultSet.getString("sexe");
 
         // Fetch associated modules
-        List<Module> modules = getModulesForUser(userId);
+        List<Quiz> quizzes = getQuizzesForUser(userId);
 
-        User user = new User(userId, firstname, lastname, email, password, role,sex, modules);
+        User user = new User(userId, firstname, lastname, email, password, role,sex, quizzes);
         return user;
     }
 
-    private List<Module> getModulesForUser(int userId) {
-        List<Module> modules = new ArrayList<>();
+    private List<Quiz> getQuizzesForUser(int userId) {
+        List<Quiz> quizzes = new ArrayList<>();
         // Implement logic to retrieve modules associated with the user from the database
         // Modify this part according to your database schema
 
         // Example: Assume you have a table named "user_modules" with columns userId and moduleId
-        String query = "SELECT moduleId FROM Module WHERE teacherId=?";
+        String query = "SELECT quizId FROM Quiz WHERE teacherId=?";
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement
                      = connection.prepareStatement(query)) {
             preparedStatement.setInt(1, userId);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    int moduleId = resultSet.getInt("moduleId");
+                    int quizId = resultSet.getInt("quizId");
                     // Fetch module details based on moduleId
-                    Module module = getModuleById(moduleId);
-                    if (module != null) {
-                        modules.add(module);
+                    Quiz quiz = getQuizById(quizId);
+                    if (quiz != null) {
+                        quizzes.add(quiz);
                     }
                 }
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        return modules;
+        return quizzes;
     }
 
-    private Module getModuleById(int moduleId) {
+    private Quiz getQuizById(int quizId) {
         // Implement logic to retrieve a module by its ID from the database
         // Modify this part according to your database schema
         return null;

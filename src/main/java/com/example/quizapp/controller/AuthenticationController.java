@@ -8,6 +8,7 @@ import java.util.regex.Pattern;
 import com.example.quizapp.UserSession;
 import com.example.quizapp.dao.UserDAO;
 import com.example.quizapp.model.User;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,6 +20,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 
 
 public class AuthenticationController {
@@ -52,7 +54,7 @@ public class AuthenticationController {
                 navigateToTeacherScreen();
             }
         }
-        // Else, stay on the login screen
+
     }
 
 
@@ -117,6 +119,7 @@ public class AuthenticationController {
         }
     }
 
+
     private void saveLoginState(User user) {
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("userLogin.txt"))) {
             writer.write(String.valueOf(user.getUserId())); // or any unique identifier of the user
@@ -128,47 +131,54 @@ public class AuthenticationController {
 
 
 
-
-
     private void navigateToStudentScreen() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/fxml/StudentScreen.fxml"));
-            Parent root = loader.load();
-            Scene scene = new Scene(root);
-            Stage stage = new Stage();
-            stage.setScene(scene);
-            stage.setResizable(false);
-            stage.show();
+        Platform.runLater(() -> {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/fxml/StudentScreen.fxml"));
+                Parent root = loader.load();
+                Scene scene = new Scene(root);
+                Stage stage = new Stage();
+                stage.setScene(scene);
+                stage.setResizable(false);
+                stage.show();
 
-            // Close the current login window
-            ((Stage) email_login.getScene().getWindow()).close();
-        } catch (IOException e) {
-            e.printStackTrace(); // Handle the exception appropriately in your application
-        }
+                // Close the current login window
+                Stage currentStage = (Stage) email_login.getScene().getWindow();
+                currentStage.close();
+            } catch (IOException e) {
+                e.printStackTrace(); // Handle the exception appropriately
+            }
+        });
     }
 
-    private void navigateToTeacherScreen() {
+
+
+
+
+    public void navigateToTeacherScreen() {
+    Platform.runLater(() -> {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/fxml/TeacherScreen.fxml"));
             Parent root = loader.load();
             Scene scene = new Scene(root);
             Stage stage = new Stage();
             stage.setScene(scene);
-            stage.setResizable(false);
             stage.show();
 
-            // Close the current login window
-            ((Stage) email_login.getScene().getWindow()).close();
+            // Close the current stage
+            Stage currentStage = (Stage) email_login.getScene().getWindow();
+            currentStage.close();
         } catch (IOException e) {
-            e.printStackTrace(); // Handle the exception appropriately in your application
+            e.printStackTrace();
         }
-    }
+    });
+}
+
 
 
     @FXML
     void starting_signup(ActionEvent event) {
         signup1.toFront();
-
     }
 
     @FXML
