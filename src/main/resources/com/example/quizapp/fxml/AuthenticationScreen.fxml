@@ -26,57 +26,6 @@
         </AnchorPane>
         <AnchorPane prefHeight="720.0" prefWidth="480.0" style="-fx-background-color: fff;">
             <children>
-<!--                end of sign up-->
-<!--     Login panel-->
-                <Pane fx:id="login_forum" prefHeight="720.0" prefWidth="480.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <children>
-                        <Label layoutX="115.0" layoutY="334.0" text="Email" textFill="#00000099">
-                            <font>
-                                <Font name="Segoe UI Bold" size="12.0" />
-                            </font>
-                        </Label>
-                        <Button fx:id="login_btn" alignment="CENTER" layoutX="115.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="34.0" prefWidth="250.0" style="-fx-background-color: #1E90FF; -fx-background-radius: 5;" text="Se Connecter" textFill="WHITE">
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Button>
-                        <Label layoutX="130.0" layoutY="545.0" text="Vous n'avez pas de compte ?" textFill="#00000099">
-                            <font>
-                                <Font name="Segoe UI" size="11.0" />
-                            </font>
-                        </Label>
-                        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="188.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/education.png" />
-                            </image>
-                        </ImageView>
-                        <Label layoutX="191.0" layoutY="247.0" text="Rebienvenue !" textFill="DODGERBLUE">
-                            <font>
-                                <Font name="Segoe UI Black Italic" size="14.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="135.0" layoutY="273.0" text="Connectez-vous pour accéder à votre compte." textFill="#00000099">
-                            <font>
-                                <Font name="Segoe UI" size="11.0" />
-                            </font>
-                        </Label>
-                        <TextField fx:id="email_login" focusTraversable="false" layoutX="115.0" layoutY="351.0" prefHeight="34.0" prefWidth="250.0" promptText="example@email.com" style="-fx-background-radius: 5;" styleClass="input" />
-                        <Label layoutX="115.0" layoutY="411.0" text="Password" textFill="#00000099">
-                            <font>
-                                <Font name="Segoe UI Bold" size="12.0" />
-                            </font>
-                        </Label>
-                        <PasswordField fx:id="password_login" layoutX="115.0" layoutY="428.0" prefHeight="34.0" prefWidth="250.0" promptText="********" styleClass="input" />
-                        <Button layoutX="277.0" layoutY="540.0" mnemonicParsing="false" onAction="#starting_signup" style="-fx-background-color: transparent;" text="Inscrivez-vous" textFill="DODGERBLUE">
-                            <font>
-                                <Font size="11.0" />
-                            </font>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Button>
-                    </children>
-                </Pane>
 <!--                panel for sign up-->
                 <Pane fx:id="signup1" prefHeight="200.0" prefWidth="480.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
@@ -150,8 +99,59 @@
                         <Font name="Segoe UI Bold" size="12.0" />
                      </font>
                   </Label>
-                  <PasswordField  fx:id="signup_password" focusTraversable="false" layoutX="64.0" layoutY="443.0" prefHeight="34.0" prefWidth="338.0" promptText="*********" style="-fx-background-radius: 5; -fx-background-color: fff; -fx-border-color: #bcbcbc; -fx-border-width: 0.5; -fx-border-style: solid; -fx-border-radius: 5;" styleClass="input" />
-                  <PasswordField  fx:id="signup_confirm_password" focusTraversable="false" layoutX="64.0" layoutY="512.0" prefHeight="34.0" prefWidth="338.0" promptText="*********" style="-fx-background-radius: 5; -fx-background-color: fff; -fx-border-color: #bcbcbc; -fx-border-width: 0.5; -fx-border-style: solid; -fx-border-radius: 5;" styleClass="input" />
+                  <PasswordField fx:id="signup_password" focusTraversable="false" layoutX="64.0" layoutY="443.0" prefHeight="34.0" prefWidth="338.0" promptText="*********" style="-fx-background-radius: 5; -fx-background-color: fff; -fx-border-color: #bcbcbc; -fx-border-width: 0.5; -fx-border-style: solid; -fx-border-radius: 5;" styleClass="input" />
+                  <PasswordField fx:id="signup_confirm_password" focusTraversable="false" layoutX="64.0" layoutY="512.0" prefHeight="34.0" prefWidth="338.0" promptText="*********" style="-fx-background-radius: 5; -fx-background-color: fff; -fx-border-color: #bcbcbc; -fx-border-width: 0.5; -fx-border-style: solid; -fx-border-radius: 5;" styleClass="input" />
+                    </children>
+                </Pane>
+<!--                end of sign up-->
+<!--     Login panel-->
+                <Pane fx:id="login_forum" prefHeight="720.0" prefWidth="480.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <Label layoutX="115.0" layoutY="334.0" text="Email" textFill="#00000099">
+                            <font>
+                                <Font name="Segoe UI Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <Button fx:id="login_btn" alignment="CENTER" layoutX="115.0" layoutY="494.0" mnemonicParsing="false" onAction="#handleLogin" prefHeight="34.0" prefWidth="250.0" style="-fx-background-color: #1E90FF; -fx-background-radius: 5;" text="Se Connecter" textFill="WHITE">
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
+                        <Label layoutX="130.0" layoutY="545.0" text="Vous n'avez pas de compte ?" textFill="#00000099">
+                            <font>
+                                <Font name="Segoe UI" size="11.0" />
+                            </font>
+                        </Label>
+                        <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="188.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/education.png" />
+                            </image>
+                        </ImageView>
+                        <Label layoutX="191.0" layoutY="247.0" text="Rebienvenue !" textFill="DODGERBLUE">
+                            <font>
+                                <Font name="Segoe UI Black Italic" size="14.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="135.0" layoutY="273.0" text="Connectez-vous pour accéder à votre compte." textFill="#00000099">
+                            <font>
+                                <Font name="Segoe UI" size="11.0" />
+                            </font>
+                        </Label>
+                        <TextField fx:id="email_login" focusTraversable="false" layoutX="115.0" layoutY="351.0" prefHeight="34.0" prefWidth="250.0" promptText="example@email.com" style="-fx-background-radius: 5;" styleClass="input" />
+                        <Label layoutX="115.0" layoutY="411.0" text="Password" textFill="#00000099">
+                            <font>
+                                <Font name="Segoe UI Bold" size="12.0" />
+                            </font>
+                        </Label>
+                        <PasswordField fx:id="password_login" layoutX="115.0" layoutY="428.0" prefHeight="34.0" prefWidth="250.0" promptText="********" styleClass="input" />
+                        <Button layoutX="277.0" layoutY="540.0" mnemonicParsing="false" onAction="#starting_signup" style="-fx-background-color: transparent;" text="Inscrivez-vous" textFill="DODGERBLUE">
+                            <font>
+                                <Font size="11.0" />
+                            </font>
+                            <cursor>
+                                <Cursor fx:constant="HAND" />
+                            </cursor>
+                        </Button>
                     </children>
                 </Pane>
 <!--                the end fo the login panel-->

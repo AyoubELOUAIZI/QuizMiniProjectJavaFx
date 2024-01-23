@@ -25,24 +25,17 @@
             <children>
                 <AnchorPane prefHeight="80.0" prefWidth="1222.0">
                     <children>
-                        <Label fx:id="fullname_toshow" layoutX="254.0" layoutY="23.0" text="Jada Mohamed" textFill="WHITE">
+                        <Label fx:id="fullname_toshow" layoutX="254.0" layoutY="23.0" text="ELOUAIZI AYOUB" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font>
                         </Label>
-                        <Label fx:id="email_toshow" layoutX="254.0" layoutY="40.0" text="mohamedjada@gmail.com" textFill="WHITE" />
-                        <Label fx:id="cne_toshow" layoutX="508.0" layoutY="23.0" text="D13256789051" textFill="WHITE">
+                        <Label fx:id="email_toshow" layoutX="254.0" layoutY="40.0" text="ayoubelouaizi@gmail.com" textFill="WHITE" />
+                        <Label fx:id="cne_toshow" layoutX="508.0" layoutY="23.0" text="Connecté en tant que professeur." textFill="WHITE">
                             <font>
-                                <Font name="System Bold" size="12.0" />
+                                <Font name="System Bold" size="13.0" />
                             </font>
                         </Label>
-                        <Label fx:id="bactype_toshow" layoutX="508.0" layoutY="40.0" prefHeight="17.0" prefWidth="205.0" text="Baccalauriate Science Of Physics" textFill="WHITE" />
-                        <Label layoutX="812.0" layoutY="23.0" text="Age" textFill="WHITE">
-                            <font>
-                                <Font name="System Bold" size="12.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="age_toshow" layoutX="812.0" layoutY="40.0" prefHeight="17.0" prefWidth="54.0" text="20 year" textFill="WHITE" />
                         <Label layoutX="923.0" layoutY="23.0" text="Obtenir le bac en" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="12.0" />
@@ -55,9 +48,9 @@
                             </font>
                         </Label>
                         <Label fx:id="city_toshow" layoutX="1068.0" layoutY="40.0" prefHeight="17.0" prefWidth="74.0" text="Agadir" textFill="WHITE" />
-                        <ImageView fitHeight="60.0" fitWidth="60.0" layoutX="170.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
-                            <image>
-                                <Image url="@../images/profile-male.png" />
+                        <ImageView fx:id="profileImageView" fitHeight="60.0" fitWidth="60.0" layoutX="170.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
+                            <image >
+                                <Image url="@../images/teacherMale.png" />
                             </image>
                         </ImageView>
                         <Line endX="1.0" endY="1.0" layoutX="510.0" layoutY="39.0" rotate="90.0" startX="-45.0" startY="1.0" stroke="#f7fdffa4" strokeMiterLimit="5.0" />
@@ -140,7 +133,7 @@
                 </VBox>
                 <VBox prefHeight="34.0" prefWidth="100.0">
                     <children>
-                        <Button fx:id="student_logout" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="34.0" prefWidth="204.0" styleClass="nav-btn" text="Se déconnecter" textFill="WHITE">
+                        <Button fx:id="teacher_logout" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="34.0" prefWidth="204.0" styleClass="nav-btn" text="Se déconnecter" textFill="WHITE">
                             <graphic>
                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>

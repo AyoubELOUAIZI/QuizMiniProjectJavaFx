@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.regex.Pattern;
 
+import com.example.quizapp.UserSession;
 import com.example.quizapp.dao.UserDAO;
 import com.example.quizapp.model.User;
 import javafx.event.ActionEvent;
@@ -45,6 +46,7 @@ public class AuthenticationController {
 
             if (user != null) {
                 // Successfully logged in
+                UserSession.setCurrentUser(user);
                 // Now you can check the role and perform role-specific actions
                 String role = user.getRole();
                 if ("STUDENT".equals(role)) {
@@ -233,4 +235,7 @@ public class AuthenticationController {
     public void backtologin(ActionEvent actionEvent) {
         login_forum.toFront();
     }
+
+
+
 }

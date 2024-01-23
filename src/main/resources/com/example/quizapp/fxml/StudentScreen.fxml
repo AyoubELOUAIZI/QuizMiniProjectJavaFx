@@ -140,7 +140,7 @@
                 </VBox>
                 <VBox prefHeight="34.0" prefWidth="100.0">
                     <children>
-                        <Button fx:id="student_logout" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="34.0" prefWidth="204.0" styleClass="nav-btn" text="Se déconnecter" textFill="WHITE">
+                        <Button fx:id="student_logout" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="34.0" prefWidth="204.0" styleClass="nav-btn" text="Se déconnecter" textFill="WHITE">
                             <graphic>
                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>

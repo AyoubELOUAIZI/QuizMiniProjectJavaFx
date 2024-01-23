@@ -1,5 +1,7 @@
 package com.example.quizapp.model;
 
+import com.example.quizapp.UserSession;
+
 import java.util.List;
 
 // Teacher.java
@@ -14,6 +16,9 @@ public class Teacher extends User {
     public Teacher(int userId, String firstname, String lastname, String email, String password,String sex, List<Module> modules) {
         super(userId, firstname, lastname, email, password, "teacher", sex, modules);
     }
+
+
+
 
     public Teacher() {
 
