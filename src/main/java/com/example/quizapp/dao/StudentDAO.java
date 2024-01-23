@@ -15,20 +15,7 @@ import java.util.List;
 public class StudentDAO extends UserDAO {
     private static final String TABLE_NAME = "students";
 
-    public Student getStudentById(int userId) {
-        try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM " + TABLE_NAME + " WHERE userId = ?")) {
-            preparedStatement.setInt(1, userId);
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    return createStudentFromResultSet(resultSet);
-                }
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 
     public void createStudent(Student student) {
         try (Connection connection = DatabaseConnector.getConnection();
@@ -74,14 +61,5 @@ public class StudentDAO extends UserDAO {
         }
     }
 
-    private Student createStudentFromResultSet(ResultSet resultSet) throws SQLException {
-        int userId = resultSet.getInt("userId");
 
-        // Fetch user details
-        User user = getUserById(userId);
-
-        String studentCode = resultSet.getString("studentCode");
-
-        return new Student(userId, user.getFirstname(), user.getLastname(), user.getEmail(), user.getPassword(), studentCode, new ArrayList<>());
-    }
 }

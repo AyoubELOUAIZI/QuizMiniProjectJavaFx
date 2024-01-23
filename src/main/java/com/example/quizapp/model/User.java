@@ -9,18 +9,39 @@ public class User {
     private String email;
     private String password;
     private String role;
-    private List<Module> modules; // List of modules associated with the user
 
-    // Constructor
-    public User(int userId, String firstname, String lastname, String email, String password, String role, List<Module> modules) {
+    public String getSexe() {
+        return sexe;
+    }
+
+    public void setSexe(String sexe) {
+        this.sexe = sexe;
+    }
+
+    public User(int userId, String firstname, String lastname, String email, String password, String role, String sexe, List<Module> modules) {
         this.userId = userId;
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
         this.password = password;
         this.role = role;
+        this.sexe = sexe;
         this.modules = modules;
     }
+
+    private String sexe;
+    private List<Module> modules; // List of modules associated with the user
+
+    // Constructor
+//    public User(int userId, String firstname, String lastname, String email, String password, String role, List<Module> modules) {
+//        this.userId = userId;
+//        this.firstname = firstname;
+//        this.lastname = lastname;
+//        this.email = email;
+//        this.password = password;
+//        this.role = role;
+//        this.modules = modules;
+//    }
 
     // Getters and Setters
     public int getUserId() {

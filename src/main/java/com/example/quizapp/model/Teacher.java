@@ -6,13 +6,13 @@ import java.util.List;
 public class Teacher extends User {
 
     // Constructor for a teacher without associated modules
-    public Teacher(int userId, String firstname, String lastname, String email, String password) {
-        super(userId, firstname, lastname, email, password, "teacher", null);
+    public Teacher(int userId, String firstname, String lastname, String email, String password,String sex) {
+        super(userId, firstname, lastname, email, password, "teacher",sex, null);
     }
 
     // Constructor for a teacher with associated modules
-    public Teacher(int userId, String firstname, String lastname, String email, String password, List<Module> modules) {
-        super(userId, firstname, lastname, email, password, "teacher", modules);
+    public Teacher(int userId, String firstname, String lastname, String email, String password,String sex, List<Module> modules) {
+        super(userId, firstname, lastname, email, password, "teacher", sex, modules);
     }
 
     public Teacher() {

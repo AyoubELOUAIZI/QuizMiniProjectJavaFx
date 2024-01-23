@@ -14,9 +14,6 @@ public class StudentController {
         this.studentDAO = new StudentDAO();
     }
 
-    public Student getStudentById(int userId) {
-        return studentDAO.getStudentById(userId);
-    }
 
     public void createStudent(Student student) {
         studentDAO.createStudent(student);

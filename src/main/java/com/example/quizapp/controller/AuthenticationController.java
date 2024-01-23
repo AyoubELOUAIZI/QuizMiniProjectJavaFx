@@ -3,17 +3,9 @@ package com.example.quizapp.controller;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-//import application.Navigation;
-//import application.entities.AccountType;
-//import application.entities.StudentInformations;
-//import application.services.AuthentificationService;
-//import application.services.CommonService;
+import java.util.regex.Pattern;
 
 import com.example.quizapp.dao.UserDAO;
-import com.example.quizapp.model.Student;
-import com.example.quizapp.model.Teacher;
 import com.example.quizapp.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -21,36 +13,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
 public class AuthenticationController {
 
-    @FXML
-    private Button suivantbtn1, suivantbtn2, suivantbtn3, login_btn;
 
     @FXML
-    private Button starting_signup, backtologin1, backtologin2, backtologin3;
-
-    @FXML
-    private Pane login_forum, signup1, signup2, signup3;
-
-    @FXML
-    private ChoiceBox<String> bactype_choice, bacville_choice, bacyear_choice, studentcity_choice;
-
-    @FXML
-    private DatePicker signup_birthday;
-
-    @FXML
-    private TextField signup_cne, signup_confirm_password, signup_lastname, signup_name, signup_telephon, signup_password, sign_email;
+    private Pane login_forum, signup1;
 
     @FXML
     private RadioButton signup_female, signup_male;
@@ -62,25 +36,6 @@ public class AuthenticationController {
     private PasswordField password_login;
 
     public void handleLogin() {
-       // Stage stage = (Stage) login_btn.getScene().getWindow();
-
-    //    String email = email_login.getText();
-     //   String password = password_login.getText();
-//        AccountType userType = AuthentificationService.isLoginValid(email, password);
-//       if (userType != AccountType.NotFound) {
-//            // Login succeeded
-//            Navigation navigation = new Navigation();
-//            navigation.toAfterLogin(stage,userType);
-//        } else {
-//            // Login failed
-//            Alert alert = new Alert(AlertType.ERROR);
-//            alert.setTitle("Login Failed");
-//            alert.setHeaderText("Invalid email or password");
-//            alert.setContentText("Please try again.");
-//            alert.showAndWait();
-//        }
-
-        //-----------------implementation of the login-------------------------
         String email = email_login.getText();
         String password = password_login.getText();
 
@@ -161,94 +116,142 @@ public class AuthenticationController {
 
     }
 
-//    StudentInformations signedstudent= new StudentInformations();
-    ToggleGroup toggleGroup = new ToggleGroup();
     @FXML
-    void suivantbtn1(ActionEvent event) {
-        signup2.toFront();
-        if(signup_cne.getText().length()==0 || signup_lastname.getText().length()==0 || signup_name.getText().length()==0
-                || studentcity_choice.getSelectionModel().isEmpty() || signup_birthday.getValue() == null
-                || !signup_female.isSelected() && !signup_male.isSelected()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez d'abord remplir les conditions");
-            alert.showAndWait();
-        }
-        else {
-            LocalDate selectedDate =  signup_birthday.getValue();
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-            String formattedDate = selectedDate.format(formatter);
-//            signedstudent.setDateNaissance(formattedDate);
-//            signedstudent.setCity(studentcity_choice.getValue());
-//            signedstudent.setCne(signup_cne.getText());
-//            signedstudent.setFirstName(signup_name.getText());
-//            signedstudent.setLastName(signup_lastname.getText());
-//            if(((Labeled) toggleGroup.getSelectedToggle()).getText().equals("Fémenin"))
-//                signedstudent.setSexe("f");
-//            else if(((Labeled) toggleGroup.getSelectedToggle()).getText().equals("Masculin"))
-//                signedstudent.setSexe("m");
-
-            signup2.toFront();
-        }
-    }
+    private TextField signup_name;
     @FXML
-    void suivantbtn2(ActionEvent event) {
-        signup3.toFront();
-        if(bactype_choice.getSelectionModel().isEmpty() || bacville_choice.getSelectionModel().isEmpty() || bacyear_choice.getSelectionModel().isEmpty()) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Veuillez d'abord remplir les conditions");
-            alert.showAndWait();
-        }
-        else {
-            signup3.toFront();
-//            signedstudent.setBacYear(bacyear_choice.getValue());
-//            signedstudent.setBac(bactype_choice.getValue());
-//            signedstudent.setBacCity(bacville_choice.getValue());
-            signup3.toFront();
-        }
-    }
+    private TextField signup_lastname;
     @FXML
-    void suivantbtn3(ActionEvent event) {
-        if(signup_confirm_password.getText().length()==0 || signup_password.getText().length()==0
-                || signup_telephon.getText().length()==0 || sign_email.getText().length()==0) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Please fill the requirements first");
-            alert.showAndWait();
-        }
-        else if(!signup_confirm_password.getText().equals(signup_password.getText())) {
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Error");
-            alert.setHeaderText(null);
-            alert.setContentText("Mots de passe incompatibles");
-            alert.showAndWait();
-        }
-        else {
-//            signedstudent.setEmail(sign_email.getText());
-//            signedstudent.setPassword(signup_password.getText());
-//            signedstudent.setTelephone(signup_telephon.getText());
-//            AuthentificationService.signUp(signedstudent);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            alert.setTitle("Opération réussie");
-            alert.setHeaderText(null);
-//            alert.setContentText("Se connectez-vous avec vos informations \n"+"Email : "+ signedstudent.getEmail()+"\n Mot de pass :"+ signedstudent.getPassword());
-            alert.showAndWait();
-            login_forum.toFront();
-        }
-
-    }
+    private RadioButton signup_student, signup_teacher;
+    @FXML
+    private TextField signup_email;
+    @FXML
+    private PasswordField signup_password;
+    @FXML
+    private PasswordField signup_confirm_password;
 
     @FXML
-    void backtologin(ActionEvent event) {
+    void signUp(ActionEvent event) {
+        // Validate input fields
+        if (!validateInput()) {
+            // Show error alert
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Validation Error");
+            alert.setHeaderText("Please fill in all fields correctly.");
+            alert.setContentText("All fields are required, and passwords must match.");
+            alert.showAndWait();
+            return;
+        }
+
+        String firstname = signup_name.getText();
+        String lastname = signup_lastname.getText();
+        String email = signup_email.getText();
+        String password = signup_password.getText(); // You should hash this password before storing it
+        String role = (signup_student.isSelected()) ? "STUDENT" : "TEACHER";
+        String sex = (signup_female.isSelected()) ? "female" : "male";
+
+        User newUser = new User(0,firstname, lastname, email, password, role, sex,null);
+        UserDAO userDAO = new UserDAO();
+
+        User createdUser = userDAO.createUser(newUser);
+
+//            if (createdUser != null) {
+//                // Successfully logged in
+//                // Now you can check the role and perform role-specific actions
+//                String createdUserRole = createdUser.getRole();
+//                if ("STUDENT".equals(createdUserRole)) {
+//                    // Handle student login
+//                    System.out.println("student login");
+//                    System.out.println("user");
+//                    System.out.println(createdUser);
+//                    navigateToStudentScreen();
+//
+//                } else if ("TEACHER".equals(createdUserRole)) {
+//                    // Handle teacher login
+//                    System.out.println("teacher login");
+//                    navigateToTeacherScreen();
+//                }
+
+ //   }
+//        this will redirect the user to the login and show a message comfirmation
+        if(createdUser != null) {
+            backtologin(event);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Compte Créé avec Succès !");
+            alert.setHeaderText("Votre compte a été créé avec succès.");
+            alert.setContentText("Félicitations ! Vous pouvez maintenant vous connecter avec vos identifiants.");
+            alert.showAndWait();
+            password_login.setText(password);
+            email_login.setText(email);
+        }
+
+}
+
+    private boolean validateInput() {
+        // Vérifier si un champ est vide
+        if (signup_name.getText().isEmpty() ||
+                signup_lastname.getText().isEmpty() ||
+                signup_email.getText().isEmpty() ||
+                signup_password.getText().isEmpty() ||
+                signup_confirm_password.getText().isEmpty()) {
+            showAlert("Erreur de Validation", "Tous les champs sont obligatoires.", Alert.AlertType.ERROR);
+            return false;
+        }
+
+        // Validation de l'email
+        if (!isValidEmail(signup_email.getText())) {
+            showAlert("Erreur de Validation", "Veuillez entrer une adresse email valide.", Alert.AlertType.ERROR);
+            return false;
+        }
+
+        // Vérifier si les mots de passe correspondent
+        if (!signup_password.getText().equals(signup_confirm_password.getText())) {
+            showAlert("Erreur de Validation", "Les mots de passe ne correspondent pas.", Alert.AlertType.ERROR);
+            return false;
+        }
+
+        // Vérifier si l'un des rôles (étudiant ou enseignant) est sélectionné
+        if (!signup_student.isSelected() && !signup_teacher.isSelected()) {
+            showAlert("Erreur de Validation", "Veuillez sélectionner un rôle (Étudiant ou Enseignant).", Alert.AlertType.ERROR);
+            return false;
+        }
+
+        if (signup_student.isSelected() && signup_teacher.isSelected()) {
+            showAlert("Erreur de Validation", "Veuillez sélectionner un Seul rôle (Étudiant ou Enseignant).", Alert.AlertType.ERROR);
+            return false;
+        }
+
+        // Vérifier si l'un des genres (masculin ou féminin) est sélectionné
+        if (!signup_male.isSelected() && !signup_female.isSelected()) {
+            showAlert("Erreur de Validation", "Veuillez sélectionner un genre.", Alert.AlertType.ERROR);
+            return false;
+        }
+
+        if (signup_male.isSelected() && signup_female.isSelected()) {
+            showAlert("Erreur de Validation", "Veuillez sélectionner un Seul genre.", Alert.AlertType.ERROR);
+            return false;
+        }
+
+        return true;
+    }
+
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        return pattern.matcher(email).matches();
+    }
+
+    private void showAlert(String title, String content, Alert.AlertType alertType) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(content);
+        alert.showAndWait();
+    }
+
+
+
+
+    public void backtologin(ActionEvent actionEvent) {
         login_forum.toFront();
-    }
-    @FXML
-    void handleSexe(ActionEvent event) {
-        signup_female.setToggleGroup(toggleGroup);
-        signup_male.setToggleGroup(toggleGroup);
     }
 }

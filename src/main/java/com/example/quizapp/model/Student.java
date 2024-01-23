@@ -6,10 +6,10 @@ public class Student extends User {
     private String studentCode; // or 'cne' or any other identifier for students
 
     // Constructor
-    public Student(int userId, String firstname, String lastname, String email, String password, String studentCode, List<Module> modules) {
-        super(userId, firstname, lastname, email, password, "student", modules);
-        this.studentCode = studentCode;
-    }
+//    public Student(int userId, String firstname, String lastname, String email, String password, String studentCode, List<Module> modules) {
+//        super(userId, firstname, lastname, email, password, "student", modules);
+//        this.studentCode = studentCode;
+//    }
 
     public Student() {
 

@@ -92,6 +92,6 @@ public class TeacherDAO extends UserDAO {
         // Fetch user details
         User user = getUserById(userId);
 
-        return new Teacher(userId, user.getFirstname(), user.getLastname(), user.getEmail(), user.getPassword());
+        return new Teacher(userId, user.getFirstname(), user.getLastname(), user.getEmail(),user.getSexe(), user.getPassword());
     }
 }

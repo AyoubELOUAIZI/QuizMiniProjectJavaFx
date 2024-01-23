@@ -6,15 +6,12 @@ import com.example.quizapp.model.User;
 import com.example.quizapp.model.Module;
 import com.example.quizapp.database.DatabaseConnector;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDAO {
-    private static final String TABLE_NAME = "users";
+    private static final String TABLE_NAME = "User";
 
     public User getUserById(int userId) {
         try (Connection connection = DatabaseConnector.getConnection();
@@ -31,21 +28,64 @@ public class UserDAO {
         return null;
     }
 
-    public void createUser(User user) {
-        try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " + TABLE_NAME + " VALUES (?, ?, ?, ?, ?, ?)")) {
-            preparedStatement.setInt(1, user.getUserId());
-            preparedStatement.setString(2, user.getFirstname());
-            preparedStatement.setString(3, user.getLastname());
-            preparedStatement.setString(4, user.getEmail());
-            preparedStatement.setString(5, user.getPassword());
-            preparedStatement.setString(6, user.getRole());
+//    public void createUser(User user) {
+//        try (Connection connection = DatabaseConnector.getConnection();
+//             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " + TABLE_NAME + " VALUES (?, ?, ?, ?, ?, ?,?)")) {
+//            preparedStatement.setInt(1, user.getUserId());
+//            preparedStatement.setString(2, user.getFirstname());
+//            preparedStatement.setString(3, user.getLastname());
+//            preparedStatement.setString(4, user.getEmail());
+//            preparedStatement.setString(5, user.getPassword());
+//            preparedStatement.setString(6, user.getRole());
+//            preparedStatement.setString(7, user.getSexe());
+//
+//            preparedStatement.executeUpdate();
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+public User createUser(User user) {
+    ResultSet generatedKeys = null;
+    try (Connection connection = DatabaseConnector.getConnection();
+         PreparedStatement preparedStatement = connection.prepareStatement(
+                 "INSERT INTO " + TABLE_NAME + " (firstname, lastname, email, password, role, sexe) VALUES (?, ?, ?, ?, ?, ?)",
+                 Statement.RETURN_GENERATED_KEYS)) {
 
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
+        // Note: Removed the userId from the INSERT statement, as it's auto-generated
+        preparedStatement.setString(1, user.getFirstname());
+        preparedStatement.setString(2, user.getLastname());
+        preparedStatement.setString(3, user.getEmail());
+        preparedStatement.setString(4, user.getPassword()); // Ensure this is hashed and secure
+        preparedStatement.setString(5, user.getRole());
+        preparedStatement.setString(6, user.getSexe());
+
+        int affectedRows = preparedStatement.executeUpdate();
+        if (affectedRows == 0) {
+            throw new SQLException("Creating user failed, no rows affected.");
+        }
+
+        generatedKeys = preparedStatement.getGeneratedKeys();
+        if (generatedKeys.next()) {
+            // Set the userId back to the user object
+            user.setUserId(generatedKeys.getInt(1));
+        } else {
+            throw new SQLException("Creating user failed, no ID obtained.");
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+        return null; // or you could throw an exception
+    } finally {
+        if (generatedKeys != null) {
+            try {
+                generatedKeys.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
+    return user;
+}
+
 
     public void updateUser(User updatedUser) {
         try (Connection connection = DatabaseConnector.getConnection()) {
@@ -92,11 +132,12 @@ public class UserDAO {
         String email = resultSet.getString("email");
         String password = resultSet.getString("password");
         String role = resultSet.getString("role");
+        String sex = resultSet.getString("sex");
 
         // Fetch associated modules
         List<Module> modules = getModulesForUser(userId);
 
-        User user = new User(userId, firstname, lastname, email, password, role, modules);
+        User user = new User(userId, firstname, lastname, email, password, role,sex, modules);
         return user;
     }
 
@@ -189,5 +230,8 @@ public class UserDAO {
             }
         }
         return null; // Login failed
+    }
+
+    public void insertUser(User newUser) {
     }
 }
