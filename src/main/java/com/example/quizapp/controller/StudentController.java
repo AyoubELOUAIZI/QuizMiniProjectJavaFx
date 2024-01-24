@@ -3,6 +3,7 @@ package com.example.quizapp.controller;
 
 import com.example.quizapp.UserSession;
 import com.example.quizapp.dao.StudentDAO;
+import com.example.quizapp.model.Quiz;
 import com.example.quizapp.model.Student;
 import com.example.quizapp.model.User;
 import javafx.event.ActionEvent;
@@ -10,10 +11,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Hyperlink;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
@@ -21,61 +19,63 @@ import javafx.stage.Stage;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 
 public class StudentController {
-    public ImageView studentProfileImageView;
-    //private final StudentDAO studentDAO;
+
+    private StudentDAO studentDAO;
 
     // No-argument constructor
+    // Constructor to initialize StudentDAO
     public StudentController() {
+        this.studentDAO = new StudentDAO();
     }
 
-
+    @FXML
+    public ImageView studentProfileImageView;
     @FXML
     private Label fullname_toshow;
     @FXML
     private Label email_toshow;
     @FXML
-    private Label cne_toshow;
-    @FXML
-    private Label bactype_toshow;
-    @FXML
-    private Label age_toshow;
-    @FXML
-    private Label bacyear_toshow;
-    @FXML
-    private Label city_toshow;
-    @FXML
-    private ImageView school_bg;
-    @FXML
-    private ImageView school_logo;
-    @FXML
-    private Label school_title;
-    @FXML
-    private Label school_description;
-    @FXML
-    private Label school_fax;
-    @FXML
-    private Label school_telephone;
-    @FXML
-    private Label school_adress;
-    @FXML
-    private Label school_email;
-
-    @FXML
     private Button student_logout;
-
     @FXML
-    private Hyperlink school_website;
-    @FXML
-    private TableView<?> formation_inview;
-
+    private ListView<String> quizzesListView;
 
     @FXML
     private void handleButtonAction() {
         // Your logic here
     }
 
+    @FXML
+    public void initialize() {
+        // Initialization logic here, like setting user details
+        User currentUser = UserSession.getCurrentUser();
+        if (currentUser != null) {
+            fullname_toshow.setText(currentUser.getFullName());
+            email_toshow.setText(currentUser.getEmail());
+            // ... Set other user details
+            updateProfileImage(currentUser.getSexe());
+            List<Quiz> studentQuizzes = retrieveStudentQuizzes(currentUser.getUserId());
+
+            // Display quizzes in the ListView
+            displayQuizzesInListView(studentQuizzes);
+        }
+    }
+
+    public List<Quiz> retrieveStudentQuizzes(int studentId) {
+        return studentDAO.getQuizzesForStudent(studentId);
+    }
+
+    private void displayQuizzesInListView(List<Quiz> quizzes) {
+        // Clear existing items in the ListView
+        quizzesListView.getItems().clear();
+
+        // Add quiz names to the ListView
+        for (Quiz quiz : quizzes) {
+            quizzesListView.getItems().add(quiz.getQuizName());
+        }
+    }
 
     @FXML
     private void handleLogout() {
@@ -107,26 +107,21 @@ public class StudentController {
             e.printStackTrace();
         }
     }
-    @FXML
-    public void initialize() {
-        // Initialization logic here, like setting user details
-        User currentUser = UserSession.getCurrentUser();
-        if (currentUser != null) {
-            fullname_toshow.setText(currentUser.getFullName());
-            email_toshow.setText(currentUser.getEmail());
-            // ... Set other user details
 
-            if ("female".equalsIgnoreCase(currentUser.getSexe())) {
-                System.out.println(currentUser.getSexe());
-                // Set the profile image to the female version
-                studentProfileImageView.setImage(new Image(getClass().getResourceAsStream("/com/example/quizapp/images/studentFemale.png")));
-            } else {
-                // Set the profile image to the male version
-                studentProfileImageView.setImage(new Image(getClass().getResourceAsStream("/com/example/quizapp/images/studentMale.png")));
-            }
 
+    private void updateProfileImage(String gender) {
+        if ("female".equalsIgnoreCase(gender)) {
+            System.out.println(gender);
+            // Set the profile image to the female version
+            studentProfileImageView.setImage(new Image(getClass().getResourceAsStream("/com/example/quizapp/images/studentFemale.png")));
+        } else {
+            // Set the profile image to the male version
+            studentProfileImageView.setImage(new Image(getClass().getResourceAsStream("/com/example/quizapp/images/studentMale.png")));
         }
+
     }
+
+
 //    public void createStudent(Student student) {
 //        studentDAO.createStudent(student);
 //    }

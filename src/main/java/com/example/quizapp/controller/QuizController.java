@@ -29,7 +29,7 @@ public class QuizController {
         quizDAO.deleteQuiz(quizId);
     }
 
-    public List<Quiz> getAllQuizzes() {
-        return quizDAO.getAllQuizzes();
-    }
+//    public List<Quiz> getAllQuizzes() {
+//        return quizDAO.getAllQuizzes();
+//    }
 }

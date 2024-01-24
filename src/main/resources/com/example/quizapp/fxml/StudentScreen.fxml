@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Hyperlink?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -47,7 +48,7 @@
                                 <Image url="@../images/Asset 1@4x.png" />
                             </image>
                         </ImageView>
-                        <Label layoutX="62.0" layoutY="26.0" text="QCM Quiz1" textFill="WHITE">
+                        <Label layoutX="62.0" layoutY="26.0" text="QCM Quiz" textFill="WHITE">
                             <font>
                                 <Font name="System Bold" size="11.0" />
                             </font>
@@ -64,15 +65,15 @@
         </HBox>
     </top>
     <left>
-        <VBox prefHeight="200.0" prefWidth="150.0" spacing="440.0" style="-fx-background-color: #1E90FF;" BorderPane.alignment="CENTER">
+        <VBox alignment="CENTER" prefHeight="619.0" prefWidth="150.0" style="-fx-background-color: #1E90FF;" BorderPane.alignment="TOP_LEFT">
             <children>
-                <VBox prefHeight="136.0" prefWidth="150.0">
-                    <children>
-                        <Button fx:id="student_homebtn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="34.0" prefWidth="150.0" styleClass="nav-btn" text="Accueil" textFill="WHITE">
+                <VBox prefHeight="70.0" prefWidth="150.0">
+               <children>
+                        <Button fx:id="student_logout" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="0.0" prefWidth="150.0" styleClass="nav-btn" text="Nouveau QCM" textFill="WHITE">
                             <graphic>
                                 <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
-                                        <Image url="@../images/home1.png" />
+                                        <Image url="@../images/iconCreateNew.png" />
                                     </image>
                                 </ImageView>
                             </graphic>
@@ -80,66 +81,176 @@
                                 <Cursor fx:constant="HAND" />
                             </cursor>
                         </Button>
-                        <Button fx:id="student_infosbtn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="34.0" prefWidth="204.0" styleClass="nav-btn" text="Mes informations" textFill="WHITE">
-                            <graphic>
-                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/person_pin1.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Button>
-                        <Button fx:id="student_notifsbtn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="34.0" prefWidth="204.0" styleClass="nav-btn" text="Mes admissions" textFill="WHITE">
-                            <graphic>
-                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/notifications1.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Button>
-                        <Button fx:id="student_appsbtn" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleButtonAction" prefHeight="34.0" prefWidth="204.0" styleClass="nav-btn" text="Mes candidateurs" textFill="WHITE">
-                            <graphic>
-                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/apps1.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Button>
-                    </children>
+               </children>
                 </VBox>
-                <VBox prefHeight="34.0" prefWidth="100.0">
-                    <children>
-                        <Button fx:id="student_logout" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="34.0" prefWidth="204.0" styleClass="nav-btn" text="Se déconnecter" textFill="WHITE">
-                            <graphic>
-                                <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/logout1.png" />
-                                    </image>
-                                </ImageView>
-                            </graphic>
-                            <cursor>
-                                <Cursor fx:constant="HAND" />
-                            </cursor>
-                        </Button>
-                    </children>
-                </VBox>
+            <ListView fx:id="quizzesListView" prefHeight="552.0" prefWidth="150.0" style="-fx-background-color: #1E90FF;" />
+            <VBox layoutX="10.0" layoutY="585.0" prefHeight="82.0" prefWidth="150.0">
+               <children>
+                  <Button fx:id="student_logout1" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="0.0" prefWidth="150.0" styleClass="nav-btn" text="Se déconnecter" textFill="WHITE">
+                     <graphic>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/logout1.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </VBox>
             </children>
         </VBox>
     </left>
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
+                <Pane fx:id="student_notifications" layoutX="579.0" layoutY="223.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <TableView fx:id="notifications_grid" focusTraversable="false" layoutX="20.0" layoutY="20.0" prefHeight="354.0" prefWidth="1010.0" styleClass="gridview">
+                            <columns>
+                                <TableColumn fx:id="etablissement_notifs" prefWidth="300.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Etablissement" />
+                                <TableColumn fx:id="formation_notifs" minWidth="6.0" prefWidth="200.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Formation" />
+                                <TableColumn fx:id="ville_notifs" prefWidth="120.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Ville" />
+                                <TableColumn fx:id="date_notifs" prefWidth="155.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Date" />
+                                <TableColumn fx:id="repondreAvant_notifs" prefWidth="151.5" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="À répondre avant" />
+                                <TableColumn fx:id="decline_notifs" prefWidth="40.0" resizable="false" styleClass="gridcolumn" />
+                                <TableColumn fx:id="accept_notifs" prefWidth="40.0" resizable="false" styleClass="gridcolumn" />
+                                <TableColumn fx:id="cpcode_notifs" prefWidth="77.0" resizable="false" styleClass="gridcolumn" visible="false" />
+                            </columns>
+                        </TableView>
+                        <Label layoutX="20.0" layoutY="400.0" text="Notez bien" textFill="#919191">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="420.0" text="Tous admission sans réponse avant le dernier délai, sera annulé." textFill="#919191" />
+                        <Label layoutX="20.0" layoutY="435.0" text="Vous ne pouvez choisir qu'une seule admission, les autres seront automatiquement refusées." textFill="#919191" />
+                        <Label layoutX="20.0" layoutY="450.0" text="Si vous acceptez une admission, vous n'avez pas le droit de postuler à nouveau à une autre candidature." textFill="#919191" />
+                        <TableView fx:id="dernier_choix_grid" focusTraversable="false" layoutX="20.0" layoutY="515.0" prefHeight="61.0" prefWidth="770.0" styleClass="gridview">
+                            <columns>
+                                <TableColumn fx:id="etablissement_dc" prefWidth="300.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Etablissement" />
+                                <TableColumn fx:id="formation_dc" minWidth="6.0" prefWidth="223.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Formation" />
+                                <TableColumn fx:id="ville_dc" prefWidth="120.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Ville" />
+                                <TableColumn fx:id="date_dc" prefWidth="125.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Date" />
+                                <TableColumn fx:id="cpcode_notifs1" prefWidth="77.0" resizable="false" styleClass="gridcolumn" visible="false" />
+                            </columns>
+                        </TableView>
+                        <Label layoutX="20.0" layoutY="490.0" text="Mon dernier choix" textFill="#919191">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+                <Pane fx:id="student_infos" layoutX="579.0" layoutY="223.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="290.0" prefWidth="495.0" style="-fx-background-color: fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8;">
+                            <children>
+                                <Label layoutX="45.0" layoutY="22.0" text="Relvé de notes">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/RN.png" />
+                                    </image>
+                                </ImageView>
+                                <Line endX="290.0" layoutX="150.0" layoutY="63.0" startX="-102.0" stroke="#00000039" />
+                                <Line endX="290.0" layoutX="150.0" layoutY="103.0" startX="-102.0" stroke="#00000039" />
+                                <Line endX="290.0" layoutX="150.0" layoutY="143.0" startX="-102.0" stroke="#00000039" />
+                                <Line endX="290.0" layoutX="150.0" layoutY="223.0" startX="-102.0" stroke="#00000039" />
+                                <Line endX="290.0" layoutX="150.0" layoutY="183.0" startX="-102.0" stroke="#00000039" />
+                                <Line endX="290.0" layoutX="150.0" layoutY="263.0" startX="-102.0" stroke="#00000039" />
+                                <Line endX="200.0" layoutX="240.0" layoutY="163.0" rotate="90.0" stroke="#00000039" />
+                                <Label layoutX="70.0" layoutY="75.0" text="Mathématiques" />
+                                <Label layoutX="70.0" layoutY="115.0" text="Physique et Chimie" />
+                                <Label layoutX="70.0" layoutY="155.0" text="Science de la Vie et la Terre" />
+                                <Label layoutX="70.0" layoutY="195.0" text="Anglais" />
+                                <Label layoutX="70.0" layoutY="235.0" text="Francais" />
+                                <Label fx:id="anglaisNote" layoutX="354.0" layoutY="195.0" text="1" />
+                                <Label fx:id="phyNote" layoutX="354.0" layoutY="115.0" text="2" />
+                                <Label fx:id="svtNote" layoutX="354.0" layoutY="155.0" text="3" />
+                                <Label fx:id="frenchNote" layoutX="354.0" layoutY="235.0" text="4" />
+                                <Label fx:id="mathNote" layoutX="354.0" layoutY="75.0" text="5" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="536.0" layoutY="20.0" prefHeight="595.0" prefWidth="495.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-color: fff; -fx-background-radius: 8;">
+                            <children>
+                                <Label layoutX="45.0" layoutY="322.0" text="Le mot de pass">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/SC.png" />
+                                    </image>
+                                </ImageView>
+                                <Label layoutX="45.0" layoutY="22.0" text="Sécurité">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/lock.png" />
+                                    </image>
+                                </ImageView>
+                                <Label layoutX="53.0" layoutY="55.0" text="E-mail actuel:" />
+                                <Label fx:id="emailActuel" layoutX="70.0" layoutY="92.0" text="mohameedjada@gmail.com" textFill="#464646" />
+                                <Label layoutX="53.0" layoutY="129.0" text="Nouveau E-mail" />
+                                <TextField fx:id="newEmailField" layoutX="53.0" layoutY="151.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau e-mail" styleClass="input" />
+                                <Label layoutX="53.0" layoutY="198.0" text="Confirm E-mail" />
+                                <TextField fx:id="confirmEmailField" layoutX="53.0" layoutY="220.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm e-mail" styleClass="input" />
+                                <Button fx:id="changeEmailBtn" layoutX="374.0" layoutY="220.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                                <Label layoutX="53.0" layoutY="358.0" text="Mot de pass actuel" />
+                                <Label layoutX="53.0" layoutY="426.0" text="Nouvelle mot de pass" />
+                                <TextField fx:id="newPassField" layoutX="53.0" layoutY="448.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
+                                <Label layoutX="53.0" layoutY="495.0" text="Confirm mot de pass" />
+                                <TextField fx:id="confPassField" layoutX="53.0" layoutY="517.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm mot de pass" styleClass="input" />
+                                <Button fx:id="changePassBtn" layoutX="374.0" layoutY="517.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                                <TextField fx:id="currPassField" layoutX="53.0" layoutY="381.0" prefHeight="30.0" prefWidth="300.0" promptText="mot e pass actuel" styleClass="input" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="20.0" layoutY="330.0" prefHeight="284.0" prefWidth="495.0" style="-fx-background-color: fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8;">
+                            <children>
+                                <Label layoutX="45.0" layoutY="22.0" text="N° Telephone">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/call.png" />
+                                    </image>
+                                </ImageView>
+                                <Label layoutX="50.0" layoutY="55.0" text="N Telephone actuel" />
+                                <Label layoutX="67.0" layoutY="92.0" text="+212 " textFill="#464646" />
+                                <Label fx:id="student_num" layoutX="100.0" layoutY="92.0" text="664937463" textFill="#464646" />
+                                <Label layoutX="50.0" layoutY="129.0" text="Nouveau N Telephone" />
+                                <TextField fx:id="newPhoneField" layoutX="50.0" layoutY="151.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau n° telephone" styleClass="input" />
+                                <Label layoutX="50.0" layoutY="198.0" text="Confirm N Telephone" />
+                                <TextField fx:id="confPhoneField" layoutX="50.0" layoutY="220.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm n° telephone" styleClass="input" />
+                                <Button fx:id="changePhoneBtn" layoutX="371.0" layoutY="220.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                            </children>
+                        </AnchorPane>
+                    </children>
+                </Pane>
                 <Pane fx:id="view_school" prefHeight="640.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
                         <AnchorPane layoutX="20.0" layoutY="20.0" maxHeight="600.0" minHeight="600.0" prefHeight="586.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
@@ -263,198 +374,116 @@
                         </AnchorPane>
                     </children>
                 </Pane>
-                <Pane fx:id="student_infos" layoutX="579.0" layoutY="223.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <children>
-                        <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="290.0" prefWidth="495.0" style="-fx-background-color: fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8;">
-                            <children>
-                                <Label layoutX="45.0" layoutY="22.0" text="Relvé de notes">
-                                    <font>
-                                        <Font name="Segoe UI Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/RN.png" />
-                                    </image>
-                                </ImageView>
-                                <Line endX="290.0" layoutX="150.0" layoutY="63.0" startX="-102.0" stroke="#00000039" />
-                                <Line endX="290.0" layoutX="150.0" layoutY="103.0" startX="-102.0" stroke="#00000039" />
-                                <Line endX="290.0" layoutX="150.0" layoutY="143.0" startX="-102.0" stroke="#00000039" />
-                                <Line endX="290.0" layoutX="150.0" layoutY="223.0" startX="-102.0" stroke="#00000039" />
-                                <Line endX="290.0" layoutX="150.0" layoutY="183.0" startX="-102.0" stroke="#00000039" />
-                                <Line endX="290.0" layoutX="150.0" layoutY="263.0" startX="-102.0" stroke="#00000039" />
-                                <Line endX="200.0" layoutX="240.0" layoutY="163.0" rotate="90.0" stroke="#00000039" />
-                                <Label layoutX="70.0" layoutY="75.0" text="Mathématiques" />
-                                <Label layoutX="70.0" layoutY="115.0" text="Physique et Chimie" />
-                                <Label layoutX="70.0" layoutY="155.0" text="Science de la Vie et la Terre" />
-                                <Label layoutX="70.0" layoutY="195.0" text="Anglais" />
-                                <Label layoutX="70.0" layoutY="235.0" text="Francais" />
-                                <Label fx:id="anglaisNote" layoutX="354.0" layoutY="195.0" text="1" />
-                                <Label fx:id="phyNote" layoutX="354.0" layoutY="115.0" text="2" />
-                                <Label fx:id="svtNote" layoutX="354.0" layoutY="155.0" text="3" />
-                                <Label fx:id="frenchNote" layoutX="354.0" layoutY="235.0" text="4" />
-                                <Label fx:id="mathNote" layoutX="354.0" layoutY="75.0" text="5" />
-                            </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="536.0" layoutY="20.0" prefHeight="595.0" prefWidth="495.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-color: fff; -fx-background-radius: 8;">
-                            <children>
-                                <Label layoutX="45.0" layoutY="322.0" text="Le mot de pass">
-                                    <font>
-                                        <Font name="Segoe UI Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/SC.png" />
-                                    </image>
-                                </ImageView>
-                                <Label layoutX="45.0" layoutY="22.0" text="Sécurité">
-                                    <font>
-                                        <Font name="Segoe UI Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/lock.png" />
-                                    </image>
-                                </ImageView>
-                                <Label layoutX="53.0" layoutY="55.0" text="E-mail actuel:" />
-                                <Label fx:id="emailActuel" layoutX="70.0" layoutY="92.0" text="mohameedjada@gmail.com" textFill="#464646" />
-                                <Label layoutX="53.0" layoutY="129.0" text="Nouveau E-mail" />
-                                <TextField fx:id="newEmailField" layoutX="53.0" layoutY="151.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau e-mail" styleClass="input" />
-                                <Label layoutX="53.0" layoutY="198.0" text="Confirm E-mail" />
-                                <TextField fx:id="confirmEmailField" layoutX="53.0" layoutY="220.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm e-mail" styleClass="input" />
-                                <Button fx:id="changeEmailBtn" layoutX="374.0" layoutY="220.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
-                                    <cursor>
-                                        <Cursor fx:constant="HAND" />
-                                    </cursor>
-                                </Button>
-                                <Label layoutX="53.0" layoutY="358.0" text="Mot de pass actuel" />
-                                <Label layoutX="53.0" layoutY="426.0" text="Nouvelle mot de pass" />
-                                <TextField fx:id="newPassField" layoutX="53.0" layoutY="448.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
-                                <Label layoutX="53.0" layoutY="495.0" text="Confirm mot de pass" />
-                                <TextField fx:id="confPassField" layoutX="53.0" layoutY="517.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm mot de pass" styleClass="input" />
-                                <Button fx:id="changePassBtn" layoutX="374.0" layoutY="517.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
-                                    <cursor>
-                                        <Cursor fx:constant="HAND" />
-                                    </cursor>
-                                </Button>
-                                <TextField fx:id="currPassField" layoutX="53.0" layoutY="381.0" prefHeight="30.0" prefWidth="300.0" promptText="mot e pass actuel" styleClass="input" />
-                            </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="20.0" layoutY="330.0" prefHeight="284.0" prefWidth="495.0" style="-fx-background-color: fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8;">
-                            <children>
-                                <Label layoutX="45.0" layoutY="22.0" text="N° Telephone">
-                                    <font>
-                                        <Font name="Segoe UI Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/call.png" />
-                                    </image>
-                                </ImageView>
-                                <Label layoutX="50.0" layoutY="55.0" text="N Telephone actuel" />
-                                <Label layoutX="67.0" layoutY="92.0" text="+212 " textFill="#464646" />
-                                <Label fx:id="student_num" layoutX="100.0" layoutY="92.0" text="664937463" textFill="#464646" />
-                                <Label layoutX="50.0" layoutY="129.0" text="Nouveau N Telephone" />
-                                <TextField fx:id="newPhoneField" layoutX="50.0" layoutY="151.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau n° telephone" styleClass="input" />
-                                <Label layoutX="50.0" layoutY="198.0" text="Confirm N Telephone" />
-                                <TextField fx:id="confPhoneField" layoutX="50.0" layoutY="220.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm n° telephone" styleClass="input" />
-                                <Button fx:id="changePhoneBtn" layoutX="371.0" layoutY="220.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
-                                    <cursor>
-                                        <Cursor fx:constant="HAND" />
-                                    </cursor>
-                                </Button>
-                            </children>
-                        </AnchorPane>
-                    </children>
-                </Pane>
-                <Pane fx:id="student_notifications" layoutX="579.0" layoutY="223.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <children>
-                        <TableView fx:id="notifications_grid" focusTraversable="false" layoutX="20.0" layoutY="20.0" prefHeight="354.0" prefWidth="1010.0" styleClass="gridview">
-                            <columns>
-                                <TableColumn fx:id="etablissement_notifs" prefWidth="300.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Etablissement" />
-                                <TableColumn fx:id="formation_notifs" minWidth="6.0" prefWidth="200.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Formation" />
-                                <TableColumn fx:id="ville_notifs" prefWidth="120.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Ville" />
-                                <TableColumn fx:id="date_notifs" prefWidth="155.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Date" />
-                                <TableColumn fx:id="repondreAvant_notifs" prefWidth="151.5" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="À répondre avant" />
-                                <TableColumn fx:id="decline_notifs" prefWidth="40.0" resizable="false" styleClass="gridcolumn" />
-                                <TableColumn fx:id="accept_notifs" prefWidth="40.0" resizable="false" styleClass="gridcolumn" />
-                                <TableColumn fx:id="cpcode_notifs" prefWidth="77.0" resizable="false" styleClass="gridcolumn" visible="false" />
-                            </columns>
-                        </TableView>
-                        <Label layoutX="20.0" layoutY="400.0" text="Notez bien" textFill="#919191">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
+            <Pane fx:id="view_school1" layoutX="-1.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <AnchorPane prefHeight="46.0" prefWidth="1054.0">
+                     <children>
+                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
+                        <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
                         </Label>
-                        <Label layoutX="20.0" layoutY="420.0" text="Tous admission sans réponse avant le dernier délai, sera annulé." textFill="#919191" />
-                        <Label layoutX="20.0" layoutY="435.0" text="Vous ne pouvez choisir qu'une seule admission, les autres seront automatiquement refusées." textFill="#919191" />
-                        <Label layoutX="20.0" layoutY="450.0" text="Si vous acceptez une admission, vous n'avez pas le droit de postuler à nouveau à une autre candidature." textFill="#919191" />
-                        <TableView fx:id="dernier_choix_grid" focusTraversable="false" layoutX="20.0" layoutY="515.0" prefHeight="61.0" prefWidth="770.0" styleClass="gridview">
-                            <columns>
-                                <TableColumn fx:id="etablissement_dc" prefWidth="300.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Etablissement" />
-                                <TableColumn fx:id="formation_dc" minWidth="6.0" prefWidth="223.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Formation" />
-                                <TableColumn fx:id="ville_dc" prefWidth="120.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Ville" />
-                                <TableColumn fx:id="date_dc" prefWidth="125.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Date" />
-                                <TableColumn fx:id="cpcode_notifs1" prefWidth="77.0" resizable="false" styleClass="gridcolumn" visible="false" />
-                            </columns>
-                        </TableView>
-                        <Label layoutX="20.0" layoutY="490.0" text="Mon dernier choix" textFill="#919191">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
+                        <Line endX="74.70703125" layoutX="123.0" layoutY="43.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
+                        <Label layoutX="257.0" layoutY="15.0" text="Répondre au QCM">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
                         </Label>
-                    </children>
-                </Pane>
-                <Pane fx:id="student_applications" layoutX="579.0" layoutY="223.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <children>
-                        <TableView fx:id="my_applications_grid" focusTraversable="false" layoutX="20.0" layoutY="20.0" prefHeight="596.0" prefWidth="1010.0" styleClass="gridview">
-                            <columns>
-                                <TableColumn fx:id="etablissement_apps" prefWidth="325.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Etablissement" />
-                                <TableColumn fx:id="fromation_apps" minWidth="6.0" prefWidth="280.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Formation" />
-                                <TableColumn fx:id="ville_apps" prefWidth="150.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Ville" />
-                                <TableColumn fx:id="note_apps" prefWidth="110.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Note" />
-                                <TableColumn fx:id="residuelle_apps" prefWidth="102.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Résiduelle" />
-                                <TableColumn fx:id="delete_apps" prefWidth="40.0" resizable="false" styleClass="gridcolumn" />
-                                <TableColumn fx:id="candidateur_code" prefWidth="109.0" resizable="false" styleClass="gridcolumn" visible="false" />
-                            </columns>
-                        </TableView>
-                    </children>
-                </Pane>
-                <Pane fx:id="student_home" layoutX="569.0" layoutY="213.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <children>
-                        <TableView fx:id="student_grid_home" cacheShape="false" centerShape="false" focusTraversable="false" layoutX="20.0" layoutY="66.0" prefHeight="564.0" prefWidth="1010.0" scaleShape="false" style="-fx-background-color: transparent;" styleClass="gridview">
-                            <columns>
-                                <TableColumn fx:id="etablissement_grid_home" prefWidth="300.0" resizable="false" style="-fx-padding: 7px 10px;" text="Etablissement">
-                                    <styleClass>
-                                        <String fx:value="gridcolumn" />
-                                        <String fx:value="not-btn" />
-                                    </styleClass></TableColumn>
-                                <TableColumn fx:id="formation_grid_home" minWidth="6.0" prefWidth="250.0" resizable="false" style="-fx-padding: 7px 10px;" text="Formation">
-                                    <styleClass>
-                                        <String fx:value="gridcolumn" />
-                                        <String fx:value="not-btn" />
-                                    </styleClass></TableColumn>
-                                <TableColumn fx:id="ville_grid_home" prefWidth="160.0" resizable="false" style="-fx-padding: 7px 10px;" text="Ville">
-                                    <styleClass>
-                                        <String fx:value="gridcolumn" />
-                                        <String fx:value="not-btn" />
-                                    </styleClass></TableColumn>
-                                <TableColumn fx:id="residuelle_grid_home" prefWidth="112.0" resizable="false" style="-fx-padding: 7px 10px;" text="Résiduelle">
-                                    <styleClass>
-                                        <String fx:value="gridcolumn" />
-                                        <String fx:value="not-btn" />
-                                    </styleClass></TableColumn>
-                                <TableColumn fx:id="viewschool_grid_home" prefWidth="90.0" resizable="false" styleClass="gridcolumn" />
-                                <TableColumn fx:id="cp_code" prefWidth="180.0" resizable="false" text="cp_code" visible="false" />
-                                <TableColumn fx:id="apply_grid_home" resizable="false" styleClass="gridcolumn" />
-                                <TableColumn fx:id="school_code" prefWidth="88.0" resizable="false" styleClass="gridcolumn" visible="false" />
-                            </columns>
-                        </TableView>
-                    </children>
-                </Pane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="11.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
+                     <children>
+                        <ImageView  fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
+                           <image>
+                              <Image url="@../images/splash.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView  fitHeight="130.0" fitWidth="130.0" layoutX="52.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/esta_logo.png" />
+                           </image>
+                        </ImageView>
+                        <Label  layoutX="61.0" layoutY="22.0" text="QCM :">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="186.0" layoutY="83.0" text="À propos">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="192.0" layoutY="175.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/time.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="186.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/mail.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="224.0" layoutY="177.0" text="Durée de l'examen :">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="218.0" layoutY="147.0" text="Email : ">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textDuration" layoutX="362.0" layoutY="177.0" text="45">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textTeacherEmail" layoutX="270.0" layoutY="147.0" text="XXXXXXXXXXXXXXXX">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Line endX="285.70703125" layoutX="159.0" layoutY="57.0" startX="-100.0" stroke="#1699eb" />
+                        <Label fx:id="textQuizName" layoutX="148.0" layoutY="22.0" text="qcm examan name" textFill="#1699eb">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="186.0" layoutY="115.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/teacherIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="218.0" layoutY="117.0" text="Professeur :">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textTeacherNam" layoutX="306.0" layoutY="117.0" text="XXXXXXXXXXXXXXXX">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label  ellipsisString="" layoutX="56.0" layoutY="226.0" prefHeight="21.0" prefWidth="290.0" text="Cet examen QCM va commencer à la date :" textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textDate" layoutX="359.0" layoutY="227.0" text="01-01-2024 10:00">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="387.0" layoutY="177.0" text="minutes.">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </Pane>
             </children>
         </AnchorPane>
     </center>

@@ -12,12 +12,13 @@ CREATE TABLE `Question` (
 
 CREATE TABLE `Quiz` (
 	`quizId` int NOT NULL AUTO_INCREMENT,
-	`moduleId` int NOT NULL,
+	`teacherId` int,
 	`createdAt` timestamp NULL DEFAULT current_timestamp(),
 	`updatedAt` timestamp NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
 	`startAt` datetime NOT NULL,
 	`duration` int NOT NULL,
 	`quizName` varchar(255),
+	`passwordQuiz` varchar(20),
 	PRIMARY KEY (`quizId`),
 	UNIQUE KEY `quizId` (`quizId`)
 ) ENGINE InnoDB,

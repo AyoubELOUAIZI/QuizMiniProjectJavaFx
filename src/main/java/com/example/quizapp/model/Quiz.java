@@ -5,24 +5,33 @@ import java.util.List;
 
 public class Quiz {
     private int quizId;
-    private int moduleId; // The module to which this quiz belongs
+    private int teacherId;
     private String quizName; // Add the quiz name
+
+    private String passwordQuiz;
     private List<Question> questions;
     private Date createdAt;
     private Date updatedAt;
     private Date startAt;
+
+
     private int duration; // Duration in minutes
 
     // Constructors
-    public Quiz(int quizId, String quizName, List<Question> questions, Date createdAt, Date updatedAt, Date startAt, int duration) {
+    public Quiz(int quizId,int teacherId, String quizName,  String passwordQuiz, List<Question> questions, Date createdAt, Date updatedAt, Date startAt, int duration) {
         this.quizId = quizId;
-        this.moduleId = moduleId;
+        this.teacherId = teacherId;
         this.quizName = quizName;
+        this.passwordQuiz = passwordQuiz;
         this.questions = questions;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.startAt = startAt;
         this.duration = duration;
+    }
+
+    public Quiz() {
+
     }
 
     // Getters and Setters
@@ -34,12 +43,13 @@ public class Quiz {
         this.quizId = quizId;
     }
 
-    public int getModuleId() {
-        return moduleId;
+
+    public int getTeacherId() {
+        return teacherId;
     }
 
-    public void setModuleId(int moduleId) {
-        this.moduleId = moduleId;
+    public void setTeacherId(int teacherId) {
+        this.teacherId = teacherId;
     }
 
     public String getQuizName() {
@@ -48,6 +58,14 @@ public class Quiz {
 
     public void setQuizName(String quizName) {
         this.quizName = quizName;
+    }
+
+    public String getPasswordQuiz() {
+        return passwordQuiz;
+    }
+
+    public void setPasswordQuiz(String passwordQuiz) {
+        this.passwordQuiz = passwordQuiz;
     }
 
     public List<Question> getQuestions() {
@@ -97,6 +115,21 @@ public class Quiz {
 
     public void removeQuestion(Question question) {
         questions.remove(question);
+    }
+
+    @Override
+    public String toString() {
+        return "Quiz{" +
+                "quizId=" + quizId +
+                ", teacherId=" + teacherId +
+                ", quizName='" + quizName + '\'' +
+                ", passwordQuiz='" + passwordQuiz + '\'' +
+                ", questions=" + questions +
+                ", createdAt=" + createdAt +
+                ", updatedAt=" + updatedAt +
+                ", startAt=" + startAt +
+                ", duration=" + duration +
+                '}';
     }
 
     // You can add more methods based on your application's requirements

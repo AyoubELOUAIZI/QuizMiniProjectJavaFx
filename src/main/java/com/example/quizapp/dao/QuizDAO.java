@@ -30,7 +30,7 @@ public class QuizDAO {
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " + TABLE_NAME + " (quizName, moduleId, createdAt, updatedAt, startAt, duration) VALUES (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, quiz.getQuizName());
-            preparedStatement.setInt(2, quiz.getModuleId());
+//            preparedStatement.setInt(2, quiz.getModuleId());
             preparedStatement.setTimestamp(3, new Timestamp(quiz.getCreatedAt().getTime()));
             preparedStatement.setTimestamp(4, new Timestamp(quiz.getUpdatedAt().getTime()));
             preparedStatement.setTimestamp(5, new Timestamp(quiz.getStartAt().getTime()));
@@ -58,7 +58,7 @@ public class QuizDAO {
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("UPDATE " + TABLE_NAME + " SET quizName=?, moduleId=?, updatedAt=?, startAt=?, duration=? WHERE quizId=?")) {
             preparedStatement.setString(1, updatedQuiz.getQuizName());
-            preparedStatement.setInt(2, updatedQuiz.getModuleId());
+            preparedStatement.setInt(2, updatedQuiz.getQuizId());
             preparedStatement.setTimestamp(3, new Timestamp(updatedQuiz.getUpdatedAt().getTime()));
             preparedStatement.setTimestamp(4, new Timestamp(updatedQuiz.getStartAt().getTime()));
             preparedStatement.setInt(5, updatedQuiz.getDuration());
@@ -84,19 +84,19 @@ public class QuizDAO {
         }
     }
 
-    public List<Quiz> getAllQuizzes() {
-        List<Quiz> quizzes = new ArrayList<>();
-        try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM " + TABLE_NAME);
-             ResultSet resultSet = preparedStatement.executeQuery()) {
-            while (resultSet.next()) {
-                quizzes.add(createQuizFromResultSet(resultSet));
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return quizzes;
-    }
+//    public List<Quiz> getAllQuizzes() {
+//        List<Quiz> quizzes = new ArrayList<>();
+//        try (Connection connection = DatabaseConnector.getConnection();
+//             PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM " + TABLE_NAME);
+//             ResultSet resultSet = preparedStatement.executeQuery()) {
+//            while (resultSet.next()) {
+//                quizzes.add(createQuizFromResultSet(resultSet));
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//        return quizzes;
+//    }
 
     private Quiz createQuizFromResultSet(ResultSet resultSet) throws SQLException {
         int quizId = resultSet.getInt("quizId");
@@ -111,7 +111,7 @@ public class QuizDAO {
         List<Question> questions = getQuestionsForQuiz(quizId);
 
         // Create and return a Quiz object
-        return new Quiz(quizId,quizName, questions, createdAt, updatedAt, startAt, duration);
+        return new Quiz(quizId,9,quizName,"kkkkkkkkkk", questions, createdAt, updatedAt, startAt, duration);
     }
 
     private void addQuestionsForQuiz(Quiz quiz) {
