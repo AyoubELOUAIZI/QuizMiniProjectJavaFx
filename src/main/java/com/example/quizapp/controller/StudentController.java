@@ -43,6 +43,7 @@ public class StudentController {
     public Pane panelStartQuizTest;
     public TextField tfQuizPassword;
     public TextField tfConfirmQuizPassword;
+    public Pane panelShowSetting;
     private StudentDAO studentDAO;
 
     private User currentUser;
@@ -297,6 +298,7 @@ public class StudentController {
 
         // Add new row in the database (you need to implement this based on your database logic)
         boolean isQuizAdded = studentDAO.addNewStudentQuizToDatabase(password,currentUser.getUserId());
+        System.out.println("isQuizAdded for student "+ isQuizAdded);
 
         if (isQuizAdded) {
             // If adding to the database is successful, load the quizzes to refresh
@@ -320,4 +322,7 @@ public class StudentController {
     }
 
 
+    public void handShowSetting(ActionEvent actionEvent) {
+        panelShowSetting.toFront();
+    }
 }
