@@ -2,12 +2,10 @@
 package com.example.quizapp.controller;
 
 import com.example.quizapp.UserSession;
+import com.example.quizapp.dao.QuestionDAO;
 import com.example.quizapp.dao.StudentDAO;
 import com.example.quizapp.dao.UserDAO;
-import com.example.quizapp.model.Quiz;
-import com.example.quizapp.model.Student;
-import com.example.quizapp.model.Teacher;
-import com.example.quizapp.model.User;
+import com.example.quizapp.model.*;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,7 +29,6 @@ import java.util.Locale;
 import java.util.Random;
 
 public class StudentController {
-
     public Label textTeacherEmail;
     public Label textQuizName;
     public Label textDuration;
@@ -60,16 +57,21 @@ public class StudentController {
     public Label tquizStartDate;
     private StudentDAO studentDAO;
     private UserDAO userDAO;
+    private QuestionDAO questionDAO;
 
     private User currentUser;
 
     private  Quiz selectedQuiz;
+
+    // Add a list of questions
+    private List<Question> currentQuizQuestions;
 
     // No-argument constructor
     // Constructor to initialize StudentDAO
     public StudentController() {
         this.userDAO = new UserDAO();
         this.studentDAO = new StudentDAO();
+        this.questionDAO = new QuestionDAO();
     }
 
     @FXML
@@ -526,7 +528,9 @@ public class StudentController {
 
         //start the quiz for the student
         //retrieve the quiz questions by the quizId and put them in a table
-
+        currentQuizQuestions=questionDAO.retrieveSelectedQuizQuestions(selectedQuiz.getQuizId());
+        System.out.println("current quiz questions :");
+        System.out.println(currentQuizQuestions);
 
 
     }

@@ -13,9 +13,6 @@ public class QuestionController {
         this.questionDAO = questionDAO;
     }
 
-    public Question getQuestionById(String questionId) {
-        return questionDAO.getQuestionById(questionId);
-    }
 
     public void createQuestion(Question question) {
         questionDAO.createQuestion(question);
@@ -23,13 +20,5 @@ public class QuestionController {
 
     public void updateQuestion(Question updatedQuestion) {
         questionDAO.updateQuestion(updatedQuestion);
-    }
+    }}
 
-    public void deleteQuestion(String questionId) {
-        questionDAO.deleteQuestion(questionId);
-    }
-
-    public List<Question> getAllQuestions() {
-        return questionDAO.getAllQuestions();
-    }
-}
