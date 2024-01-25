@@ -1,5 +1,6 @@
 package com.example.quizapp.dao;
 import com.example.quizapp.model.Quiz;
+import com.example.quizapp.model.Teacher;
 import com.example.quizapp.model.User;
 import com.example.quizapp.database.DatabaseConnector;
 
@@ -217,4 +218,41 @@ public User createUser(User user) {
 
     public void insertUser(User newUser) {
     }
+
+    public Teacher getQuizTeacherByTeacherId(int teacherId) {
+        Teacher teacher = null;
+
+        // Modify the query based on your database schema
+        String query = "SELECT * FROM User WHERE userId = ? AND role = 'teacher'";
+
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            preparedStatement.setInt(1, teacherId);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    teacher = createTeacherFromResultSet(resultSet);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return teacher;
+    }
+
+
+    private Teacher createTeacherFromResultSet(ResultSet resultSet) throws SQLException {
+        Teacher teacher = new Teacher();
+        teacher.setUserId(resultSet.getInt("UserId"));
+        teacher.setFirstname(resultSet.getString("firstname"));
+        teacher.setLastname(resultSet.getString("lastname"));
+        teacher.setEmail(resultSet.getString("email"));
+        teacher.setSexe(resultSet.getString("sexe"));
+        // Add more properties if needed
+
+        return teacher;
+    }
+
 }

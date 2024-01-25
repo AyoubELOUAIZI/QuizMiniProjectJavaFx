@@ -15,4 +15,7 @@ public class Teacher extends User {
         super(userId, firstname, lastname, email, password, "teacher", sex, quizzes);
     }
 
+    public Teacher() {
+
+    }
 }

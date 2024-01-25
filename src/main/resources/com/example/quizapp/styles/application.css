@@ -104,7 +104,7 @@
 }
 
 .list-cell:filled:selected, .list-cell:filled:selected:hover {
-    -fx-background-color: linear-gradient(to right, #1E90FF, #3F5EFB); /* A different gradient for selected items */
+    -fx-background-color: linear-gradient(to right, #FC466B, #3F5EFB); /* A different gradient for selected items */
     -fx-background-insets: 0, 0, 1, 2; /* Insets for background to create a layered effect */
 }
 
@@ -118,32 +118,13 @@
     -fx-padding: 0 0 0 5px; /* Adds some space between the icon and the text */
 }
 
-
-/* Enhanced styles.css */
-
-.list-cell {
-    -fx-background-color: #0078d7; /* A more modern shade of blue */
-    -fx-text-fill: white;
-    -fx-font-size: 16px; /* Slightly larger text for better readability */
-    -fx-padding: 10px; /* Add some padding for better spacing */
-    -fx-alignment: center-left; /* Aligns the text and graphic to the left */
-    -fx-graphic-text-gap: 10px; /* Gap between the graphic and the text */
+.btn-delete{
+ -fx-background-color: linear-gradient(to right, #FC466B, #3F5EFB);
+  -fx-background-insets: 0, 0, 1, 2;
 }
-
-.list-cell .graphic {
-    -fx-fill: white; /* Ensures that SVG-path or similar graphics are white */
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.6), 10, 0, 0, 2); /* Optional shadow for depth */
-}
-
-/* Style for the icon before each item */
-.list-cell .icon {
-    -fx-background-image: url('./../images/studentFemale.png'); /* Path to the icon image */
-    -fx-background-repeat: no-repeat;
-    -fx-background-position: center;
-    -fx-background-size: 16px 16px; /* Adjust the size of the icon */
-    -fx-min-width: 20px; /* Minimum width to ensure the icon is not squished */
-    -fx-min-height: 20px; /* Minimum height for the same reason */
-    -fx-margin-right: 5px; /* Space between the icon and the text */
+.btn-delete:hover{
+ -fx-background-color: linear-gradient(to right, #FC466B, #3F5EFB);
+  -fx-background-insets: 0, 0, 1, 2;
 }
 
 

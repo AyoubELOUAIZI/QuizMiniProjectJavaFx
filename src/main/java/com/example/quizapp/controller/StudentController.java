@@ -5,6 +5,7 @@ import com.example.quizapp.UserSession;
 import com.example.quizapp.dao.StudentDAO;
 import com.example.quizapp.model.Quiz;
 import com.example.quizapp.model.Student;
+import com.example.quizapp.model.Teacher;
 import com.example.quizapp.model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,10 +20,19 @@ import javafx.stage.Stage;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Random;
 
 public class StudentController {
 
+    public Label textTeacherEmail;
+    public Label textQuizName;
+    public Label textDuration;
+    public Label textTeacherNam;
+    public Label textDate;
+    public ImageView teacherImageView;
+    public ImageView backgroundImageQuizView;
     private StudentDAO studentDAO;
 
     // No-argument constructor
@@ -46,6 +56,7 @@ public class StudentController {
     private void handleButtonAction() {
         // Your logic here
     }
+    private List<Quiz> studentQuizzes;
 
     @FXML
     public void initialize() {
@@ -56,15 +67,84 @@ public class StudentController {
             email_toshow.setText(currentUser.getEmail());
             // ... Set other user details
             updateProfileImage(currentUser.getSexe());
-            List<Quiz> studentQuizzes = retrieveStudentQuizzes(currentUser.getUserId());
+            studentQuizzes = retrieveStudentQuizzes(currentUser.getUserId());
 
             // Display quizzes in the ListView
             displayQuizzesInListView(studentQuizzes);
+
+            // Listen for selection changes in the quizzesListView
+            quizzesListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue != null) {
+                    handleSelectedQuizChanged(newValue); // Call your method with the selected quiz name
+                }
+            });
         }
+    }
+
+    private void handleSelectedQuizChanged(String quizName) {
+        // Retrieve the selected quiz details from the list of studentQuizzes
+        Quiz selectedQuiz = findQuizByName(quizName);
+
+
+
+        // Check if the selectedQuiz is not null (for safety)
+        if (selectedQuiz != null) {
+            //select data from database if you need
+           Teacher selectedQuizTeacher = retrieveSelectedQuizTeacher(selectedQuiz.getTeacherId());
+        
+
+            // Update the content of the AnchorPane with the selected quiz details
+            updateAnchorPaneContent(selectedQuiz,selectedQuizTeacher);
+        }
+    }
+
+    private void updateAnchorPaneContent(Quiz selectedQuiz,Teacher selectedQuizTeacher) {
+        textQuizName.setText(selectedQuiz.getQuizName());
+        textTeacherNam.setText(selectedQuizTeacher.getFullName());
+        textTeacherEmail.setText(selectedQuizTeacher.getEmail());
+
+        // Assuming getDuration() returns an int representing duration in minutes
+        textDuration.setText(String.valueOf(selectedQuiz.getDuration()));
+
+        // Assuming getStartAt() returns a Date object
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+        String formattedStartDate = dateFormat.format(selectedQuiz.getStartAt());
+        textDate.setText(formattedStartDate);
+
+        //updating the image
+        updateQuizTeacherImage(selectedQuizTeacher.getSexe());
+
+        //updateToRandomBackground();
+        updateToRandomBackground();
+    }
+
+    private void updateToRandomBackground() {
+        List<String> imageNames = List.of("image.jpg", "splash.png", "splash.png","randombackgroundquiz.png","randombackgroundquiz2.png");
+        // Generate a random index to select a random image name from the list
+        Random random = new Random();
+        int randomIndex = random.nextInt(imageNames.size());
+
+        // Get the random image name
+        String randomImageName = imageNames.get(randomIndex);
+        backgroundImageQuizView.setImage(new Image(getClass().getResourceAsStream("/com/example/quizapp/images/"+randomImageName)));
+
+    }
+
+    // Helper method to find the Quiz object by quizName in the list of studentQuizzes
+    private Quiz findQuizByName(String quizName) {
+        for (Quiz quiz : studentQuizzes) {
+            if (quiz.getQuizName().equals(quizName)) {
+                return quiz;
+            }
+        }
+        return null; // Quiz not found, handle this case as needed
     }
 
     public List<Quiz> retrieveStudentQuizzes(int studentId) {
         return studentDAO.getQuizzesForStudent(studentId);
+    }
+    public Teacher retrieveSelectedQuizTeacher(int teacherId) {
+        return studentDAO.getQuizTeacherByTeacherId(teacherId);
     }
 
     private void displayQuizzesInListView(List<Quiz> quizzes) {
@@ -119,6 +199,21 @@ public class StudentController {
             studentProfileImageView.setImage(new Image(getClass().getResourceAsStream("/com/example/quizapp/images/studentMale.png")));
         }
 
+    }
+
+    private void updateQuizTeacherImage(String gender) {
+        if ("female".equalsIgnoreCase(gender)) {
+            System.out.println(gender);
+            // Set the profile image to the female version
+            teacherImageView.setImage(new Image(getClass().getResourceAsStream("/com/example/quizapp/images/teacherFemale.png")));
+        } else {
+            // Set the profile image to the male version
+            teacherImageView.setImage(new Image(getClass().getResourceAsStream("/com/example/quizapp/images/teacherMale.png")));
+        }
+
+    }
+
+    public void handleAddNewQuiz(ActionEvent actionEvent) {
     }
 
 
