@@ -25,6 +25,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 import java.util.Random;
 
 public class StudentController {
@@ -248,24 +249,32 @@ public class StudentController {
     }
 
     public void handleDeleteQuiz(ActionEvent actionEvent) {
-        studentDAO.deleteStudentQuiz(currentUser.getUserId(),selectedQuiz.getQuizId());
+        // Create a confirmation dialog
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Dialog de Confirmation");
+        alert.setHeaderText("Supprimer le Quiz");
+        alert.setContentText("Attention : Si vous supprimez ce quiz, vous ne pourrez plus y accéder "
+                + "jusqu'à ce que vous l'ajoutiez à nouveau en utilisant le mot de passe du quiz. "
+                + "Êtes-vous sûr de vouloir supprimer ce quiz?");
 
-        //retrieve the Quizzes again to refresh the data
-        loadStudentQuizzes();
 
+        // Show the confirmation dialog and wait for the user's response
+        alert.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.OK) {
+                // User clicked OK, proceed with the delete operation
+                studentDAO.deleteStudentQuiz(currentUser.getUserId(), selectedQuiz.getQuizId());
+
+                // Retrieve the Quizzes again to refresh the data
+                loadStudentQuizzes();
+
+                //show no quiz Selected panel
+                panelNoQuizSelected.toFront();
+            }
+            // If the user clicked Cancel or closed the dialog, do nothing
+        });
     }
 
 
-//    public void createStudent(Student student) {
-//        studentDAO.createStudent(student);
-//    }
-//
-//    public void updateStudent(Student updatedStudent) {
-//        studentDAO.updateStudent(updatedStudent);
-//    }
-//
-//    public void deleteStudent(int userId) {
-//        studentDAO.deleteStudent(userId);
-//    }
+
 
 }
