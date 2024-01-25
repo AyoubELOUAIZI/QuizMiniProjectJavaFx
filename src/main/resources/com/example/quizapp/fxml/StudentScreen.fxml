@@ -96,7 +96,7 @@
             <ListView fx:id="quizzesListView" prefHeight="531.0" prefWidth="134.0" style="-fx-background-color: #1E90FF;" />
             <VBox layoutX="10.0" layoutY="585.0" prefHeight="82.0" prefWidth="150.0">
                <children>
-                  <Button fx:id="student_logout1" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="0.0" prefWidth="150.0" styleClass="nav-btn" text="Se déconnecter" textFill="WHITE">
+                  <Button fx:id="student_logout" alignment="TOP_LEFT" graphicTextGap="10.0" mnemonicParsing="false" onAction="#handleLogout" prefHeight="0.0" prefWidth="150.0" styleClass="nav-btn" text="Se déconnecter" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -469,7 +469,7 @@
                                 <TextField fx:id="tfNewPassword" layoutX="53.0" layoutY="448.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
                                 <Label layoutX="53.0" layoutY="495.0" text="Confirm mot de pass" />
                                 <TextField fx:id="tfConfirmNewPassword" layoutX="53.0" layoutY="517.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm mot de pass" styleClass="input" />
-                                <Button layoutX="374.0" layoutY="517.0" mnemonicParsing="false" onAction="#handelUpdateUserPassword" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
+                                <Button layoutX="374.0" layoutY="517.0" mnemonicParsing="false" onAction="#handleUpdateUserPassword" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
                                     <cursor>
                                         <Cursor fx:constant="HAND" />
                                     </cursor>

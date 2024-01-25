@@ -11,6 +11,27 @@ import java.util.List;
 public class UserDAO {
     private static final String TABLE_NAME = "User";
 
+        public boolean updateStudentUserName(int userId, String firstName, String lastName) {
+            try (Connection connection = DatabaseConnector.getConnection();
+                 PreparedStatement preparedStatement = connection.prepareStatement("UPDATE " + TABLE_NAME + " SET firstname=?, lastname=? WHERE userId=?")) {
+
+                preparedStatement.setString(1, firstName);
+                preparedStatement.setString(2, lastName);
+                preparedStatement.setInt(3, userId);
+
+                int rowsUpdated = preparedStatement.executeUpdate();
+
+                // If at least one row is updated, return true; otherwise, return false
+                return rowsUpdated > 0;
+
+            } catch (SQLException e) {
+                e.printStackTrace();
+                return false; // or you could throw an exception
+            }
+        }
+
+
+
     public User getUserById(int userId) {
         try (Connection connection = DatabaseConnector.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM " + TABLE_NAME + " WHERE userId = ?")) {
@@ -253,6 +274,37 @@ public User createUser(User user) {
         // Add more properties if needed
 
         return teacher;
+    }
+
+    public boolean updateStudentUserEmail(int userId, String newEmail) {
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE User SET email=? WHERE userId=?")) {
+
+            preparedStatement.setString(1, newEmail);
+            preparedStatement.setInt(2, userId);
+
+            int affectedRows = preparedStatement.executeUpdate();
+            return affectedRows > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    public boolean updateStudentUserPassword(int userId, String newPassword) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
+            try (PreparedStatement preparedStatement = connection.prepareStatement("UPDATE " + TABLE_NAME + " SET password=? WHERE userId=?")) {
+                preparedStatement.setString(1, newPassword);
+                preparedStatement.setInt(2, userId);
+
+                int affectedRows = preparedStatement.executeUpdate();
+                return affectedRows > 0; // Returns true if at least one row was affected (update successful)
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Update failed
+        }
     }
 
 }

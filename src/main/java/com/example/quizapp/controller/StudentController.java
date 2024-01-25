@@ -3,10 +3,12 @@ package com.example.quizapp.controller;
 
 import com.example.quizapp.UserSession;
 import com.example.quizapp.dao.StudentDAO;
+import com.example.quizapp.dao.UserDAO;
 import com.example.quizapp.model.Quiz;
 import com.example.quizapp.model.Student;
 import com.example.quizapp.model.Teacher;
 import com.example.quizapp.model.User;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -56,6 +58,7 @@ public class StudentController {
     public TextField tfNewEmail;
     public Label tUserEmail;
     private StudentDAO studentDAO;
+    private UserDAO userDAO;
 
     private User currentUser;
 
@@ -64,6 +67,7 @@ public class StudentController {
     // No-argument constructor
     // Constructor to initialize StudentDAO
     public StudentController() {
+        this.userDAO = new UserDAO();
         this.studentDAO = new StudentDAO();
     }
 
@@ -91,6 +95,10 @@ public class StudentController {
         if (currentUser != null) {
             fullname_toshow.setText(currentUser.getFullName());
             email_toshow.setText(currentUser.getEmail());
+
+            //set the data for the Setting//
+            tUserName.setText(currentUser.getFullName());
+
             // ... Set other user details
             updateProfileImage(currentUser.getSexe());
 
@@ -332,27 +340,126 @@ public class StudentController {
         alert.showAndWait();
     }
 
-
+//---------------------------------------Functions for Setting they can work also for Teacher--------------------------------------------//
     public void handShowSetting(ActionEvent actionEvent) {
         panelShowSetting.toFront();
     }
 
     public void handleUpdateEmail(ActionEvent actionEvent) {
+        String newEmail = tfNewEmail.getText();
+        String confirmNewEmail = tfConfirmEmail.getText();
+
+        // Validate email format
+        if (!isValidEmail(newEmail)) {
+            // Show an error message for invalid email format
+            showErrorMessage("Veuillez entrer une adresse e-mail valide.");
+            return;
+        }
+
+        // Validate that new email and confirm email match
+        if (!newEmail.equals(confirmNewEmail)) {
+            // Show an error message for email mismatch
+            showErrorMessage("Les adresses e-mail ne correspondent pas. Veuillez entrer des adresses e-mail correspondantes.");
+            return;
+        }
+
+        // If the data is valid, update the email using the userDAO
+        boolean isEmailUpdated = userDAO.updateStudentUserEmail(currentUser.getUserId(), newEmail);
+
+        if (isEmailUpdated) {
+            // If updating is successful, update the displayed email in the screen
+            email_toshow.setText(newEmail);
+
+            // Optionally, you can show a success message to the user
+            showSuccessMessage("L'adresse e-mail a été mise à jour avec succès.");
+        } else {
+            // If updating fails, show an error message
+            showErrorMessage("Échec de la mise à jour de l'adresse e-mail. Veuillez réessayer.");
+        }
     }
 
-    public void handelUpdateUserPassword(ActionEvent actionEvent) {
+    // Helper method to validate email format
+    private boolean isValidEmail(String email) {
+        // You can implement a more sophisticated email validation based on your requirements
+        // This is a simple example, you may need to use a regular expression for more precise validation
+        return email != null && email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
+    }
+
+
+    public void handleUpdateUserPassword(ActionEvent actionEvent) {
+        String currentPassword = tfcurrentPassword.getText();
+        String newPassword = tfNewPassword.getText();
+        String confirmNewPassword = tfConfirmNewPassword.getText();
+
+        // Validate the data
+        if (currentPassword.isEmpty() || newPassword.isEmpty() || confirmNewPassword.isEmpty()) {
+            // Show an error message to the user indicating that all password fields are required
+            showErrorMessage("Les champs du mot de passe actuel, du nouveau mot de passe et de la confirmation du nouveau mot de passe sont requis.");
+            return;
+        }
+
+        // Compare the currentPassword with User.getPassword() (replace 'currentUser' with the actual instance)
+        if (!currentPassword.equals(currentUser.getPassword())) {
+            // Show an error message indicating that the current password is incorrect
+            showErrorMessage("Le mot de passe actuel est incorrect. Veuillez entrer le mot de passe actuel correct.");
+            return;
+        }
+
+        // Check if the new password and confirm new password match
+        if (!newPassword.equals(confirmNewPassword)) {
+            // Show an error message indicating that the new passwords do not match
+            showErrorMessage("Les nouveaux mots de passe ne correspondent pas. Veuillez entrer des mots de passe correspondants.");
+            return;
+        }
+
+        // If all validations pass, update the password in the database
+        boolean isPasswordUpdated = userDAO.updateStudentUserPassword(currentUser.getUserId(), newPassword);
+
+        if (isPasswordUpdated) {
+            // Optionally, you can show a success message to the user
+            showSuccessMessage("Le mot de passe a été mis à jour avec succès.");
+        } else {
+            // If updating fails, show an error message
+            showErrorMessage("Échec de la mise à jour du mot de passe. Veuillez réessayer.");
+        }
     }
 
     public void handleDeleteUserAccount(ActionEvent actionEvent) {
     }
 
     public void handleUpdateUserName(ActionEvent actionEvent) {
-       String firstName=tfNewFirstName.getText();
-       String lastName=tfNewlastName.getText();
-       //validate data
+        String firstName = tfNewFirstName.getText();
+        String lastName = tfNewlastName.getText();
 
-        //if data valid update the userName using user dao else show alert error
+        // Validate data
+        if (firstName.isEmpty() || lastName.isEmpty()) {
+            // Show an error message to the user indicating that both first name and last name are required
+            showErrorMessage("Les champs du prénom et du nom de famille sont requis.");
+            return;
+        }
 
-        //after data updated update the displayed name in the screen
+        // If the data is valid, update the userName using the studentDAO
+        boolean isUserNameUpdated = userDAO.updateStudentUserName(currentUser.getUserId(), firstName, lastName);
+
+        if (isUserNameUpdated) {
+            // If updating is successful, update the displayed name in the screen
+            fullname_toshow.setText(firstName + " " + lastName);
+            tUserName.setText(firstName + " " + lastName);
+
+            // Optionally, you can show a success message to the user
+            showSuccessMessage("Le nom d'utilisateur a été mis à jour avec succès.");
+        } else {
+            // If updating fails, show an error message
+            showErrorMessage("Échec de la mise à jour du nom d'utilisateur. Veuillez réessayer.");
+        }
     }
+
+    private void showSuccessMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Succès");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
 }
