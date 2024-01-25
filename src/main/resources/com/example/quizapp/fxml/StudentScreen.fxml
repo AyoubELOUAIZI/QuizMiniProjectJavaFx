@@ -334,7 +334,7 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="panelAddNewQui" layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
+                  <AnchorPane layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
                      <children>
                         <ImageView fx:id="backgroundImageQuizView11" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
                            <image>
@@ -375,111 +375,9 @@
                   </AnchorPane>
                </children>
             </Pane>
-                <Pane fx:id="panelShowSetting" layoutX="-1.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
-                    <children>
-                        <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="290.0" prefWidth="495.0" style="-fx-background-color: fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8;">
-                            <children>
-                                <Label layoutX="45.0" layoutY="22.0" text="Relvé de notes">
-                                    <font>
-                                        <Font name="Segoe UI Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/RN.png" />
-                                    </image>
-                                </ImageView>
-                                <Line endX="189.55322265625" endY="-23.611812591552734" layoutX="-71.0" layoutY="167.0" rotate="90.0" startX="2.353516101837158" startY="-22.156248092651367" stroke="#00000039" />
-                            </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="536.0" layoutY="20.0" prefHeight="595.0" prefWidth="495.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-color: fff; -fx-background-radius: 8;">
-                            <children>
-                                <Label layoutX="45.0" layoutY="322.0" text="Le mot de pass">
-                                    <font>
-                                        <Font name="Segoe UI Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/SC.png" />
-                                    </image>
-                                </ImageView>
-                                <Label layoutX="45.0" layoutY="22.0" text="Sécurité">
-                                    <font>
-                                        <Font name="Segoe UI Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/lock.png" />
-                                    </image>
-                                </ImageView>
-                                <Label layoutX="53.0" layoutY="55.0" text="E-mail actuel:" />
-                                <Label fx:id="emailActuel" layoutX="70.0" layoutY="92.0" text="testtest@gmail.com" textFill="#464646" />
-                                <Label layoutX="53.0" layoutY="129.0" text="Nouveau E-mail" />
-                                <TextField fx:id="newEmailField" layoutX="53.0" layoutY="151.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau e-mail" styleClass="input" />
-                                <Label layoutX="53.0" layoutY="198.0" text="Confirm E-mail" />
-                                <TextField fx:id="confirmEmailField" layoutX="53.0" layoutY="220.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm e-mail" styleClass="input" />
-                                <Button fx:id="changeEmailBtn" layoutX="374.0" layoutY="220.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
-                                    <cursor>
-                                        <Cursor fx:constant="HAND" />
-                                    </cursor>
-                                </Button>
-                                <Label layoutX="53.0" layoutY="358.0" text="Mot de pass actuel" />
-                                <Label layoutX="53.0" layoutY="426.0" text="Nouvelle mot de pass" />
-                                <TextField fx:id="newPassField" layoutX="53.0" layoutY="448.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
-                                <Label layoutX="53.0" layoutY="495.0" text="Confirm mot de pass" />
-                                <TextField fx:id="confPassField" layoutX="53.0" layoutY="517.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm mot de pass" styleClass="input" />
-                                <Button fx:id="changePassBtn" layoutX="374.0" layoutY="517.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
-                                    <cursor>
-                                        <Cursor fx:constant="HAND" />
-                                    </cursor>
-                                </Button>
-                                <TextField fx:id="currPassField" layoutX="53.0" layoutY="381.0" prefHeight="30.0" prefWidth="300.0" promptText="mot e pass actuel" styleClass="input" />
-                            </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="20.0" layoutY="330.0" prefHeight="284.0" prefWidth="495.0" style="-fx-background-color: fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8;">
-                            <children>
-                                <Label layoutX="45.0" layoutY="22.0" text="Supprimer mon compte">
-                                    <font>
-                                        <Font name="Segoe UI Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/iconDeleteAccount.png" />
-                                    </image>
-                                </ImageView>
-                                <Label layoutX="50.0" layoutY="55.0" text="Pour le moment, votre compte est actif. Si vous souhaitez supprimer le compte," />
-                                <Label layoutX="67.0" layoutY="92.0" text=" tapez 'supprime mon compte'." textFill="#464646" />
-                                <Label layoutX="50.0" layoutY="129.0" text="Saisissez l'expression" />
-                                <TextField fx:id="newPhoneField" layoutX="50.0" layoutY="151.0" prefHeight="30.0" prefWidth="300.0" promptText="saisissez l'expression" styleClass="input" />
-                                <Button fx:id="changePhoneBtn" layoutX="371.0" layoutY="220.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" styleClass="btn-delete" text="Supprimer" textFill="WHITE">
-                                    <cursor>
-                                        <Cursor fx:constant="HAND" />
-                                    </cursor>
-                                </Button>
-                        <Label layoutX="52.0" layoutY="194.0" text="Mot de pass actuel" />
-                        <TextField fx:id="newPassField1" layoutX="52.0" layoutY="216.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
-                        <Line endX="200.0" layoutX="-180.0" layoutY="245.0" startX="200.0" startY="-189.0" stroke="#00000039" />
-                            </children>
-                        </AnchorPane>
-                  <Label layoutX="63.0" layoutY="65.0" text="Nom complet actuel :" />
-                  <Label fx:id="emailActuel1" layoutX="80.0" layoutY="102.0" text="ELOUAIZI AYOUB" textFill="#464646" />
-                  <Label layoutX="63.0" layoutY="139.0" text="Nouveau nom" />
-                  <TextField fx:id="newEmailField1" layoutX="63.0" layoutY="161.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau nom" styleClass="input" />
-                  <Label layoutX="63.0" layoutY="208.0" text="Nouveau prénom" />
-                  <TextField fx:id="confirmEmailField1" layoutX="63.0" layoutY="230.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau prénom" styleClass="input" />
-                  <Button fx:id="changeEmailBtn2" layoutX="384.0" layoutY="230.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                    </children>
-                </Pane>
             <Pane fx:id="panelNoQuizSelected" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <AnchorPane fx:id="panelAddNewQuiz1" prefHeight="46.0" prefWidth="1054.0">
+                  <AnchorPane prefHeight="46.0" prefWidth="1054.0">
                      <children>
                         <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
                         <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
@@ -516,6 +414,108 @@
                   </AnchorPane>
                </children>
             </Pane>
+                <Pane fx:id="panelShowSetting" layoutX="-1.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="290.0" prefWidth="495.0" style="-fx-background-color: fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8;">
+                            <children>
+                                <Label layoutX="45.0" layoutY="22.0" text="Le nom complet">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/iconProfile.png" />
+                                    </image>
+                                </ImageView>
+                                <Line endX="189.55322265625" endY="-23.611812591552734" layoutX="-71.0" layoutY="167.0" rotate="90.0" startX="2.353516101837158" startY="-22.156248092651367" stroke="#00000039" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="536.0" layoutY="20.0" prefHeight="595.0" prefWidth="495.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-color: fff; -fx-background-radius: 8;">
+                            <children>
+                                <Label layoutX="45.0" layoutY="322.0" text="Le mot de pass">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/SC.png" />
+                                    </image>
+                                </ImageView>
+                                <Label layoutX="45.0" layoutY="22.0" text="Sécurité">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/lock.png" />
+                                    </image>
+                                </ImageView>
+                                <Label layoutX="53.0" layoutY="55.0" text="E-mail actuel:" />
+                                <Label fx:id="tUserEmail" layoutX="70.0" layoutY="92.0" text="testtest@gmail.com" textFill="#464646" />
+                                <Label layoutX="53.0" layoutY="129.0" text="Nouveau E-mail" />
+                                <TextField fx:id="tfNewEmail" layoutX="53.0" layoutY="151.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau e-mail" styleClass="input" />
+                                <Label layoutX="53.0" layoutY="198.0" text="Confirm E-mail" />
+                                <TextField fx:id="tfConfirmEmail" layoutX="53.0" layoutY="220.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm e-mail" styleClass="input" />
+                                <Button layoutX="374.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleUpdateEmail" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                                <Label layoutX="53.0" layoutY="358.0" text="Mot de pass actuel" />
+                                <Label layoutX="53.0" layoutY="426.0" text="Nouvelle mot de pass" />
+                                <TextField fx:id="tfNewPassword" layoutX="53.0" layoutY="448.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
+                                <Label layoutX="53.0" layoutY="495.0" text="Confirm mot de pass" />
+                                <TextField fx:id="tfConfirmNewPassword" layoutX="53.0" layoutY="517.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm mot de pass" styleClass="input" />
+                                <Button layoutX="374.0" layoutY="517.0" mnemonicParsing="false" onAction="#handelUpdateUserPassword" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                                <TextField fx:id="tfcurrentPassword" layoutX="53.0" layoutY="381.0" prefHeight="30.0" prefWidth="300.0" promptText="mot e pass actuel" styleClass="input" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="20.0" layoutY="330.0" prefHeight="284.0" prefWidth="495.0" style="-fx-background-color: fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8;">
+                            <children>
+                                <Label layoutX="45.0" layoutY="22.0" text="Supprimer mon compte">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/iconDeleteAccount.png" />
+                                    </image>
+                                </ImageView>
+                                <Label layoutX="50.0" layoutY="55.0" text="Pour le moment, votre compte est actif. Si vous souhaitez supprimer le compte," />
+                                <Label layoutX="67.0" layoutY="92.0" text=" tapez 'supprime mon compte'." textFill="#464646" />
+                                <Label layoutX="50.0" layoutY="129.0" text="Saisissez l'expression" />
+                                <TextField fx:id="tfExpression" layoutX="50.0" layoutY="151.0" prefHeight="30.0" prefWidth="300.0" promptText="saisissez l'expression" styleClass="input" />
+                                <Button layoutX="371.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleDeleteUserAccount" prefHeight="30.0" prefWidth="74.0" styleClass="btn-delete" text="Supprimer" textFill="WHITE">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                        <Label layoutX="52.0" layoutY="194.0" text="Mot de pass actuel" />
+                        <TextField fx:id="tfPasswordCurrent" layoutX="52.0" layoutY="216.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
+                        <Line endX="200.0" layoutX="-180.0" layoutY="245.0" startX="200.0" startY="-189.0" stroke="#00000039" />
+                            </children>
+                        </AnchorPane>
+                  <Label layoutX="63.0" layoutY="65.0" text="Nom complet actuel :" />
+                  <Label fx:id="tUserName" layoutX="80.0" layoutY="102.0" text="ELOUAIZI AYOUB" textFill="#464646" />
+                  <Label layoutX="63.0" layoutY="139.0" text="Nouveau nom" />
+                  <TextField fx:id="tfNewlastName" layoutX="63.0" layoutY="161.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau nom" styleClass="input" />
+                  <Label layoutX="63.0" layoutY="208.0" text="Nouveau prénom" />
+                  <TextField fx:id="tfNewFirstName" layoutX="63.0" layoutY="230.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau prénom" styleClass="input" />
+                  <Button layoutX="384.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleUpdateUserName" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                    </children>
+                </Pane>
             </children>
         </AnchorPane>
     </center>

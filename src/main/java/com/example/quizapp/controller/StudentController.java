@@ -44,6 +44,17 @@ public class StudentController {
     public TextField tfQuizPassword;
     public TextField tfConfirmQuizPassword;
     public Pane panelShowSetting;
+    public Label tUserName;
+    public TextField tfNewlastName;
+    public TextField tfNewFirstName;
+    public TextField tfPasswordCurrent;
+    public TextField tfExpression;
+    public TextField tfcurrentPassword;
+    public TextField tfConfirmNewPassword;
+    public TextField tfNewPassword;
+    public TextField tfConfirmEmail;
+    public TextField tfNewEmail;
+    public Label tUserEmail;
     private StudentDAO studentDAO;
 
     private User currentUser;
@@ -324,5 +335,24 @@ public class StudentController {
 
     public void handShowSetting(ActionEvent actionEvent) {
         panelShowSetting.toFront();
+    }
+
+    public void handleUpdateEmail(ActionEvent actionEvent) {
+    }
+
+    public void handelUpdateUserPassword(ActionEvent actionEvent) {
+    }
+
+    public void handleDeleteUserAccount(ActionEvent actionEvent) {
+    }
+
+    public void handleUpdateUserName(ActionEvent actionEvent) {
+       String firstName=tfNewFirstName.getText();
+       String lastName=tfNewlastName.getText();
+       //validate data
+
+        //if data valid update the userName using user dao else show alert error
+
+        //after data updated update the displayed name in the screen
     }
 }
