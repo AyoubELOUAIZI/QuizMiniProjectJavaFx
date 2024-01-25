@@ -195,6 +195,7 @@ public class StudentController {
         for (Quiz quiz : quizzes) {
             quizzesListView.getItems().add(quiz.getQuizName());
         }
+
     }
 
     @FXML
