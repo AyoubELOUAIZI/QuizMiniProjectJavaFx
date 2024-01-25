@@ -15,6 +15,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 import java.io.BufferedWriter;
@@ -33,6 +35,9 @@ public class StudentController {
     public Label textDate;
     public ImageView teacherImageView;
     public ImageView backgroundImageQuizView;
+    public Pane panelNoQuizSelected;
+    public Pane panelQuizSelected;
+    public Pane panelAddNewQuiz;
     private StudentDAO studentDAO;
 
     // No-argument constructor
@@ -75,6 +80,7 @@ public class StudentController {
             // Listen for selection changes in the quizzesListView
             quizzesListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
+                    panelQuizSelected.toFront();
                     handleSelectedQuizChanged(newValue); // Call your method with the selected quiz name
                 }
             });
@@ -214,6 +220,7 @@ public class StudentController {
     }
 
     public void handleAddNewQuiz(ActionEvent actionEvent) {
+        panelAddNewQuiz.toFront();
     }
 
 

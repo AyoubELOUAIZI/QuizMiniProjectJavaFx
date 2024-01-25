@@ -34,7 +34,7 @@
                                 <Font name="System Bold" size="13.0" />
                             </font>
                         </Label>
-                        <Label fx:id="bactype_toshow" layoutX="508.0" layoutY="40.0" prefHeight="17.0" prefWidth="205.0" text="2023/2024" textFill="WHITE" />
+                        <Label fx:id="bactype_toshow" layoutX="508.0" layoutY="40.0" prefHeight="17.0" prefWidth="205.0" text="2023/2024 " textFill="WHITE" />
                         <ImageView fx:id="studentProfileImageView" fitHeight="60.0" fitWidth="60.0" layoutX="170.0" layoutY="10.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/studentFemale.png" />
@@ -104,6 +104,129 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
+            <Pane fx:id="panelQuizSelected" layoutX="-1.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <AnchorPane prefHeight="46.0" prefWidth="1054.0">
+                     <children>
+                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
+                        <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Line endX="74.70703125" layoutX="123.0" layoutY="43.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
+                        <Label layoutX="257.0" layoutY="15.0" text="Répondre au QCM">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
+                     <children>
+                        <ImageView fx:id="backgroundImageQuizView" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
+                           <image>
+                              <Image url="@../images/splash.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="teacherImageView" fitHeight="130.0" fitWidth="130.0" layoutX="52.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/person_pin2.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="101.0" layoutY="27.0" text="QCM :">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="186.0" layoutY="100.0" text="À propos">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="192.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/time.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="186.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/mail.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="224.0" layoutY="194.0" text="Durée de l'examen :">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="218.0" layoutY="164.0" text="Email : ">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textDuration" layoutX="363.0" layoutY="194.0" text="45">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textTeacherEmail" layoutX="270.0" layoutY="164.0" text="XXXXXXXXXXXXXXXX">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Line endX="285.70703125" layoutX="159.0" layoutY="72.0" startX="-100.0" stroke="#1699eb" />
+                        <Label fx:id="textQuizName" layoutX="200.0" layoutY="29.0" text="qcm examan name" textFill="#1699eb">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="186.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/teacherIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="218.0" layoutY="134.0" text="Professeur :">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textTeacherNam" layoutX="306.0" layoutY="134.0" text="XXXXXXXXXXXXXXXX">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label ellipsisString="" layoutX="56.0" layoutY="243.0" prefHeight="21.0" prefWidth="290.0" text="Cet examen QCM va commencer à la date :" textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textDate" layoutX="354.0" layoutY="244.0" text="01-01-2024 10:00">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="387.0" layoutY="194.0" text="minutes.">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="52.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/qcmIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="changeEmailBtn1" layoutX="257.0" layoutY="292.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="229.0" styleClass="btn-delete" text="Supprimer ce questionnaire." textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </Pane>
                 <Pane fx:id="student_notifications" layoutX="579.0" layoutY="223.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
                         <TableView fx:id="notifications_grid" focusTraversable="false" layoutX="20.0" layoutY="20.0" prefHeight="354.0" prefWidth="1010.0" styleClass="gridview">
@@ -249,9 +372,9 @@
                         </AnchorPane>
                     </children>
                 </Pane>
-            <Pane fx:id="view_school1" layoutX="-1.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+            <Pane fx:id="panelNoQuizSelected" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
                <children>
-                  <AnchorPane prefHeight="46.0" prefWidth="1054.0">
+                  <AnchorPane fx:id="panelAddNewQuiz1" prefHeight="46.0" prefWidth="1054.0">
                      <children>
                         <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
                         <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
@@ -259,7 +382,6 @@
                               <Font name="Segoe UI Bold" size="15.0" />
                            </font>
                         </Label>
-                        <Line endX="74.70703125" layoutX="123.0" layoutY="43.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
                         <Label layoutX="257.0" layoutY="15.0" text="Répondre au QCM">
                            <font>
                               <Font name="Segoe UI Bold" size="15.0" />
@@ -269,104 +391,79 @@
                   </AnchorPane>
                   <AnchorPane layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
                      <children>
-                        <ImageView fx:id="backgroundImageQuizView" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
+                        <ImageView fx:id="backgroundImageQuizView1" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
                            <image>
                               <Image url="@../images/splash.png" />
                            </image>
                         </ImageView>
-                        <ImageView fx:id="teacherImageView" fitHeight="130.0" fitWidth="130.0" layoutX="52.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/person_pin2.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="101.0" layoutY="27.0" text="QCM :">
-                           <font>
-                              <Font name="System Bold" size="30.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="186.0" layoutY="100.0" text="À propos">
-                           <font>
-                              <Font name="Segoe UI Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="192.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/time.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="186.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/mail.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="224.0" layoutY="194.0" text="Durée de l'examen :">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="218.0" layoutY="164.0" text="Email : ">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="textDuration" layoutX="363.0" layoutY="194.0" text="45">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="textTeacherEmail" layoutX="270.0" layoutY="164.0" text="XXXXXXXXXXXXXXXX">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Line endX="285.70703125" layoutX="159.0" layoutY="72.0" startX="-100.0" stroke="#1699eb" />
-                        <Label fx:id="textQuizName" layoutX="200.0" layoutY="29.0" text="qcm examan name" textFill="#1699eb">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="186.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/teacherIcon.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="218.0" layoutY="134.0" text="Professeur :">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="textTeacherNam" layoutX="306.0" layoutY="134.0" text="XXXXXXXXXXXXXXXX">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label ellipsisString="" layoutX="56.0" layoutY="243.0" prefHeight="21.0" prefWidth="290.0" text="Cet examen QCM va commencer à la date :" textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                        <Line endX="285.70703125" layoutX="185.0" layoutY="261.0" startX="-100.0" stroke="#1699eb" />
+                        <Label ellipsisString="" layoutX="112.0" layoutY="225.0" prefHeight="21.0" prefWidth="333.0" text="Sélectionne ou ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <Label fx:id="textDate" layoutX="354.0" layoutY="244.0" text="01-01-2024 10:00">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="387.0" layoutY="194.0" text="minutes.">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="52.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="254.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/qcmIcon.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="changeEmailBtn1" layoutX="257.0" layoutY="292.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="229.0" styleClass="btn-delete" text="Supprimer ce questionnaire." textFill="WHITE">
+                     </children>
+                  </AnchorPane>
+               </children>
+            </Pane>
+            <Pane fx:id="panelAddNewQuiz" layoutX="-3.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <AnchorPane prefHeight="46.0" prefWidth="1054.0">
+                     <children>
+                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
+                        <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="257.0" layoutY="15.0" text="Répondre au QCM">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="panelAddNewQui" layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
+                     <children>
+                        <ImageView fx:id="backgroundImageQuizView11" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
+                           <image>
+                              <Image url="@../images/splash.png" />
+                           </image>
+                        </ImageView>
+                        <Line endX="285.70703125" layoutX="140.0" layoutY="160.0" startX="-10.29296875" stroke="#1699eb" />
+                        <Label ellipsisString="" layoutX="162.0" layoutY="124.0" prefHeight="21.0" prefWidth="232.0" text="Ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="254.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/qcmIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="95.0" layoutY="184.0" text="Le mot de pass du qcm">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="70.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/SC.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="81.0" layoutY="217.0" text="Enter  mot de pass" />
+                        <TextField fx:id="newPassField1" layoutX="81.0" layoutY="239.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
+                        <Label layoutX="81.0" layoutY="286.0" text="Confirm mot de pass" />
+                        <TextField fx:id="confPassField1" layoutX="81.0" layoutY="308.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm mot de pass" styleClass="input" />
+                        <Button fx:id="changePassBtn1" layoutX="402.0" layoutY="308.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Ajouter" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
                         </Button>
                      </children>
                   </AnchorPane>
