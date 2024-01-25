@@ -116,84 +116,6 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <Pane fx:id="student_notifications" layoutX="579.0" layoutY="223.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <children>
-                        <TableView fx:id="notifications_grid" focusTraversable="false" layoutX="20.0" layoutY="20.0" prefHeight="354.0" prefWidth="1010.0" styleClass="gridview">
-                            <columns>
-                                <TableColumn fx:id="etablissement_notifs" prefWidth="300.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Etablissement" />
-                                <TableColumn fx:id="formation_notifs" minWidth="6.0" prefWidth="200.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Formation" />
-                                <TableColumn fx:id="ville_notifs" prefWidth="120.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Ville" />
-                                <TableColumn fx:id="date_notifs" prefWidth="155.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Date" />
-                                <TableColumn fx:id="repondreAvant_notifs" prefWidth="151.5" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="À répondre avant" />
-                                <TableColumn fx:id="decline_notifs" prefWidth="40.0" resizable="false" styleClass="gridcolumn" />
-                                <TableColumn fx:id="accept_notifs" prefWidth="40.0" resizable="false" styleClass="gridcolumn" />
-                                <TableColumn fx:id="cpcode_notifs" prefWidth="77.0" resizable="false" styleClass="gridcolumn" visible="false" />
-                            </columns>
-                        </TableView>
-                        <Label layoutX="20.0" layoutY="400.0" text="Notez bien" textFill="#919191">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                        </Label>
-                        <Label layoutX="20.0" layoutY="420.0" text="Tous admission sans réponse avant le dernier délai, sera annulé." textFill="#919191" />
-                        <Label layoutX="20.0" layoutY="435.0" text="Vous ne pouvez choisir qu'une seule admission, les autres seront automatiquement refusées." textFill="#919191" />
-                        <Label layoutX="20.0" layoutY="450.0" text="Si vous acceptez une admission, vous n'avez pas le droit de postuler à nouveau à une autre candidature." textFill="#919191" />
-                        <TableView fx:id="dernier_choix_grid" focusTraversable="false" layoutX="20.0" layoutY="515.0" prefHeight="61.0" prefWidth="770.0" styleClass="gridview">
-                            <columns>
-                                <TableColumn fx:id="etablissement_dc" prefWidth="300.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Etablissement" />
-                                <TableColumn fx:id="formation_dc" minWidth="6.0" prefWidth="223.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Formation" />
-                                <TableColumn fx:id="ville_dc" prefWidth="120.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Ville" />
-                                <TableColumn fx:id="date_dc" prefWidth="125.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Date" />
-                                <TableColumn fx:id="cpcode_notifs1" prefWidth="77.0" resizable="false" styleClass="gridcolumn" visible="false" />
-                            </columns>
-                        </TableView>
-                        <Label layoutX="20.0" layoutY="490.0" text="Mon dernier choix" textFill="#919191">
-                            <font>
-                                <Font name="System Bold" size="13.0" />
-                            </font>
-                        </Label>
-                    </children>
-                </Pane>
-            <Pane fx:id="panelStartQuizTest" layoutX="-1.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
-               <children>
-                  <AnchorPane prefHeight="46.0" prefWidth="1054.0">
-                     <children>
-                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
-                        <Label layoutX="57.0" layoutY="15.0" onMouseClicked="#handOpenQuizDetails" text="Détails du Quiz">
-                           <font>
-                              <Font name="Segoe UI Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="257.0" layoutY="15.0" text="Répondre au QCM">
-                           <font>
-                              <Font name="Segoe UI Bold" size="15.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="panelAddNewQui1" layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
-                     <children>
-                        <Line endX="285.70703125" layoutX="367.0" layoutY="264.0" startX="-10.29296875" stroke="#1699eb" />
-                        <Label ellipsisString="" layoutX="389.0" layoutY="228.0" prefHeight="21.0" prefWidth="232.0" text="Ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="481.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/qcmIcon.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="changePassBtn11" layoutX="468.0" layoutY="292.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Ajouter" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-                  <Line endX="74.70703125" layoutX="336.0" layoutY="44.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
-               </children>
-            </Pane>
             <Pane fx:id="panelQuizSelected" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
                <children>
                   <AnchorPane prefHeight="46.0" prefWidth="1054.0">
@@ -375,6 +297,83 @@
                   </AnchorPane>
                </children>
             </Pane>
+                <Pane fx:id="student_notifications" layoutX="579.0" layoutY="223.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <TableView fx:id="notifications_grid" focusTraversable="false" layoutX="20.0" layoutY="20.0" prefHeight="354.0" prefWidth="1010.0" styleClass="gridview">
+                            <columns>
+                                <TableColumn fx:id="etablissement_notifs" prefWidth="300.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Etablissement" />
+                                <TableColumn fx:id="formation_notifs" minWidth="6.0" prefWidth="200.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Formation" />
+                                <TableColumn fx:id="ville_notifs" prefWidth="120.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Ville" />
+                                <TableColumn fx:id="date_notifs" prefWidth="155.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Date" />
+                                <TableColumn fx:id="repondreAvant_notifs" prefWidth="151.5" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="À répondre avant" />
+                                <TableColumn fx:id="decline_notifs" prefWidth="40.0" resizable="false" styleClass="gridcolumn" />
+                                <TableColumn fx:id="accept_notifs" prefWidth="40.0" resizable="false" styleClass="gridcolumn" />
+                                <TableColumn fx:id="cpcode_notifs" prefWidth="77.0" resizable="false" styleClass="gridcolumn" visible="false" />
+                            </columns>
+                        </TableView>
+                        <Label layoutX="20.0" layoutY="400.0" text="Notez bien" textFill="#919191">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                        <Label layoutX="20.0" layoutY="420.0" text="Tous admission sans réponse avant le dernier délai, sera annulé." textFill="#919191" />
+                        <Label layoutX="20.0" layoutY="435.0" text="Vous ne pouvez choisir qu'une seule admission, les autres seront automatiquement refusées." textFill="#919191" />
+                        <Label layoutX="20.0" layoutY="450.0" text="Si vous acceptez une admission, vous n'avez pas le droit de postuler à nouveau à une autre candidature." textFill="#919191" />
+                        <TableView fx:id="dernier_choix_grid" focusTraversable="false" layoutX="20.0" layoutY="515.0" prefHeight="61.0" prefWidth="770.0" styleClass="gridview">
+                            <columns>
+                                <TableColumn fx:id="etablissement_dc" prefWidth="300.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Etablissement" />
+                                <TableColumn fx:id="formation_dc" minWidth="6.0" prefWidth="223.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Formation" />
+                                <TableColumn fx:id="ville_dc" prefWidth="120.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Ville" />
+                                <TableColumn fx:id="date_dc" prefWidth="125.0" resizable="false" style="-fx-padding: 7px 10px;" styleClass="gridcolumn" text="Date" />
+                                <TableColumn fx:id="cpcode_notifs1" prefWidth="77.0" resizable="false" styleClass="gridcolumn" visible="false" />
+                            </columns>
+                        </TableView>
+                        <Label layoutX="20.0" layoutY="490.0" text="Mon dernier choix" textFill="#919191">
+                            <font>
+                                <Font name="System Bold" size="13.0" />
+                            </font>
+                        </Label>
+                    </children>
+                </Pane>
+            <Pane fx:id="panelNoQuizSelected" layoutX="-2.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <AnchorPane prefHeight="46.0" prefWidth="1054.0">
+                     <children>
+                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
+                        <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="257.0" layoutY="15.0" text="Répondre au QCM">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
+                     <children>
+                        <ImageView fx:id="backgroundImageQuizView1" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
+                           <image>
+                              <Image url="@../images/splash.png" />
+                           </image>
+                        </ImageView>
+                        <Line endX="285.70703125" layoutX="185.0" layoutY="261.0" startX="-100.0" stroke="#1699eb" />
+                        <Label ellipsisString="" layoutX="112.0" layoutY="225.0" prefHeight="21.0" prefWidth="333.0" text="Sélectionne ou ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="254.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/qcmIcon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </Pane>
                 <Pane fx:id="panelShowSetting" layoutX="-1.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
                     <children>
                         <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="290.0" prefWidth="495.0" style="-fx-background-color: fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8;">
@@ -477,12 +476,12 @@
                   </Button>
                     </children>
                 </Pane>
-            <Pane fx:id="panelNoQuizSelected" layoutX="-2.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+            <Pane fx:id="panelStartQuizTest" layoutX="-1.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
                <children>
                   <AnchorPane prefHeight="46.0" prefWidth="1054.0">
                      <children>
                         <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
-                        <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
+                        <Label layoutX="57.0" layoutY="15.0" onMouseClicked="#handOpenQuizDetails" text="Détails du Quiz">
                            <font>
                               <Font name="Segoe UI Bold" size="15.0" />
                            </font>
@@ -494,26 +493,32 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
+                  <AnchorPane fx:id="panelAddNewQui1" layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
                      <children>
-                        <ImageView fx:id="backgroundImageQuizView1" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
-                           <image>
-                              <Image url="@../images/splash.png" />
-                           </image>
-                        </ImageView>
-                        <Line endX="285.70703125" layoutX="185.0" layoutY="261.0" startX="-100.0" stroke="#1699eb" />
-                        <Label ellipsisString="" layoutX="112.0" layoutY="225.0" prefHeight="21.0" prefWidth="333.0" text="Sélectionne ou ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                        <Line endX="285.70703125" layoutX="387.0" layoutY="275.0" startX="-36.29296875" stroke="#1699eb" />
+                        <Label ellipsisString="" layoutX="368.0" layoutY="228.0" prefHeight="21.0" prefWidth="274.0" text="Le QCM sera accessible à la date prévue." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="254.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="481.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/qcmIcon.png" />
                            </image>
                         </ImageView>
+                        <Button layoutX="475.0" layoutY="284.0" mnemonicParsing="false" onAction="#handleStartQcmQuiz" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Rafraîchir" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                        <Label fx:id="tquizStartDate" layoutX="447.0" layoutY="249.0" text="06-05-2024 10:00">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
+                  <Line endX="74.70703125" layoutX="336.0" layoutY="44.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
                </children>
             </Pane>
             </children>

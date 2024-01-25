@@ -57,6 +57,7 @@ public class StudentController {
     public TextField tfConfirmEmail;
     public TextField tfNewEmail;
     public Label tUserEmail;
+    public Label tquizStartDate;
     private StudentDAO studentDAO;
     private UserDAO userDAO;
 
@@ -150,6 +151,7 @@ public class StudentController {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String formattedStartDate = dateFormat.format(selectedQuiz.getStartAt());
         textDate.setText(formattedStartDate);
+        tquizStartDate.setText(formattedStartDate);
 
         //updating the image
         updateQuizTeacherImage(selectedQuizTeacher.getSexe());
@@ -519,4 +521,13 @@ public class StudentController {
         alert.showAndWait();
     }
 
+    public void handleStartQcmQuiz(ActionEvent actionEvent) {
+        System.out.println("🦆🦆🦆the Student want to start the quiz");
+
+        //start the quiz for the student
+        //retrieve the quiz questions by the quizId and put them in a table
+
+
+
+    }
 }
