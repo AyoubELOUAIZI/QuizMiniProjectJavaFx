@@ -41,6 +41,8 @@ public class StudentController {
     public Pane panelQuizSelected;
     public Pane panelAddNewQuiz;
     public Pane panelStartQuizTest;
+    public TextField tfQuizPassword;
+    public TextField tfConfirmQuizPassword;
     private StudentDAO studentDAO;
 
     private User currentUser;
@@ -82,11 +84,6 @@ public class StudentController {
 
             //load the student Quizzes
             loadStudentQuizzes();
-//            studentQuizzes = retrieveStudentQuizzes(currentUser.getUserId());
-//
-//            // Display quizzes in the ListView
-//            displayQuizzesInListView(studentQuizzes);
-
             // Listen for selection changes in the quizzesListView
             quizzesListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
                 if (newValue != null) {
@@ -275,6 +272,47 @@ public class StudentController {
     }
 
 
+    public void handleAddNewQuizOperation(ActionEvent actionEvent) {
+        // Get the password and confirm password from the user (You need to have corresponding fields in your FXML)
+        String password = tfQuizPassword.getText(); // Implement this method to get the password from user input
+        String confirmPassword = tfConfirmQuizPassword.getText();// Implement this method to get the confirm password from user input
+
+        // Verify the data
+        if (password.isEmpty() || confirmPassword.isEmpty()) {
+            // Show an error message to the user indicating that both password and confirm password are required
+            showErrorMessage("Les champs du mot de passe et de confirmation sont requis.");
+            return;
+        }
+
+        if (!password.equals(confirmPassword)) {
+            // Show an error message to the user indicating that passwords do not match
+            showErrorMessage("Les mots de passe ne correspondent pas. Veuillez entrer des mots de passe correspondants.");
+            return;
+        }
+
+        // Add new row in the database (you need to implement this based on your database logic)
+        boolean isQuizAdded = studentDAO.addNewStudentQuizToDatabase(password,currentUser.getUserId());
+
+        if (isQuizAdded) {
+            // If adding to the database is successful, load the quizzes to refresh
+            loadStudentQuizzes();
+
+            // Switch to the panel where the quizzes are displayed (adjust this based on your UI design)
+            panelNoQuizSelected.toFront();
+        } else {
+            // If adding to the database fails, show an error message
+            showErrorMessage("Vous ne pouvez pas ajouter ce QCM, peut-être l'avez-vous déjà ou le mot de passe que vous avez fourni n'est pas correct.");
+        }
+    }
+
+    private void showErrorMessage(String message) {
+        // Implement this method to show an error message to the user (you can use an Alert)
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
 
 }

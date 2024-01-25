@@ -87,4 +87,43 @@ public class StudentDAO extends UserDAO {
         }
     }
 
+    public boolean addNewStudentQuizToDatabase(String quizPassword, int studentId) {
+        // Query to check if a quiz with the given password exists
+        String checkQuizQuery = "SELECT quizId FROM Quiz WHERE passwordQuiz = ?";
+
+        // Query to insert a new row in the StudentQuiz table
+        String insertStudentQuizQuery = "INSERT INTO StudentQuiz (quizId,studentId) VALUES (?, ?)";
+
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement checkQuizStatement = connection.prepareStatement(checkQuizQuery);
+             PreparedStatement insertStudentQuizStatement = connection.prepareStatement(insertStudentQuizQuery)) {
+
+            // Set the password parameter for the first query
+            checkQuizStatement.setString(1, quizPassword);
+
+            // Execute the first query to check if a quiz with the given password exists
+            try (ResultSet resultSet = checkQuizStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    // Quiz with the given password exists, retrieve its ID
+                    int quizId = resultSet.getInt("quizId");
+
+                    // Set parameters for the second query (insert StudentQuiz)
+                    insertStudentQuizStatement.setInt(1, quizId);
+                    insertStudentQuizStatement.setInt(2, studentId);
+
+                    // Execute the second query to insert a new row in the StudentQuiz table
+                    int rowsAffected = insertStudentQuizStatement.executeUpdate();
+
+                    // Return true if the insert operation was successful (rowsAffected > 0)
+                    return rowsAffected > 0;
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // If no quiz with the given password was found, or there was an error, return false
+        return false;
+    }
+
 }

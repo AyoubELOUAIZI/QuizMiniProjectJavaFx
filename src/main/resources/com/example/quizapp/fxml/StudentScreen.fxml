@@ -500,7 +500,7 @@
                         <TextField fx:id="tfQuizPassword" layoutX="81.0" layoutY="239.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
                         <Label layoutX="81.0" layoutY="286.0" text="Confirm mot de pass" />
                         <TextField fx:id="tfConfirmQuizPassword" layoutX="81.0" layoutY="308.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm mot de pass" styleClass="input" />
-                        <Button layoutX="402.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleAddNewQuiz" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Ajouter" textFill="WHITE">
+                        <Button layoutX="402.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleAddNewQuizOperation" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Ajouter" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
