@@ -55,6 +55,7 @@ public class StudentController {
     public TextField tfNewEmail;
     public Label tUserEmail;
     public Label tquizStartDate;
+    public Pane paneQuizTest;
     private StudentDAO studentDAO;
     private UserDAO userDAO;
     private QuestionDAO questionDAO;
@@ -65,6 +66,9 @@ public class StudentController {
 
     // Add a list of questions
     private List<Question> currentQuizQuestions;
+
+    private int currentQuestionIndex = -1; // Initialize with -1 to indicate no current question selected
+    private Question currentQuestion;
 
     // No-argument constructor
     // Constructor to initialize StudentDAO
@@ -533,5 +537,40 @@ public class StudentController {
         System.out.println(currentQuizQuestions);
 
 
+        if (!currentQuizQuestions.isEmpty()) {
+            // If there are questions, set the currentQuestionIndex to the first question
+            currentQuestionIndex = 0;
+            paneQuizTest.toFront();
+            printCurrentQuestion();
+        } else {
+            System.out.println("No questions found for the selected quiz.");
+        }
+
+
+    }
+
+    public void handleBtnNextQuestionClicked(ActionEvent actionEvent) {
+        // Check if there are more questions
+        if (currentQuestionIndex < currentQuizQuestions.size() - 1) {
+            // Move to the next question
+            currentQuestionIndex++;
+            printCurrentQuestion();
+        } else {
+            System.out.println("No more questions available.");
+        }
+    }
+
+    private void printCurrentQuestion() {
+        // Check if the currentQuestionIndex is valid
+        if (currentQuestionIndex >= 0 && currentQuestionIndex < currentQuizQuestions.size()) {
+            // Retrieve the current question
+             currentQuestion = currentQuizQuestions.get(currentQuestionIndex);
+
+            // Print the current question to the console
+            System.out.println("Current Question: " + currentQuestion);
+        } else {
+            System.out.println("Invalid question index.");
+        }
     }
 }
+

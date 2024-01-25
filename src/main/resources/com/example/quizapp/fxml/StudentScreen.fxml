@@ -8,6 +8,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -546,7 +547,7 @@
                               <Image url="@../images/qcmIcon.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="57.0" layoutY="449.0" mnemonicParsing="false" onAction="#handleStartQcmQuiz" prefHeight="39.0" prefWidth="117.0" style="-fx-background-color: #1E90FF;" text="Suivant &gt;" textFill="WHITE">
+                        <Button layoutX="57.0" layoutY="449.0" mnemonicParsing="false" onAction="#handleBtnNextQuestionClicked" prefHeight="39.0" prefWidth="117.0" style="-fx-background-color: #1E90FF;" text="Suivant &gt;" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -580,6 +581,9 @@
                                  <font>
                                     <Font size="18.0" />
                                  </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="responce" />
+                                 </toggleGroup>
                               </RadioButton>
                            </children>
                         </Pane>
@@ -590,7 +594,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <RadioButton layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2">
+                              <RadioButton layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -604,7 +608,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <RadioButton layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2">
+                              <RadioButton layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -618,7 +622,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <RadioButton layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2">
+                              <RadioButton layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -632,7 +636,7 @@
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <RadioButton layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2">
+                              <RadioButton layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
