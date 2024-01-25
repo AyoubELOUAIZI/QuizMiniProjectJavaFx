@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -38,6 +39,7 @@ public class StudentController {
     public Pane panelNoQuizSelected;
     public Pane panelQuizSelected;
     public Pane panelAddNewQuiz;
+    public Pane panelStartQuizTest;
     private StudentDAO studentDAO;
 
     // No-argument constructor
@@ -221,6 +223,14 @@ public class StudentController {
 
     public void handleAddNewQuiz(ActionEvent actionEvent) {
         panelAddNewQuiz.toFront();
+    }
+
+    public void handOpenQuizTest(MouseEvent mouseEvent) {
+        panelStartQuizTest.toFront();
+    }
+
+    public void handOpenQuizDetails(MouseEvent mouseEvent) {
+        panelQuizSelected.toFront();
     }
 
 
