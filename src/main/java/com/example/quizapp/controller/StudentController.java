@@ -246,7 +246,7 @@ public class StudentController {
     }
 
     public void handleDeleteQuiz(ActionEvent actionEvent) {
-        // Create a confirmation dialog
+        // Create a confirmation dialog with OK and Cancel buttons
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Dialog de Confirmation");
         alert.setHeaderText("Supprimer le Quiz");
@@ -254,22 +254,27 @@ public class StudentController {
                 + "jusqu'à ce que vous l'ajoutiez à nouveau en utilisant le mot de passe du quiz. "
                 + "Êtes-vous sûr de vouloir supprimer ce quiz?");
 
+        // Set custom button configuration
+        ButtonType buttonTypeOK = new ButtonType("OK", ButtonBar.ButtonData.OK_DONE);
+        ButtonType buttonTypeCancel = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+        alert.getButtonTypes().setAll(buttonTypeOK, buttonTypeCancel);
 
         // Show the confirmation dialog and wait for the user's response
         alert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
+            if (response == buttonTypeOK) {
                 // User clicked OK, proceed with the delete operation
                 studentDAO.deleteStudentQuiz(currentUser.getUserId(), selectedQuiz.getQuizId());
 
                 // Retrieve the Quizzes again to refresh the data
                 loadStudentQuizzes();
 
-                //show no quiz Selected panel
+                // Show the "No Quiz Selected" panel
                 panelNoQuizSelected.toFront();
             }
             // If the user clicked Cancel or closed the dialog, do nothing
         });
     }
+
 
 
     public void handleAddNewQuizOperation(ActionEvent actionEvent) {
