@@ -53,6 +53,9 @@ public class AuthenticationController {
             } else if ("TEACHER".equalsIgnoreCase(savedUser.getRole())) {
                 navigateToTeacherScreen();
             }
+        }else{
+            System.out.println("User: "+ savedUser);
+            System.out.println("😥😥 User with the Stored id no found in database maybe this account is deleted");
         }
 
     }
@@ -61,7 +64,7 @@ public class AuthenticationController {
     private User loadLoginState() {
         try (BufferedReader reader = new BufferedReader(new FileReader("userLogin.txt"))) {
             String userIdStr = reader.readLine();
-            System.out.println("readed user Id");
+            System.out.println("read user Id");
             System.out.println("---> " + userIdStr);
             if (userIdStr != null && !userIdStr.isEmpty()) {
                 try {

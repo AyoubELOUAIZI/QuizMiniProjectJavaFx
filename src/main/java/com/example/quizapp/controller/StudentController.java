@@ -425,7 +425,63 @@ public class StudentController {
     }
 
     public void handleDeleteUserAccount(ActionEvent actionEvent) {
+        String expression = tfExpression.getText();
+        String userPassword = tfPasswordCurrent.getText();
+
+        // Validate data
+        if (expression.isEmpty() || userPassword.isEmpty()) {
+            // Show an error message to the user indicating that both expression and password are required
+            showErrorMessage("Les champs de l'expression et du mot de passe sont requis.");
+            return;
+        }
+
+        // Validate the expression to be "supprime mon compte" (case-insensitive)
+        if (!expression.equalsIgnoreCase("supprime mon compte")) {
+            // Show an error message indicating that the expression is incorrect
+            showErrorMessage("L'expression est incorrecte. Veuillez entrer la bonne expression pour supprimer votre compte.");
+            return;
+        }
+
+        // Compare the userPassword with User.getPassword() (replace 'currentUser' with the actual instance)
+        if (!userPassword.equals(currentUser.getPassword())) {
+            // Show an error message indicating that the password is incorrect
+            showErrorMessage("Le mot de passe est incorrect. Veuillez entrer le mot de passe correct pour supprimer votre compte.");
+            return;
+        }
+
+        // If all validations pass, proceed with deleting the user account
+        boolean isUserDeleted = userDAO.deleteStudentUser(currentUser.getUserId());
+
+        if (isUserDeleted) {
+            // Optionally, you can show a success message to the user
+            showSuccessMessage("Votre compte a été supprimé avec succès.");
+
+            // Navigate to the login screen (you need to implement this based on your UI design)
+            navigateToLoginScreen();
+        } else {
+            // If deletion fails, show an error message
+            showErrorMessage("Échec de la suppression du compte. Veuillez réessayer.");
+        }
     }
+
+    // Helper method to navigate to the login screen
+    private void navigateToLoginScreen() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/fxml/AuthenticationScreen.fxml")); // replace with your actual path
+            Parent root = loader.load();
+
+            // Get the current stage from any control, like a button
+            Stage stage = (Stage) student_logout.getScene().getWindow(); // replace 'someButton' with any @FXML injected control in your controller
+
+            // Set the scene to the stage
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception, perhaps show an error dialog
+        }
+    }
+
 
     public void handleUpdateUserName(ActionEvent actionEvent) {
         String firstName = tfNewFirstName.getText();

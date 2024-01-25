@@ -307,4 +307,22 @@ public User createUser(User user) {
         }
     }
 
+    public boolean deleteStudentUser(int userId) {
+        try (Connection connection = DatabaseConnector.getConnection()) {
+            String query = "DELETE FROM " + TABLE_NAME + " WHERE userId=?";
+            System.out.println("Generated SQL Query: " + query); // Print the generated SQL query
+            try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                preparedStatement.setInt(1, userId);
+
+                int affectedRows = preparedStatement.executeUpdate();
+                return affectedRows > 0; // Returns true if at least one row was affected (update successful)
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Update failed
+        }
+    }
+
+
 }
+
