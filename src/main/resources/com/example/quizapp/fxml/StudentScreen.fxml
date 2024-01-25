@@ -249,9 +249,49 @@
                         </AnchorPane>
                     </children>
                 </Pane>
-            <Pane fx:id="panelAddNewQuiz" layoutX="-3.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+            <Pane fx:id="panelStartQuizTest" layoutX="-1.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
                <children>
                   <AnchorPane prefHeight="46.0" prefWidth="1054.0">
+                     <children>
+                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
+                        <Label layoutX="57.0" layoutY="15.0" onMouseClicked="#handOpenQuizDetails" text="Détails du Quiz">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="257.0" layoutY="15.0" text="Répondre au QCM">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="panelAddNewQui1" layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
+                     <children>
+                        <Line endX="285.70703125" layoutX="367.0" layoutY="264.0" startX="-10.29296875" stroke="#1699eb" />
+                        <Label ellipsisString="" layoutX="389.0" layoutY="228.0" prefHeight="21.0" prefWidth="232.0" text="Ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="481.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/qcmIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="changePassBtn11" layoutX="468.0" layoutY="292.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Ajouter" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <Line endX="74.70703125" layoutX="336.0" layoutY="44.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
+               </children>
+            </Pane>
+            <Pane fx:id="panelNoQuizSelected" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <AnchorPane fx:id="panelAddNewQuiz1" prefHeight="46.0" prefWidth="1054.0">
                      <children>
                         <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
                         <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
@@ -266,48 +306,29 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane fx:id="panelAddNewQui" layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
+                  <AnchorPane layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
                      <children>
-                        <ImageView fx:id="backgroundImageQuizView11" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
+                        <ImageView fx:id="backgroundImageQuizView1" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
                            <image>
                               <Image url="@../images/splash.png" />
                            </image>
                         </ImageView>
-                        <Line endX="285.70703125" layoutX="140.0" layoutY="160.0" startX="-10.29296875" stroke="#1699eb" />
-                        <Label ellipsisString="" layoutX="162.0" layoutY="124.0" prefHeight="21.0" prefWidth="232.0" text="Ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                        <Line endX="285.70703125" layoutX="185.0" layoutY="261.0" startX="-100.0" stroke="#1699eb" />
+                        <Label ellipsisString="" layoutX="112.0" layoutY="225.0" prefHeight="21.0" prefWidth="333.0" text="Sélectionne ou ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="254.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="254.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/qcmIcon.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="95.0" layoutY="184.0" text="Le mot de pass du qcm">
-                           <font>
-                              <Font name="Segoe UI Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="70.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/SC.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="81.0" layoutY="217.0" text="Enter  mot de pass" />
-                        <TextField fx:id="newPassField1" layoutX="81.0" layoutY="239.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
-                        <Label layoutX="81.0" layoutY="286.0" text="Confirm mot de pass" />
-                        <TextField fx:id="confPassField1" layoutX="81.0" layoutY="308.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm mot de pass" styleClass="input" />
-                        <Button fx:id="changePassBtn1" layoutX="402.0" layoutY="308.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Ajouter" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
                      </children>
                   </AnchorPane>
                </children>
             </Pane>
-            <Pane fx:id="panelQuizSelected" layoutX="-1.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+            <Pane fx:id="panelQuizSelected" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
                <children>
                   <AnchorPane prefHeight="46.0" prefWidth="1054.0">
                      <children>
@@ -418,7 +439,7 @@
                               <Image url="@../images/qcmIcon.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="changeEmailBtn1" layoutX="257.0" layoutY="292.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="229.0" styleClass="btn-delete" text="Supprimer ce questionnaire." textFill="WHITE">
+                        <Button fx:id="changeEmailBtn1" layoutX="257.0" layoutY="292.0" mnemonicParsing="false" onAction="#handleDeleteQuiz" prefHeight="30.0" prefWidth="229.0" styleClass="btn-delete" text="Supprimer ce questionnaire." textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -430,49 +451,9 @@
                   </AnchorPane>
                </children>
             </Pane>
-            <Pane fx:id="panelStartQuizTest" layoutX="-1.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+            <Pane fx:id="panelAddNewQuiz" layoutX="-3.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
                <children>
                   <AnchorPane prefHeight="46.0" prefWidth="1054.0">
-                     <children>
-                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
-                        <Label layoutX="57.0" layoutY="15.0" onMouseClicked="#handOpenQuizDetails" text="Détails du Quiz">
-                           <font>
-                              <Font name="Segoe UI Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="257.0" layoutY="15.0" text="Répondre au QCM">
-                           <font>
-                              <Font name="Segoe UI Bold" size="15.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane fx:id="panelAddNewQui1" layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
-                     <children>
-                        <Line endX="285.70703125" layoutX="367.0" layoutY="264.0" startX="-10.29296875" stroke="#1699eb" />
-                        <Label ellipsisString="" layoutX="389.0" layoutY="228.0" prefHeight="21.0" prefWidth="232.0" text="Ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="481.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/qcmIcon.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="changePassBtn11" layoutX="468.0" layoutY="292.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Ajouter" textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-                  <Line endX="74.70703125" layoutX="336.0" layoutY="44.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
-               </children>
-            </Pane>
-            <Pane fx:id="panelNoQuizSelected" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
-               <children>
-                  <AnchorPane fx:id="panelAddNewQuiz1" prefHeight="46.0" prefWidth="1054.0">
                      <children>
                         <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
                         <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
@@ -487,24 +468,43 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
+                  <AnchorPane fx:id="panelAddNewQui" layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
                      <children>
-                        <ImageView fx:id="backgroundImageQuizView1" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
+                        <ImageView fx:id="backgroundImageQuizView11" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
                            <image>
                               <Image url="@../images/splash.png" />
                            </image>
                         </ImageView>
-                        <Line endX="285.70703125" layoutX="185.0" layoutY="261.0" startX="-100.0" stroke="#1699eb" />
-                        <Label ellipsisString="" layoutX="112.0" layoutY="225.0" prefHeight="21.0" prefWidth="333.0" text="Sélectionne ou ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                        <Line endX="285.70703125" layoutX="140.0" layoutY="160.0" startX="-10.29296875" stroke="#1699eb" />
+                        <Label ellipsisString="" layoutX="162.0" layoutY="124.0" prefHeight="21.0" prefWidth="232.0" text="Ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="254.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="254.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/qcmIcon.png" />
                            </image>
                         </ImageView>
+                        <Label layoutX="95.0" layoutY="184.0" text="Le mot de pass du qcm">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="70.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/SC.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="81.0" layoutY="217.0" text="Enter  mot de pass" />
+                        <TextField fx:id="tfQuizPassword" layoutX="81.0" layoutY="239.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
+                        <Label layoutX="81.0" layoutY="286.0" text="Confirm mot de pass" />
+                        <TextField fx:id="tfConfirmQuizPassword" layoutX="81.0" layoutY="308.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm mot de pass" styleClass="input" />
+                        <Button layoutX="402.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleAddNewQuiz" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Ajouter" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
                      </children>
                   </AnchorPane>
                </children>

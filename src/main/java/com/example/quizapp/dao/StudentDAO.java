@@ -75,4 +75,16 @@ public class StudentDAO extends UserDAO {
         return quizzes;
     }
 
+    public void deleteStudentQuiz(int studentId, int quizId) {
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM StudentQuiz WHERE studentId = ? AND quizId = ?")) {
+            preparedStatement.setInt(1, studentId);
+            preparedStatement.setInt(2, quizId);
+
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }

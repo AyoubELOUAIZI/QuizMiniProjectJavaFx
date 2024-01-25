@@ -42,6 +42,10 @@ public class StudentController {
     public Pane panelStartQuizTest;
     private StudentDAO studentDAO;
 
+    private User currentUser;
+
+    private  Quiz selectedQuiz;
+
     // No-argument constructor
     // Constructor to initialize StudentDAO
     public StudentController() {
@@ -68,16 +72,19 @@ public class StudentController {
     @FXML
     public void initialize() {
         // Initialization logic here, like setting user details
-        User currentUser = UserSession.getCurrentUser();
+        currentUser = UserSession.getCurrentUser();
         if (currentUser != null) {
             fullname_toshow.setText(currentUser.getFullName());
             email_toshow.setText(currentUser.getEmail());
             // ... Set other user details
             updateProfileImage(currentUser.getSexe());
-            studentQuizzes = retrieveStudentQuizzes(currentUser.getUserId());
 
-            // Display quizzes in the ListView
-            displayQuizzesInListView(studentQuizzes);
+            //load the student Quizzes
+            loadStudentQuizzes();
+//            studentQuizzes = retrieveStudentQuizzes(currentUser.getUserId());
+//
+//            // Display quizzes in the ListView
+//            displayQuizzesInListView(studentQuizzes);
 
             // Listen for selection changes in the quizzesListView
             quizzesListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -89,9 +96,16 @@ public class StudentController {
         }
     }
 
+    private void loadStudentQuizzes() {
+        studentQuizzes = retrieveStudentQuizzes(currentUser.getUserId());
+
+        // Display quizzes in the ListView
+        displayQuizzesInListView(studentQuizzes);
+    }
+
     private void handleSelectedQuizChanged(String quizName) {
         // Retrieve the selected quiz details from the list of studentQuizzes
-        Quiz selectedQuiz = findQuizByName(quizName);
+        selectedQuiz = findQuizByName(quizName);
 
 
 
@@ -231,6 +245,14 @@ public class StudentController {
 
     public void handOpenQuizDetails(MouseEvent mouseEvent) {
         panelQuizSelected.toFront();
+    }
+
+    public void handleDeleteQuiz(ActionEvent actionEvent) {
+        studentDAO.deleteStudentQuiz(currentUser.getUserId(),selectedQuiz.getQuizId());
+
+        //retrieve the Quizzes again to refresh the data
+        loadStudentQuizzes();
+
     }
 
 
