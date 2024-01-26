@@ -1,31 +1,21 @@
-// StudentResponse.java
 package com.example.quizapp.model;
 
 import java.util.Date;
 
 public class StudentResponse {
-    private int studentResponseId;
     private int userId;
-    private int responseId;
-    private boolean isMatch;
+    private int quizId;  // Added quizId field
+    private int questionId;
+    private char chosenResponse;  // Updated field name
     private Date createdAt;
 
     // Constructors
-    public StudentResponse(int studentResponseId, int userId, int responseId, boolean isMatch, Date createdAt) {
-        this.studentResponseId = studentResponseId;
+    public StudentResponse(int userId, int quizId, int questionId, char chosenResponse, Date createdAt) {
         this.userId = userId;
-        this.responseId = responseId;
-        this.isMatch = isMatch;
+        this.quizId = quizId;
+        this.questionId = questionId;
+        this.chosenResponse = chosenResponse;
         this.createdAt = createdAt;
-    }
-
-    // Getters and Setters
-    public int getStudentResponseId() {
-        return studentResponseId;
-    }
-
-    public void setStudentResponseId(int studentResponseId) {
-        this.studentResponseId = studentResponseId;
     }
 
     public int getUserId() {
@@ -36,20 +26,28 @@ public class StudentResponse {
         this.userId = userId;
     }
 
-    public int getResponseId() {
-        return responseId;
+    public int getQuizId() {
+        return quizId;
     }
 
-    public void setResponseId(int responseId) {
-        this.responseId = responseId;
+    public void setQuizId(int quizId) {
+        this.quizId = quizId;
     }
 
-    public boolean isMatch() {
-        return isMatch;
+    public int getQuestionId() {
+        return questionId;
     }
 
-    public void setMatch(boolean isMatch) {
-        this.isMatch = isMatch;
+    public void setQuestionId(int questionId) {
+        this.questionId = questionId;
+    }
+
+    public char getChosenResponse() {
+        return chosenResponse;
+    }
+
+    public void setChosenResponse(char chosenResponse) {
+        this.chosenResponse = chosenResponse;
     }
 
     public Date getCreatedAt() {

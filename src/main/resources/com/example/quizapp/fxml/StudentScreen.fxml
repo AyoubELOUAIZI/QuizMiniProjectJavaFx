@@ -776,7 +776,7 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Pane layoutX="56.0" layoutY="231.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                        <Pane fx:id="paneQuestion11" layoutX="56.0" layoutY="231.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
                            <children>
                               <Label fx:id="tfp5Response11" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
                                  <font>
@@ -785,7 +785,7 @@
                               </Label>
                            </children>
                         </Pane>
-                        <Pane layoutX="56.0" layoutY="279.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                        <Pane fx:id="paneQuestion21" layoutX="56.0" layoutY="279.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
                            <children>
                               <Label fx:id="tfp5Response21" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
                                  <font>

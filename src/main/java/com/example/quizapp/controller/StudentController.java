@@ -4,6 +4,7 @@ package com.example.quizapp.controller;
 import com.example.quizapp.UserSession;
 import com.example.quizapp.dao.QuestionDAO;
 import com.example.quizapp.dao.StudentDAO;
+import com.example.quizapp.dao.StudentResponseDAO;
 import com.example.quizapp.dao.UserDAO;
 import com.example.quizapp.model.*;
 import javafx.application.Platform;
@@ -97,9 +98,12 @@ public class StudentController {
     public Label ttotalNotes1;
     public Label tcurrentQuestionMark11;
     public Label ttotalNotes11;
+    public Pane paneQuestion11;
+    public Pane paneQuestion21;
     private StudentDAO studentDAO;
     private UserDAO userDAO;
     private QuestionDAO questionDAO;
+    private StudentResponseDAO studentResponseDAO;
 
     private User currentUser;
 
@@ -107,6 +111,8 @@ public class StudentController {
 
     // Add a list of questions
     private List<Question> currentQuizQuestions;
+    private List<StudentResponse> currentQuizStudentResponses;
+    private StudentResponse currentQuestionStudentResponses;
 
     private int currentQuestionIndex = -1; // Initialize with -1 to indicate no current question selected
     private Question currentQuestion;
@@ -117,6 +123,7 @@ public class StudentController {
         this.userDAO = new UserDAO();
         this.studentDAO = new StudentDAO();
         this.questionDAO = new QuestionDAO();
+        this.studentResponseDAO = new StudentResponseDAO();
     }
 
     @FXML
@@ -762,18 +769,23 @@ public class StudentController {
         }
 
     }
-
+//-----------------------------------------Quiz Results-------------------------------------------------
+        //private List<StudentResponse> currentQuizStudentResponses;
+        //private StudentResponse currentQuestionStudentResponses;
     public void handleShowQuizResults(ActionEvent actionEvent) {
         System.out.println("the function handleShowQuizResults");
         System.out.println("🦆🚚🚚🚚the Student want to see his Quiz Results");
 
-
-
         //start the quiz for the student
         //retrieve the quiz questions by the quizId and put them in a table
         currentQuizQuestions=questionDAO.retrieveSelectedQuizQuestions(selectedQuiz.getQuizId());
+        currentQuizStudentResponses=studentResponseDAO.retrieveSelectedQuizStudentResponses(selectedQuiz.getQuizId(),currentUser.getUserId());
+
         System.out.println("current quiz questions :");
         System.out.println(currentQuizQuestions);
+
+        System.out.println("'''''''''''''''''''''current quiz student Responses :'''''''''''''''''''''");
+        System.out.println(currentQuizStudentResponses);
 
 
         if (!currentQuizQuestions.isEmpty()) {
@@ -798,11 +810,14 @@ public class StudentController {
         if (currentQuestionIndex >= 0 && currentQuestionIndex < currentQuizQuestions.size()-1) {
             // Retrieve the current question
             currentQuestion = currentQuizQuestions.get(currentQuestionIndex);
+            currentQuestionStudentResponses=findCurrentQuestionStudentResponse(currentQuestion.getQuestionId(),currentQuizStudentResponses);
 
             // Print the current question to the console
             System.out.println("Current Question: " + currentQuestion);
 
             displayCurrentQuestionInCorrectPanelFoResults();
+            changeBackgroundOfCorrectResponse();
+
         } else{
             //this means the last question
             // Retrieve the current question
@@ -811,11 +826,28 @@ public class StudentController {
             System.out.println("Current Question: " + currentQuestion);
 
             displayCurrentQuestionInCorrectPanelFoResults();
+            changeBackgroundOfCorrectResponse();
+
 
             //change the button to be finish
             btnSuivant1.setText("Terminer");
         }
     }
+
+    private StudentResponse findCurrentQuestionStudentResponse(int questionId, List<StudentResponse> quizStudentResponses) {
+        // Iterate through all student responses for the quiz
+        for (StudentResponse response : quizStudentResponses) {
+            // Check if the response belongs to the current question
+            if (response.getQuestionId() == questionId) {
+                System.out.println("👓👓👓we find the current question student response");
+                return response;
+            }
+        }
+
+        // Return null if no matching response is found for the current question
+        return null;
+    }
+
 
     private void displayCurrentQuestionInCorrectPanelFoResults() {
         paneQuestionHider1.toFront();
@@ -837,13 +869,12 @@ public class StudentController {
             tfp5Response31.setText(currentQuestion.getThirdChoice());
 
         }else{
-
+            return;
         }
         if(currentQuestion.getFourthChoice()!=null){
             //show the question in the paneQuizTest3choice
             tfp5Response41.setText(currentQuestion.getFourthChoice());
             paneQuestion41.toFront();
-
 
         }else {
             return;
@@ -852,8 +883,38 @@ public class StudentController {
             //show the question in the paneQuizTest4choice
             tfp5Response51.setText(currentQuestion.getFifthChoice());
             paneQuestion51.toFront();
+        }
+
+
+    }
+
+    private void changeBackgroundOfCorrectResponse() {
+        paneQuestion51.setStyle("-fx-background-color: #dadada;");
+        paneQuestion41.setStyle("-fx-background-color: #dadada;");
+        paneQuestion31.setStyle("-fx-background-color: #dadada;");
+        paneQuestion21.setStyle("-fx-background-color: #dadada;");
+        paneQuestion11.setStyle("-fx-background-color: #dadada;");
+
+        if(currentQuestion.getCorrectChoice()=="1"){
+            paneQuestion11.setStyle("-fx-background-color:  #1E90FF;");
+
+        }else if(currentQuestion.getCorrectChoice()=="2"){
+            paneQuestion21.setStyle("-fx-background-color: #1E90FF;");
 
         }
+        else if(currentQuestion.getCorrectChoice()=="3"){
+            paneQuestion21.setStyle("-fx-background-color:  #1E90FF;");
+
+        }
+        else if(currentQuestion.getCorrectChoice()=="4"){
+            paneQuestion21.setStyle("-fx-background-color:  #1E90FF;");
+
+        }
+        else if(currentQuestion.getCorrectChoice()=="5"){
+            paneQuestion21.setStyle("-fx-background-color:  #1E90FF;");
+
+        }
+
 
     }
 
@@ -867,7 +928,7 @@ public class StudentController {
         }
         else{
             System.out.println("Invalid question index. Means Student finish all the questions");
-            //go to an other panel
+            //go to another panel
             System.out.println("🔍🔍No more Results available.");
             panelQuizEnded.toFront();
 
