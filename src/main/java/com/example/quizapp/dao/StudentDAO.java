@@ -126,4 +126,31 @@ public class StudentDAO extends UserDAO {
         return false;
     }
 
+    public boolean saveStudentResponse(int userId, int quizId, int questionId, char chosenResponse) {
+        // Query to insert a new row in the StudentResponse table
+        String insertStudentResponseQuery = "INSERT INTO StudentResponse (userId, quizId, questionId, chosenResponse) VALUES (?, ?, ?, ?)";
+
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement insertStudentResponseStatement = connection.prepareStatement(insertStudentResponseQuery)) {
+
+            // Set parameters for the query
+            insertStudentResponseStatement.setInt(1, userId);
+            insertStudentResponseStatement.setInt(2, quizId);
+            insertStudentResponseStatement.setInt(3, questionId);
+            insertStudentResponseStatement.setString(4, String.valueOf(chosenResponse)); // Assuming chosenResponse is a character
+
+            // Execute the query to insert a new row in the StudentResponse table
+            int rowsAffected = insertStudentResponseStatement.executeUpdate();
+
+            // Return true if the insert operation was successful (rowsAffected > 0)
+            return rowsAffected > 0;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // If there was an error, or the insert operation failed, return false
+        return false;
+    }
+
 }

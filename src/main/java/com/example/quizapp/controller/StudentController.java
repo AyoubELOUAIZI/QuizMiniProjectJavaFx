@@ -70,6 +70,14 @@ public class StudentController {
     public Label p5QuestionIndex;
     public Label p2TotalNumberQuestions;
     public Button btnSuivant;
+    public Label tcurrentQuestionMark;
+    public Label ttotalNotes;
+    public Pane panelQuizEnded;
+    public RadioButton p5cm1;
+    public RadioButton p5cm2;
+    public RadioButton p5cm3;
+    public RadioButton p5cm4;
+    public RadioButton p5cm5;
     private StudentDAO studentDAO;
     private UserDAO userDAO;
     private QuestionDAO questionDAO;
@@ -557,6 +565,7 @@ public class StudentController {
             paneQuizTest5choice.toFront();
             p5tQuizName.setText(selectedQuiz.getQuizName());
             p2TotalNumberQuestions.setText(String.valueOf(currentQuizQuestions.size()));
+            ttotalNotes.setText(String.valueOf(calculateSomeMarks()));
             showCurrentQuestion();
         } else {
             System.out.println("No questions found for the selected quiz.");
@@ -564,7 +573,20 @@ public class StudentController {
 
     }
 
+    private int calculateSomeMarks() {
+        int totalMarks = 0;
+
+        for (Question question : currentQuizQuestions) {
+            totalMarks += question.getQuestionMark();
+        }
+
+        return totalMarks;
+    }
+
     public void handleBtnNextQuestionClicked(ActionEvent actionEvent) {
+        //handle the Student previous response
+        handleStudentResponse();
+
         // Check if there are more questions
         if (currentQuestionIndex < currentQuizQuestions.size() - 1) {
             // Move to the next question
@@ -577,15 +599,67 @@ public class StudentController {
             System.out.println("💔💔congratulation");
             System.out.println("No more questions available.");
             System.out.println("🚓🚓🚗Lets go to an other view");
+            panelQuizEnded.toFront();
 
         }
     }
+
+    private void handleStudentResponse() {
+            // Retrieve the chosen response
+            char chosenResponse = getChosenResponse();
+
+            // Save the student's response to the database or a table
+            saveStudentResponse(chosenResponse);
+
+    }
+
+    private char getChosenResponse() {
+        // Implement this method to retrieve the chosen response based on the UI (e.g., radio buttons)
+        if (p5cm1.isSelected()) {
+            return '1';
+        } else if (p5cm2.isSelected()) {
+            return '2';
+        } else if (p5cm3.isSelected()) {
+            return '3';
+        } else if (p5cm4.isSelected()) {
+            return '4';
+        } else if (p5cm5.isSelected()) {
+            return '5';
+        } else {
+            // No response selected
+            return '0';
+        }
+    }
+
+    private void saveStudentResponse(char chosenResponse) {
+        try {
+            // Get the necessary information from the current question and the logged-in user
+            int userId = currentUser.getUserId();  // Replace with the actual method to get the user ID
+            int quizId = selectedQuiz.getQuizId(); // Replace with the actual method to get the quiz ID
+            int questionId = currentQuestion.getQuestionId(); // Replace with the actual method to get the question ID
+
+            // Use your StudentDAO or another appropriate DAO class to save the response
+            boolean success = studentDAO.saveStudentResponse(userId, quizId, questionId, chosenResponse);
+
+            if (success) {
+                System.out.println("Student response "+currentQuestionIndex+" saved successfully.");
+            } else {
+                System.out.println("Failed to save student response : "+currentQuestionIndex);
+            }
+        } catch (Exception e) {
+            // Handle exceptions appropriately (e.g., log or show an error message)
+            e.printStackTrace();
+            System.out.println("An error occurred while saving the student response.");
+        }
+    }
+
 
     private void showCurrentQuestion() {
         // Check if the currentQuestionIndex is valid
         if (currentQuestionIndex >= 0 && currentQuestionIndex < currentQuizQuestions.size()-1) {
             // Retrieve the current question
              currentQuestion = currentQuizQuestions.get(currentQuestionIndex);
+
             // Print the current question to the console
             System.out.println("Current Question: " + currentQuestion);
 
@@ -606,10 +680,16 @@ public class StudentController {
 
     private void displayCurrentQuestionInCorrectPanel() {
         paneQuestionHider.toFront();
+        //clear the check marks
+        p5cm1.setSelected(false);
+        p5cm2.setSelected(false);
+        p5cm3.setSelected(false);
+        p5cm4.setSelected(false);
+        p5cm5.setSelected(false);
         //set text for the question
         tfp5Question.setText(currentQuestion.getText());
         p5QuestionIndex.setText(String.valueOf(currentQuestionIndex+1));
-
+        tcurrentQuestionMark.setText(String.valueOf(currentQuestion.getQuestionMark()));
 
 
         //set text for the responses one and tow

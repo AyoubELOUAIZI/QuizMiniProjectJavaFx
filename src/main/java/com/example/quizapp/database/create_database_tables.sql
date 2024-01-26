@@ -35,10 +35,11 @@ CREATE TABLE `StudentQuiz` (
   COLLATE utf8mb4_0900_ai_ci;
 
 CREATE TABLE `StudentResponse` (
-	`studentResponseId` int NOT NULL AUTO_INCREMENT,
 	`userId` int NOT NULL,
-	`responseId` int NOT NULL,
-	`isMatch` tinyint(1) NOT NULL,
+	`quizId` int NOT NULL,
+	`questionId` int NOT NULL,
+	`questionId` int NOT NULL,
+	`madeChoice` char(1)  NOT NULL,
 	`createdAt` timestamp NULL DEFAULT current_timestamp(),
 	PRIMARY KEY (`studentResponseId`)
 ) ENGINE InnoDB,
@@ -78,6 +79,15 @@ CREATE TABLE `Question` (
 
 	PRIMARY KEY (`questionId`)
 );
+
+CREATE TABLE `StudentResponse` (
+    `userId` int NOT NULL,
+    `quizId` int NOT NULL,
+    `questionId` int NOT NULL,
+    `chosenResponse` char(1) NOT NULL,  -- Updated column name
+    `createdAt` timestamp NULL DEFAULT current_timestamp()
+);
+
 
 -- Inserting Sample Questions
 INSERT INTO `Question` (`quizId`, `text`, `image`, `firstChoice`, `secondChoice`, `thirdChoice`, `fourthChoice`, `fifthChoice`, `questionMark`, `correctChoice`)
