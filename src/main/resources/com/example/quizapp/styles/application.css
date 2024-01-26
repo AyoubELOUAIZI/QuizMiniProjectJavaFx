@@ -126,6 +126,10 @@
  -fx-background-color: linear-gradient(to right, #FC466B, #3F5EFB);
   -fx-background-insets: 0, 0, 1, 2;
 }
+.btn-update {
+ -fx-background-color: linear-gradient(to right, #2FDC43, #57EC73);
+  -fx-background-insets: 0, 0, 1, 2;
+}
 
 
 

@@ -125,8 +125,6 @@ public class StudentController {
         // Retrieve the selected quiz details from the list of studentQuizzes
         selectedQuiz = findQuizByName(quizName);
 
-
-
         // Check if the selectedQuiz is not null (for safety)
         if (selectedQuiz != null) {
             //select data from database if you need

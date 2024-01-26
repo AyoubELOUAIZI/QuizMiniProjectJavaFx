@@ -13,7 +13,7 @@ public class QuestionController {
         this.questionDAO = questionDAO;
     }
 
-    public Question getQuestionById(String questionId) {
+    public Question getQuestionById(int questionId) {
         return questionDAO.getQuestionById(questionId);
     }
 
@@ -25,11 +25,11 @@ public class QuestionController {
         questionDAO.updateQuestion(updatedQuestion);
     }
 
-    public void deleteQuestion(String questionId) {
+    public void deleteQuestion(int questionId) {
         questionDAO.deleteQuestion(questionId);
     }
 
-    public List<Question> getAllQuestions() {
-        return questionDAO.getAllQuestions();
-    }
+   // public List<Question> getAllQuestions() {
+     //   return questionDAO.getAllQuestions();
+   // }
 }

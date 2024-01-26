@@ -28,27 +28,28 @@ public class QuizDAO {
 
     public void createQuiz(Quiz quiz) {
         try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " + TABLE_NAME + " (quizName, moduleId, createdAt, updatedAt, startAt, duration) VALUES (?, ?, ?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " + TABLE_NAME + " (quizName, createdAt, updatedAt, startAt, duration,teacherId ,passwordQuiz) VALUES (? , ?, ?, ?, ? ,? ,?)", Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setString(1, quiz.getQuizName());
 //            preparedStatement.setInt(2, quiz.getModuleId());
-            preparedStatement.setTimestamp(3, new Timestamp(quiz.getCreatedAt().getTime()));
-            preparedStatement.setTimestamp(4, new Timestamp(quiz.getUpdatedAt().getTime()));
-            preparedStatement.setTimestamp(5, new Timestamp(quiz.getStartAt().getTime()));
-            preparedStatement.setInt(6, quiz.getDuration());
-
+            preparedStatement.setTimestamp(2, new Timestamp(quiz.getCreatedAt().getTime()));
+            preparedStatement.setTimestamp(3, new Timestamp(System.currentTimeMillis()));
+            preparedStatement.setTimestamp(4,  new Timestamp(quiz.getStartAt().getTime()));
+            preparedStatement.setInt(5, quiz.getDuration());
+            preparedStatement.setInt(6, quiz.getTeacherId());
+            preparedStatement.setString(7, quiz.getPasswordQuiz());
             preparedStatement.executeUpdate();
 
             // Get the auto-generated quizId
-            try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
+            /*try (ResultSet generatedKeys = preparedStatement.getGeneratedKeys()) {
                 if (generatedKeys.next()) {
                     int quizId = generatedKeys.getInt(1);
                     // Update the quiz object with the generated quizId
                     quiz.setQuizId(quizId);
                 }
             }
-
+*/
             // Add questions for the quiz
-            addQuestionsForQuiz(quiz);
+           // addQuestionsForQuiz(quiz);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -56,13 +57,12 @@ public class QuizDAO {
 
     public void updateQuiz(Quiz updatedQuiz) {
         try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE " + TABLE_NAME + " SET quizName=?, moduleId=?, updatedAt=?, startAt=?, duration=? WHERE quizId=?")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE " + TABLE_NAME + " SET quizName=? , updatedAt=?, startAt=?, duration=? WHERE quizId=?")) {
             preparedStatement.setString(1, updatedQuiz.getQuizName());
-            preparedStatement.setInt(2, updatedQuiz.getQuizId());
-            preparedStatement.setTimestamp(3, new Timestamp(updatedQuiz.getUpdatedAt().getTime()));
-            preparedStatement.setTimestamp(4, new Timestamp(updatedQuiz.getStartAt().getTime()));
-            preparedStatement.setInt(5, updatedQuiz.getDuration());
-            preparedStatement.setInt(6, updatedQuiz.getQuizId());
+            preparedStatement.setTimestamp(2, new Timestamp(updatedQuiz.getUpdatedAt().getTime()));
+            preparedStatement.setTimestamp(3, new Timestamp(updatedQuiz.getStartAt().getTime()));
+            preparedStatement.setInt(4, updatedQuiz.getDuration());
+            preparedStatement.setInt(5, updatedQuiz.getQuizId());
 
             preparedStatement.executeUpdate();
 
@@ -100,7 +100,9 @@ public class QuizDAO {
 
     private Quiz createQuizFromResultSet(ResultSet resultSet) throws SQLException {
         int quizId = resultSet.getInt("quizId");
+        int teacherId = resultSet.getInt("teacherId");
         String quizName = resultSet.getString("quizName");
+        String password = resultSet.getString("passwordQuiz");
         // Retrieve timestamp values from the database
         Timestamp createdAt = resultSet.getTimestamp("createdAt");
         Timestamp updatedAt = resultSet.getTimestamp("updatedAt");
@@ -111,7 +113,7 @@ public class QuizDAO {
         List<Question> questions = getQuestionsForQuiz(quizId);
 
         // Create and return a Quiz object
-        return new Quiz(quizId,9,quizName,"kkkkkkkkkk", questions, createdAt, updatedAt, startAt, duration);
+        return new Quiz(quizId,teacherId,quizName, questions,updatedAt ,createdAt,startAt, duration,password);
     }
 
     private void addQuestionsForQuiz(Quiz quiz) {

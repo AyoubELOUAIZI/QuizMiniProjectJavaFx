@@ -1,5 +1,7 @@
 package com.example.quizapp.model;
 
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
@@ -12,17 +14,28 @@ public class Quiz {
     private List<Question> questions;
     private Date createdAt;
     private Date updatedAt;
-    private Date startAt;
+    private Timestamp startAt;
 
 
     private int duration; // Duration in minutes
 
     // Constructors
-    public Quiz(int quizId,int teacherId, String quizName,  String passwordQuiz, List<Question> questions, Date createdAt, Date updatedAt, Date startAt, int duration) {
+    public Quiz(int quizId, int teacherId,String quizName, List<Question> questions, Date updatedAt, Timestamp startAt, int duration,String password) {
         this.quizId = quizId;
-        this.teacherId = teacherId;
+        this.teacherId=teacherId;
+        this.passwordQuiz = password;
         this.quizName = quizName;
-        this.passwordQuiz = passwordQuiz;
+        this.questions = questions;
+        this.createdAt = new Date();
+        this.updatedAt = updatedAt;
+        this.startAt = startAt;
+        this.duration = duration;
+    }
+    public Quiz(int quizId, int teacherId,String quizName, List<Question> questions, Timestamp createdAt,Date updatedAt, Timestamp startAt, int duration,String password) {
+        this.quizId = quizId;
+        this.teacherId=teacherId;
+        this.passwordQuiz = password;
+        this.quizName = quizName;
         this.questions = questions;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
@@ -97,7 +110,7 @@ public class Quiz {
     }
 
     public void setStartAt(Date startAt) {
-        this.startAt = startAt;
+        this.startAt = (Timestamp) startAt;
     }
 
     public int getDuration() {

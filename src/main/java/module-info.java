@@ -9,4 +9,5 @@ module com.example.quizapp {
     exports com.example.quizapp;
     exports com.example.quizapp.controller;
     opens com.example.quizapp.controller to javafx.fxml;
+    opens com.example.quizapp.model to javafx.base;
 }

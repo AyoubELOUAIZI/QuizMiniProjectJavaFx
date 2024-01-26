@@ -74,7 +74,7 @@ public class Main extends Application {
         // Load your main application FXML and show the main window
         FXMLLoader mainLoader = new FXMLLoader(getClass().getResource("/com/example/quizapp/fxml/AuthenticationScreen.fxml"));
         Parent mainRoot = mainLoader.load();
-        Scene mainScene = new Scene(mainRoot);
+        Scene mainScene = new Scene(mainRoot,900,700);
 
         Stage mainStage = new Stage();
         mainStage.setScene(mainScene);
