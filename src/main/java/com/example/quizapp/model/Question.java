@@ -195,7 +195,7 @@ public class Question {
                 ", thirdChoice='" + thirdChoice + '\'' +
                 ", fourthChoice='" + fourthChoice + '\'' +
                 ", fifthChoice='" + fifthChoice + '\'' +
-                ", questionMark=" + questionMark +
+                ", questionMark=" + questionMarkV +
                 ", correctChoice='" + correctChoice + '\'' +
                 '}';
     }

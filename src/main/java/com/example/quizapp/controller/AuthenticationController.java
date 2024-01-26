@@ -142,7 +142,8 @@ public class AuthenticationController {
                 Scene scene = new Scene(root);
                 Stage stage = new Stage();
                 stage.setScene(scene);
-                stage.setResizable(false);
+                // i change it to true elmahdi
+                stage.setResizable(true);
                 stage.show();
 
                 // Close the current login window

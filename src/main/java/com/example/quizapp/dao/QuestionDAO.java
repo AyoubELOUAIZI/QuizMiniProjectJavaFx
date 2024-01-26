@@ -29,15 +29,6 @@ public class QuestionDAO {
             preparedStatement.setString(11, question.getFifthChoice());
             preparedStatement.setInt(12, question.getQuestionMarkV());
             preparedStatement.setString(13, question.getCorrectChoice());
-            preparedStatement.setTimestamp(5, question.getCreatedAt());
-            preparedStatement.setTimestamp(6, question.getUpdatedAt());
-            preparedStatement.setString(7, question.getFirstChoice());
-            preparedStatement.setString(8, question.getSecondChoice());
-            preparedStatement.setString(9, question.getThirdChoice());
-            preparedStatement.setString(10, question.getFourthChoice());
-            preparedStatement.setString(11, question.getFifthChoice());
-            preparedStatement.setInt(12, question.getQuestionMark());
-            preparedStatement.setString(13, question.getCorrectChoice());
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -52,13 +43,10 @@ public class QuestionDAO {
                              "createdAt=?, updatedAt=?, firstChoice=?, secondChoice=?, " +
                              "thirdChoice=?, fourthChoice=?, fifthChoice=?, questionMark=?, correctChoice=? " +
                              "WHERE questionId=?")) {
+
             preparedStatement.setInt(1, updatedQuestion.getQuizId());
             preparedStatement.setString(2, updatedQuestion.getText());
             preparedStatement.setString(3, updatedQuestion.getImage());
-            preparedStatement.setInt(13, updatedQuestion.getQuestionId());
-           // preparedStatement.setInt(1, updatedQuestion.getQuizId());
-            //preparedStatement.setString(2, updatedQuestion.getText());
-           // preparedStatement.setString(3, updatedQuestion.getImage());
             preparedStatement.setTimestamp(4, updatedQuestion.getCreatedAt());
             preparedStatement.setTimestamp(5, updatedQuestion.getUpdatedAt());
             preparedStatement.setString(6, updatedQuestion.getFirstChoice());
@@ -66,21 +54,9 @@ public class QuestionDAO {
             preparedStatement.setString(8, updatedQuestion.getThirdChoice());
             preparedStatement.setString(9, updatedQuestion.getFourthChoice());
             preparedStatement.setString(10, updatedQuestion.getFifthChoice());
-            preparedStatement.setInt(11, updatedQuestion.getQuestionMarkV());
+            preparedStatement.setInt(11, updatedQuestion.getQuestionMark());
             preparedStatement.setString(12, updatedQuestion.getCorrectChoice());
-            preparedStatement.setInt(4, updatedQuestion.getQuestionId());
-            preparedStatement.setInt(1, updatedQuestion.getQuizId());
-            preparedStatement.setString(2, updatedQuestion.getText());
-            preparedStatement.setString(3, updatedQuestion.getImage());
-            preparedStatement.setTimestamp(5, updatedQuestion.getCreatedAt());
-            preparedStatement.setTimestamp(6, updatedQuestion.getUpdatedAt());
-            preparedStatement.setString(7, updatedQuestion.getFirstChoice());
-            preparedStatement.setString(8, updatedQuestion.getSecondChoice());
-            preparedStatement.setString(9, updatedQuestion.getThirdChoice());
-            preparedStatement.setString(10, updatedQuestion.getFourthChoice());
-            preparedStatement.setString(11, updatedQuestion.getFifthChoice());
-            preparedStatement.setInt(12, updatedQuestion.getQuestionMark());
-            preparedStatement.setString(13, updatedQuestion.getCorrectChoice());
+            preparedStatement.setInt(13, updatedQuestion.getQuestionId());
 
             preparedStatement.executeUpdate();
             return true;
@@ -89,6 +65,7 @@ public class QuestionDAO {
             return false;
         }
     }
+
 
     public List<Question> retrieveSelectedQuizQuestions(int quizId) {
         List<Question> questions = new ArrayList<>();

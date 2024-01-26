@@ -15,8 +15,6 @@ public class Quiz {
     private Date createdAt;
     private Date updatedAt;
     private Timestamp startAt;
-
-
     private int duration; // Duration in minutes
 
     // Constructors
