@@ -547,7 +547,7 @@
                               <Image url="@../images/qcmIcon.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="59.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleBtnNextQuestionClicked" prefHeight="39.0" prefWidth="117.0" style="-fx-background-color: #1E90FF;" text="Suivant &gt;" textFill="WHITE">
+                        <Button fx:id="btnSuivant" layoutX="59.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleBtnNextQuestionClicked" prefHeight="39.0" prefWidth="117.0" style="-fx-background-color: #1E90FF;" text="Suivant &gt;" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -555,12 +555,12 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Label layoutX="99.0" layoutY="23.0" text="Java Quiz">
+                        <Label fx:id="p5tQuizName" layoutX="99.0" layoutY="23.0" text="Java Quiz">
                            <font>
                               <Font name="System Bold" size="35.0" />
                            </font>
                         </Label>
-                        <Label layoutX="53.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="Question 3 sur 25 :">
+                        <Label layoutX="53.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="Question">
                            <font>
                               <Font name="Segoe UI" size="28.0" />
                            </font>
@@ -644,6 +644,26 @@
                            </children>
                         </Pane>
                         <Pane fx:id="paneQuestionHider" layoutX="43.0" layoutY="327.0" prefHeight="150.0" prefWidth="919.0" style="-fx-background-color: #ffffff;" />
+                        <Label fx:id="p5QuestionIndex" layoutX="169.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="03">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="202.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="sur">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="p2TotalNumberQuestions" layoutX="243.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="30">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="281.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text=":">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <Line endX="74.70703125" layoutX="336.0" layoutY="44.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />

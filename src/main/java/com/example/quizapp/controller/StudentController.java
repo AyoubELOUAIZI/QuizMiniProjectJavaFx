@@ -66,6 +66,10 @@ public class StudentController {
     public Label tfp5Response4;
     public Label tfp5Response5;
     public Label tfp5Question;
+    public Label p5tQuizName;
+    public Label p5QuestionIndex;
+    public Label p2TotalNumberQuestions;
+    public Button btnSuivant;
     private StudentDAO studentDAO;
     private UserDAO userDAO;
     private QuestionDAO questionDAO;
@@ -551,6 +555,8 @@ public class StudentController {
             // If there are questions, set the currentQuestionIndex to the first question
             currentQuestionIndex = 0;
             paneQuizTest5choice.toFront();
+            p5tQuizName.setText(selectedQuiz.getQuizName());
+            p2TotalNumberQuestions.setText(String.valueOf(currentQuizQuestions.size()));
             showCurrentQuestion();
         } else {
             System.out.println("No questions found for the selected quiz.");
@@ -564,21 +570,37 @@ public class StudentController {
             // Move to the next question
             currentQuestionIndex++;
             showCurrentQuestion();
-        } else {
+        }
+        else{
+            System.out.println("Invalid question index. Means Student finish all the questions");
+            //go to an other panel
+            System.out.println("💔💔congratulation");
             System.out.println("No more questions available.");
+            System.out.println("🚓🚓🚗Lets go to an other view");
+
         }
     }
 
     private void showCurrentQuestion() {
         // Check if the currentQuestionIndex is valid
-        if (currentQuestionIndex >= 0 && currentQuestionIndex < currentQuizQuestions.size()) {
+        if (currentQuestionIndex >= 0 && currentQuestionIndex < currentQuizQuestions.size()-1) {
             // Retrieve the current question
              currentQuestion = currentQuizQuestions.get(currentQuestionIndex);
             // Print the current question to the console
             System.out.println("Current Question: " + currentQuestion);
+
             displayCurrentQuestionInCorrectPanel();
-        } else {
-            System.out.println("Invalid question index.");
+        } else{
+            //this means the last question
+            // Retrieve the current question
+            currentQuestion = currentQuizQuestions.get(currentQuestionIndex);
+            // Print the current question to the console
+            System.out.println("Current Question: " + currentQuestion);
+
+            displayCurrentQuestionInCorrectPanel();
+
+            //change the button to be finish
+            btnSuivant.setText("Terminer");
         }
     }
 
@@ -586,6 +608,8 @@ public class StudentController {
         paneQuestionHider.toFront();
         //set text for the question
         tfp5Question.setText(currentQuestion.getText());
+        p5QuestionIndex.setText(String.valueOf(currentQuestionIndex+1));
+
 
 
         //set text for the responses one and tow
