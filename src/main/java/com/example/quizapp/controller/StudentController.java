@@ -78,6 +78,25 @@ public class StudentController {
     public RadioButton p5cm3;
     public RadioButton p5cm4;
     public RadioButton p5cm5;
+    public Pane paneQuizResults;
+    public Button btnSuivant1;
+    public Label p5tQuizName1;
+    public Label tfp5Question1;
+    public Label tfp5Response11;
+    public Label tfp5Response21;
+    public Pane paneQuestion31;
+    public Label tfp5Response31;
+    public Pane paneQuestion41;
+    public Label tfp5Response41;
+    public Pane paneQuestion51;
+    public Label tfp5Response51;
+    public Pane paneQuestionHider1;
+    public Label p5QuestionIndex1;
+    public Label p2TotalNumberQuestions1;
+    public Label tcurrentQuestionMark1;
+    public Label ttotalNotes1;
+    public Label tcurrentQuestionMark11;
+    public Label ttotalNotes11;
     private StudentDAO studentDAO;
     private UserDAO userDAO;
     private QuestionDAO questionDAO;
@@ -289,8 +308,23 @@ public class StudentController {
     }
 
     public void handOpenQuizTest(MouseEvent mouseEvent) {
-        panelStartQuizTest.toFront();
+        // Assuming you have the userId and selectedQuizId available
+
+        // Check if the quiz has been tested
+        boolean hasTested = studentDAO.checkIfQuizHasBeenTested(currentUser.getUserId(), selectedQuiz.getQuizId());
+        System.out.println("🚩hasTested : "+hasTested);
+
+        if (!hasTested) {
+            // The quiz has not been tested yet
+            panelStartQuizTest.toFront();
+        } else {
+            // The quiz has already been tested
+            panelQuizEnded.toFront();
+        }
     }
+
+
+
 
     public void handOpenQuizDetails(MouseEvent mouseEvent) {
         panelQuizSelected.toFront();
@@ -601,8 +635,15 @@ public class StudentController {
             System.out.println("🚓🚓🚗Lets go to an other view");
             panelQuizEnded.toFront();
 
+            //also update the studentQuiz hasTested to true
+            studentDAO.updateQuizTestedStatus(currentUser.getUserId(), selectedQuiz.getQuizId());
+
+
         }
     }
+
+
+
 
     private void handleStudentResponse() {
             // Retrieve the chosen response
@@ -721,5 +762,118 @@ public class StudentController {
         }
 
     }
+
+    public void handleShowQuizResults(ActionEvent actionEvent) {
+        System.out.println("the function handleShowQuizResults");
+        System.out.println("🦆🚚🚚🚚the Student want to see his Quiz Results");
+
+
+
+        //start the quiz for the student
+        //retrieve the quiz questions by the quizId and put them in a table
+        currentQuizQuestions=questionDAO.retrieveSelectedQuizQuestions(selectedQuiz.getQuizId());
+        System.out.println("current quiz questions :");
+        System.out.println(currentQuizQuestions);
+
+
+        if (!currentQuizQuestions.isEmpty()) {
+            // If there are questions, set the currentQuestionIndex to the first question
+            currentQuestionIndex = 0;
+            //show the panel of results
+            paneQuizResults.toFront();
+
+            p5tQuizName1.setText(selectedQuiz.getQuizName());
+            p2TotalNumberQuestions1.setText(String.valueOf(currentQuizQuestions.size()));
+            ttotalNotes1.setText(String.valueOf(calculateSomeMarks()));
+            ttotalNotes11.setText(String.valueOf(calculateSomeMarks()));
+            showCurrentQuestionFoResults();
+        } else {
+            System.out.println("No questions found for the selected quiz.");
+        }
+
+    }
+
+    private void showCurrentQuestionFoResults() {
+        // Check if the currentQuestionIndex is valid
+        if (currentQuestionIndex >= 0 && currentQuestionIndex < currentQuizQuestions.size()-1) {
+            // Retrieve the current question
+            currentQuestion = currentQuizQuestions.get(currentQuestionIndex);
+
+            // Print the current question to the console
+            System.out.println("Current Question: " + currentQuestion);
+
+            displayCurrentQuestionInCorrectPanelFoResults();
+        } else{
+            //this means the last question
+            // Retrieve the current question
+            currentQuestion = currentQuizQuestions.get(currentQuestionIndex);
+            // Print the current question to the console
+            System.out.println("Current Question: " + currentQuestion);
+
+            displayCurrentQuestionInCorrectPanelFoResults();
+
+            //change the button to be finish
+            btnSuivant1.setText("Terminer");
+        }
+    }
+
+    private void displayCurrentQuestionInCorrectPanelFoResults() {
+        paneQuestionHider1.toFront();
+        //clear the check marks
+
+        //set text for the question
+        tfp5Question1.setText(currentQuestion.getText());
+        p5QuestionIndex1.setText(String.valueOf(currentQuestionIndex+1));
+        tcurrentQuestionMark1.setText(String.valueOf(currentQuestion.getQuestionMark()));
+
+
+        //set text for the responses one and tow
+        tfp5Response11.setText(currentQuestion.getFirstChoice());
+        tfp5Response21.setText(currentQuestion.getSecondChoice());
+
+        if(currentQuestion.getThirdChoice()!=null){
+            //show the question in the paneQuizTest2choice
+            paneQuestion31.toFront();
+            tfp5Response31.setText(currentQuestion.getThirdChoice());
+
+        }else{
+
+        }
+        if(currentQuestion.getFourthChoice()!=null){
+            //show the question in the paneQuizTest3choice
+            tfp5Response41.setText(currentQuestion.getFourthChoice());
+            paneQuestion41.toFront();
+
+
+        }else {
+            return;
+        }
+        if(currentQuestion.getFifthChoice()!=null){
+            //show the question in the paneQuizTest4choice
+            tfp5Response51.setText(currentQuestion.getFifthChoice());
+            paneQuestion51.toFront();
+
+        }
+
+    }
+
+    public void handleBtnNextQuestionFoResultsClicked(ActionEvent actionEvent) {
+
+        // Check if there are more questions
+        if (currentQuestionIndex < currentQuizQuestions.size() - 1) {
+            // Move to the next question
+            currentQuestionIndex++;
+            showCurrentQuestionFoResults();
+        }
+        else{
+            System.out.println("Invalid question index. Means Student finish all the questions");
+            //go to an other panel
+            System.out.println("🔍🔍No more Results available.");
+            panelQuizEnded.toFront();
+
+        }
+    }
+
+
 }
 

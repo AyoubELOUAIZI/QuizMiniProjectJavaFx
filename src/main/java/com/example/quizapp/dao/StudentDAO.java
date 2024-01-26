@@ -153,4 +153,48 @@ public class StudentDAO extends UserDAO {
         return false;
     }
 
+    public boolean checkIfQuizHasBeenTested(int userId, int quizId) {
+        // Query to check if a record exists in StudentQuiz for the given userId and quizId
+        String checkQuizQuery = "SELECT quizHasTested FROM StudentQuiz WHERE studentId = ? AND quizId = ?";
+
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement checkQuizStatement = connection.prepareStatement(checkQuizQuery)) {
+
+            // Set the parameters for the query
+            checkQuizStatement.setInt(1, userId);
+            checkQuizStatement.setInt(2, quizId);
+
+            // Execute the query
+            try (ResultSet resultSet = checkQuizStatement.executeQuery()) {
+                // Return true if a record is found and quizHasTested is true
+                return resultSet.next() && resultSet.getBoolean("quizHasTested");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Return false if there was an error or no record was found
+        return false;
+    }
+
+
+    public void updateQuizTestedStatus(int userId, int quizId) {
+        // Query to update the quizHasTested column to true for the given userId and quizId
+        String updateQuizTestedQuery = "UPDATE StudentQuiz SET quizHasTested = true WHERE studentId = ? AND quizId = ?";
+
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement updateQuizTestedStatement = connection.prepareStatement(updateQuizTestedQuery)) {
+
+            // Set the parameters for the query
+            updateQuizTestedStatement.setInt(1, userId);
+            updateQuizTestedStatement.setInt(2, quizId);
+
+            // Execute the query to update quizHasTested to true
+            updateQuizTestedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

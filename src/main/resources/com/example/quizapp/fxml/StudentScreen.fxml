@@ -118,129 +118,6 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-            <Pane fx:id="panelQuizSelected" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
-               <children>
-                  <AnchorPane prefHeight="46.0" prefWidth="1054.0">
-                     <children>
-                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
-                        <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
-                           <font>
-                              <Font name="Segoe UI Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <Line endX="74.70703125" layoutX="123.0" layoutY="43.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
-                        <Label layoutX="257.0" layoutY="15.0" onMouseClicked="#handOpenQuizTest" text="Répondre au QCM">
-                           <font>
-                              <Font name="Segoe UI Bold" size="15.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
-                     <children>
-                        <ImageView fx:id="backgroundImageQuizView" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
-                           <image>
-                              <Image url="@../images/splash.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fx:id="teacherImageView" fitHeight="130.0" fitWidth="130.0" layoutX="52.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/person_pin2.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="101.0" layoutY="27.0" text="QCM :">
-                           <font>
-                              <Font name="System Bold" size="30.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="186.0" layoutY="100.0" text="À propos">
-                           <font>
-                              <Font name="Segoe UI Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="192.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/time.png" />
-                           </image>
-                        </ImageView>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="186.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/mail.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="224.0" layoutY="194.0" text="Durée de l'examen :">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="218.0" layoutY="164.0" text="Email : ">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="textDuration" layoutX="363.0" layoutY="194.0" text="45">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="textTeacherEmail" layoutX="270.0" layoutY="164.0" text="XXXXXXXXXXXXXXXX">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Line endX="285.70703125" layoutX="159.0" layoutY="72.0" startX="-100.0" stroke="#1699eb" />
-                        <Label fx:id="textQuizName" layoutX="200.0" layoutY="29.0" text="qcm examan name" textFill="#1699eb">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="186.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/teacherIcon.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="218.0" layoutY="134.0" text="Professeur :">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="textTeacherNam" layoutX="306.0" layoutY="134.0" text="XXXXXXXXXXXXXXXX">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label ellipsisString="" layoutX="56.0" layoutY="243.0" prefHeight="21.0" prefWidth="290.0" text="Cet examen QCM va commencer à la date :" textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="textDate" layoutX="354.0" layoutY="244.0" text="01-01-2024 10:00">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="387.0" layoutY="194.0" text="minutes.">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="52.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/qcmIcon.png" />
-                           </image>
-                        </ImageView>
-                        <Button fx:id="changeEmailBtn1" layoutX="257.0" layoutY="292.0" mnemonicParsing="false" onAction="#handleDeleteQuiz" prefHeight="30.0" prefWidth="229.0" styleClass="btn-delete" text="Supprimer ce questionnaire." textFill="WHITE">
-                           <cursor>
-                              <Cursor fx:constant="HAND" />
-                           </cursor>
-                           <font>
-                              <Font size="16.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </Pane>
             <Pane fx:id="panelAddNewQuiz" layoutX="-3.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
                <children>
                   <AnchorPane prefHeight="46.0" prefWidth="1054.0">
@@ -689,6 +566,129 @@
                   <Line endX="74.70703125" layoutX="336.0" layoutY="44.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
                </children>
             </Pane>
+            <Pane fx:id="panelQuizSelected" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <AnchorPane prefHeight="46.0" prefWidth="1054.0">
+                     <children>
+                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
+                        <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Line endX="74.70703125" layoutX="123.0" layoutY="43.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
+                        <Label layoutX="257.0" layoutY="15.0" onMouseClicked="#handOpenQuizTest" text="Répondre au QCM">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
+                     <children>
+                        <ImageView fx:id="backgroundImageQuizView" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
+                           <image>
+                              <Image url="@../images/splash.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="teacherImageView" fitHeight="130.0" fitWidth="130.0" layoutX="52.0" layoutY="97.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/person_pin2.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="101.0" layoutY="27.0" text="QCM :">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="186.0" layoutY="100.0" text="À propos">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="192.0" layoutY="192.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/time.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="186.0" layoutY="162.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/mail.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="224.0" layoutY="194.0" text="Durée de l'examen :">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="218.0" layoutY="164.0" text="Email : ">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textDuration" layoutX="363.0" layoutY="194.0" text="45">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textTeacherEmail" layoutX="270.0" layoutY="164.0" text="XXXXXXXXXXXXXXXX">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Line endX="285.70703125" layoutX="159.0" layoutY="72.0" startX="-100.0" stroke="#1699eb" />
+                        <Label fx:id="textQuizName" layoutX="200.0" layoutY="29.0" text="qcm examan name" textFill="#1699eb">
+                           <font>
+                              <Font name="System Bold" size="24.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="24.0" fitWidth="24.0" layoutX="186.0" layoutY="132.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/teacherIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="218.0" layoutY="134.0" text="Professeur :">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textTeacherNam" layoutX="306.0" layoutY="134.0" text="XXXXXXXXXXXXXXXX">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label ellipsisString="" layoutX="56.0" layoutY="243.0" prefHeight="21.0" prefWidth="290.0" text="Cet examen QCM va commencer à la date :" textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="textDate" layoutX="354.0" layoutY="244.0" text="01-01-2024 10:00">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="387.0" layoutY="194.0" text="minutes.">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="52.0" layoutY="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/qcmIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="changeEmailBtn1" layoutX="257.0" layoutY="292.0" mnemonicParsing="false" onAction="#handleDeleteQuiz" prefHeight="30.0" prefWidth="229.0" styleClass="btn-delete" text="Supprimer ce questionnaire." textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </Pane>
             <Pane fx:id="panelQuizEnded" layoutX="1.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
                <children>
                   <AnchorPane prefHeight="46.0" prefWidth="1054.0">
@@ -719,7 +719,7 @@
                               <Image url="@../images/qcmIcon.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="475.0" layoutY="355.0" mnemonicParsing="false" onAction="#handleStartQcmQuiz" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Rafraîchir" textFill="WHITE">
+                        <Button layoutX="450.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleShowQuizResults" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #1E90FF;" text="voir les résultats" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -732,6 +732,159 @@
                      </children>
                   </AnchorPane>
                   <Line endX="74.70703125" layoutX="336.0" layoutY="44.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
+               </children>
+            </Pane>
+            <Pane fx:id="paneQuizResults" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <AnchorPane prefHeight="46.0" prefWidth="1054.0">
+                     <children>
+                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
+                        <Label layoutX="57.0" layoutY="15.0" text="Résultats du quiz">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="panelAddNewQui111" layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 9; -fx-background-color: fff;">
+                     <children>
+                        <ImageView fitHeight="38.0" fitWidth="35.0" layoutX="53.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/qcmIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnSuivant1" layoutX="59.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleBtnNextQuestionFoResultsClicked" prefHeight="39.0" prefWidth="117.0" style="-fx-background-color: #1E90FF;" text="Suivant &gt;" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="p5tQuizName1" layoutX="99.0" layoutY="23.0" text="Java Quiz">
+                           <font>
+                              <Font name="System Bold" size="35.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="53.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="Question">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tfp5Question1" layoutX="57.0" layoutY="130.0" text="How do you insert COMMENTS in Java code?" textFill="#8f8989">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Pane layoutX="56.0" layoutY="231.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response11" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="56.0" layoutY="279.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response21" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="paneQuestion31" layoutX="57.0" layoutY="328.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response31" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="paneQuestion41" layoutX="57.0" layoutY="377.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response41" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="paneQuestion51" layoutX="57.0" layoutY="426.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response51" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="paneQuestionHider1" layoutX="43.0" layoutY="327.0" prefHeight="150.0" prefWidth="919.0" style="-fx-background-color: #ffffff;" />
+                        <Label fx:id="p5QuestionIndex1" layoutX="169.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="03">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="202.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="sur">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="p2TotalNumberQuestions1" layoutX="243.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="30">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="281.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text=":">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="316.0" layoutY="88.0" onMouseClicked="#handOpenQuizDetails" text="La note :">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tcurrentQuestionMark1" layoutX="381.0" layoutY="88.0" onMouseClicked="#handOpenQuizDetails" text="02">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ttotalNotes1" layoutX="406.0" layoutY="88.0" onMouseClicked="#handOpenQuizDetails" text="20">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="399.0" layoutY="88.0" onMouseClicked="#handOpenQuizDetails" text="/">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="456.0" layoutY="89.0" onMouseClicked="#handOpenQuizDetails" text="Votre note :">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tcurrentQuestionMark11" layoutX="542.0" layoutY="89.0" onMouseClicked="#handOpenQuizDetails" text="02" textFill="#2e77e4">
+                           <font>
+                              <Font name="Segoe UI Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ttotalNotes11" layoutX="569.0" layoutY="89.0" onMouseClicked="#handOpenQuizDetails" text="20">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="562.0" layoutY="89.0" onMouseClicked="#handOpenQuizDetails" text="/">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Line endX="74.70703125" layoutX="125.0" layoutY="44.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
                </children>
             </Pane>
             </children>
