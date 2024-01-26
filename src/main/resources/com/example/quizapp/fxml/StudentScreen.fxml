@@ -523,7 +523,7 @@
                   <Line endX="74.70703125" layoutX="336.0" layoutY="44.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
                </children>
             </Pane>
-            <Pane fx:id="paneQuizTest" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+            <Pane fx:id="paneQuizTest5choice" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
                <children>
                   <AnchorPane prefHeight="46.0" prefWidth="1054.0">
                      <children>
@@ -542,12 +542,12 @@
                   </AnchorPane>
                   <AnchorPane fx:id="panelAddNewQui11" layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 9; -fx-background-color: fff;">
                      <children>
-                        <ImageView fitHeight="38.0" fitWidth="35.0" layoutX="53.0" layoutY="39.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="38.0" fitWidth="35.0" layoutX="53.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/qcmIcon.png" />
                            </image>
                         </ImageView>
-                        <Button layoutX="57.0" layoutY="449.0" mnemonicParsing="false" onAction="#handleBtnNextQuestionClicked" prefHeight="39.0" prefWidth="117.0" style="-fx-background-color: #1E90FF;" text="Suivant &gt;" textFill="WHITE">
+                        <Button layoutX="59.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleBtnNextQuestionClicked" prefHeight="39.0" prefWidth="117.0" style="-fx-background-color: #1E90FF;" text="Suivant &gt;" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
@@ -555,29 +555,29 @@
                               <Font size="20.0" />
                            </font>
                         </Button>
-                        <Label layoutX="99.0" layoutY="31.0" text="Java Quiz">
+                        <Label layoutX="99.0" layoutY="23.0" text="Java Quiz">
                            <font>
                               <Font name="System Bold" size="35.0" />
                            </font>
                         </Label>
-                        <Label layoutX="53.0" layoutY="89.0" onMouseClicked="#handOpenQuizDetails" text="Question 3 sur 25 :">
+                        <Label layoutX="53.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="Question 3 sur 25 :">
                            <font>
                               <Font name="Segoe UI" size="28.0" />
                            </font>
                         </Label>
-                        <Label fx:id="textTeacherNam1" layoutX="57.0" layoutY="138.0" text="How do you insert COMMENTS in Java code?" textFill="#8f8989">
+                        <Label fx:id="tfp5Question" layoutX="57.0" layoutY="130.0" text="How do you insert COMMENTS in Java code?" textFill="#8f8989">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Pane layoutX="56.0" layoutY="182.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                        <Pane layoutX="56.0" layoutY="231.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
                            <children>
-                              <Label fx:id="textTeacherNam11" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                              <Label fx:id="tfp5Response1" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <RadioButton layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2">
+                              <RadioButton fx:id="p5cm1" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
@@ -587,62 +587,63 @@
                               </RadioButton>
                            </children>
                         </Pane>
-                        <Pane layoutX="56.0" layoutY="230.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                        <Pane layoutX="56.0" layoutY="279.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
                            <children>
-                              <Label fx:id="textTeacherNam111" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                              <Label fx:id="tfp5Response2" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <RadioButton layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
+                              <RadioButton fx:id="p5cm2" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </RadioButton>
                            </children>
                         </Pane>
-                        <Pane layoutX="57.0" layoutY="279.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                        <Pane fx:id="paneQuestion3" layoutX="57.0" layoutY="328.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
                            <children>
-                              <Label fx:id="textTeacherNam1111" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                              <Label fx:id="tfp5Response3" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <RadioButton layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
+                              <RadioButton fx:id="p5cm3" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </RadioButton>
                            </children>
                         </Pane>
-                        <Pane layoutX="57.0" layoutY="328.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                        <Pane fx:id="paneQuestion4" layoutX="57.0" layoutY="377.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
                            <children>
-                              <Label fx:id="textTeacherNam11111" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                              <Label fx:id="tfp5Response4" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <RadioButton layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
+                              <RadioButton fx:id="p5cm4" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </RadioButton>
                            </children>
                         </Pane>
-                        <Pane layoutX="57.0" layoutY="377.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                        <Pane fx:id="paneQuestion5" layoutX="57.0" layoutY="426.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
                            <children>
-                              <Label fx:id="textTeacherNam111111" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                              <Label fx:id="tfp5Response5" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </Label>
-                              <RadioButton layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
+                              <RadioButton fx:id="p5cm5" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
                                  <font>
                                     <Font size="18.0" />
                                  </font>
                               </RadioButton>
                            </children>
                         </Pane>
+                        <Pane fx:id="paneQuestionHider" layoutX="43.0" layoutY="327.0" prefHeight="150.0" prefWidth="919.0" style="-fx-background-color: #ffffff;" />
                      </children>
                   </AnchorPane>
                   <Line endX="74.70703125" layoutX="336.0" layoutY="44.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />

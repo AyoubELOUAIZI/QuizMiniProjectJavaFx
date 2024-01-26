@@ -55,7 +55,17 @@ public class StudentController {
     public TextField tfNewEmail;
     public Label tUserEmail;
     public Label tquizStartDate;
-    public Pane paneQuizTest;
+    public Pane paneQuizTest5choice;
+    public Pane paneQuestion3;
+    public Pane paneQuestion4;
+    public Pane paneQuestion5;
+    public Pane paneQuestionHider;
+    public Label tfp5Response1;
+    public Label tfp5Response2;
+    public Label tfp5Response3;
+    public Label tfp5Response4;
+    public Label tfp5Response5;
+    public Label tfp5Question;
     private StudentDAO studentDAO;
     private UserDAO userDAO;
     private QuestionDAO questionDAO;
@@ -540,12 +550,11 @@ public class StudentController {
         if (!currentQuizQuestions.isEmpty()) {
             // If there are questions, set the currentQuestionIndex to the first question
             currentQuestionIndex = 0;
-            paneQuizTest.toFront();
-            printCurrentQuestion();
+            paneQuizTest5choice.toFront();
+            showCurrentQuestion();
         } else {
             System.out.println("No questions found for the selected quiz.");
         }
-
 
     }
 
@@ -554,23 +563,59 @@ public class StudentController {
         if (currentQuestionIndex < currentQuizQuestions.size() - 1) {
             // Move to the next question
             currentQuestionIndex++;
-            printCurrentQuestion();
+            showCurrentQuestion();
         } else {
             System.out.println("No more questions available.");
         }
     }
 
-    private void printCurrentQuestion() {
+    private void showCurrentQuestion() {
         // Check if the currentQuestionIndex is valid
         if (currentQuestionIndex >= 0 && currentQuestionIndex < currentQuizQuestions.size()) {
             // Retrieve the current question
              currentQuestion = currentQuizQuestions.get(currentQuestionIndex);
-
             // Print the current question to the console
             System.out.println("Current Question: " + currentQuestion);
+            displayCurrentQuestionInCorrectPanel();
         } else {
             System.out.println("Invalid question index.");
         }
+    }
+
+    private void displayCurrentQuestionInCorrectPanel() {
+        paneQuestionHider.toFront();
+        //set text for the question
+        tfp5Question.setText(currentQuestion.getText());
+
+
+        //set text for the responses one and tow
+        tfp5Response1.setText(currentQuestion.getFirstChoice());
+        tfp5Response2.setText(currentQuestion.getSecondChoice());
+
+        if(currentQuestion.getThirdChoice()!=null){
+            //show the question in the paneQuizTest2choice
+            paneQuestion3.toFront();
+            tfp5Response3.setText(currentQuestion.getThirdChoice());
+
+        }else{
+
+        }
+        if(currentQuestion.getFourthChoice()!=null){
+            //show the question in the paneQuizTest3choice
+            tfp5Response4.setText(currentQuestion.getFourthChoice());
+            paneQuestion4.toFront();
+
+
+        }else {
+            return;
+        }
+        if(currentQuestion.getFifthChoice()!=null){
+            //show the question in the paneQuizTest4choice
+            tfp5Response5.setText(currentQuestion.getFifthChoice());
+            paneQuestion5.toFront();
+
+        }
+
     }
 }
 
