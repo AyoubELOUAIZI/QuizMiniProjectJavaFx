@@ -27,6 +27,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 import java.util.Random;
 
 public class StudentController {
@@ -100,6 +101,7 @@ public class StudentController {
     public Label ttotalNotes11;
     public Pane paneQuestion11;
     public Pane paneQuestion21;
+    public Label tQuizStudentMark;
     private StudentDAO studentDAO;
     private UserDAO userDAO;
     private QuestionDAO questionDAO;
@@ -797,7 +799,11 @@ public class StudentController {
             p5tQuizName1.setText(selectedQuiz.getQuizName());
             p2TotalNumberQuestions1.setText(String.valueOf(currentQuizQuestions.size()));
             ttotalNotes1.setText(String.valueOf(calculateSomeMarks()));
-            ttotalNotes11.setText(String.valueOf(calculateSomeMarks()));
+            //no need for calculating again
+            ttotalNotes11.setText(ttotalNotes1.getText());
+
+            //set the Student Mark 19/20 now I need to define the function calculateCurrentQuizStudentMark correctly
+            tQuizStudentMark.setText(String.valueOf(calculateCurrentQuizStudentMark()));
             showCurrentQuestionFoResults();
         } else {
             System.out.println("No questions found for the selected quiz.");
@@ -805,12 +811,31 @@ public class StudentController {
 
     }
 
-    private void showCurrentQuestionFoResults() {
+    private int calculateCurrentQuizStudentMark() {
+        int totalMark = 0;
+
+        // Iterate through each question in the current quiz
+        for (Question question : currentQuizQuestions) {
+            // Find the corresponding student response
+            StudentResponse response = findCurrentQuestionStudentResponse(question.getQuestionId());
+
+            if (response != null) {
+                // Check if the student's response matches the correct answer
+                if (String.valueOf(response.getChosenResponse()).equals(question.getCorrectChoice())) {
+                    // Add the question's mark to the total mark
+                    totalMark += question.getQuestionMark();
+                }
+            }
+        }
+        return totalMark;
+    }
+
+            private void showCurrentQuestionFoResults() {
         // Check if the currentQuestionIndex is valid
         if (currentQuestionIndex >= 0 && currentQuestionIndex < currentQuizQuestions.size()-1) {
             // Retrieve the current question
             currentQuestion = currentQuizQuestions.get(currentQuestionIndex);
-            currentQuestionStudentResponses=findCurrentQuestionStudentResponse(currentQuestion.getQuestionId(),currentQuizStudentResponses);
+            currentQuestionStudentResponses=findCurrentQuestionStudentResponse(currentQuestion.getQuestionId());
 
             // Print the current question to the console
             System.out.println("Current Question: " + currentQuestion);
@@ -834,9 +859,9 @@ public class StudentController {
         }
     }
 
-    private StudentResponse findCurrentQuestionStudentResponse(int questionId, List<StudentResponse> quizStudentResponses) {
+    private StudentResponse findCurrentQuestionStudentResponse(int questionId) {
         // Iterate through all student responses for the quiz
-        for (StudentResponse response : quizStudentResponses) {
+        for (StudentResponse response : currentQuizStudentResponses) {
             // Check if the response belongs to the current question
             if (response.getQuestionId() == questionId) {
                 System.out.println("👓👓👓we find the current question student response");
@@ -889,36 +914,64 @@ public class StudentController {
     }
 
     private void changeBackgroundOfCorrectResponse() {
-        paneQuestion51.setStyle("-fx-background-color: #dadada;");
-        paneQuestion41.setStyle("-fx-background-color: #dadada;");
-        paneQuestion31.setStyle("-fx-background-color: #dadada;");
-        paneQuestion21.setStyle("-fx-background-color: #dadada;");
+        // Reset all backgrounds to default
         paneQuestion11.setStyle("-fx-background-color: #dadada;");
+        paneQuestion21.setStyle("-fx-background-color: #dadada;");
+        paneQuestion31.setStyle("-fx-background-color: #dadada;");
+        paneQuestion41.setStyle("-fx-background-color: #dadada;");
+        paneQuestion51.setStyle("-fx-background-color: #dadada;");
 
-        if(currentQuestion.getCorrectChoice()=="1"){
-            paneQuestion11.setStyle("-fx-background-color:  #1E90FF;");
-
-        }else if(currentQuestion.getCorrectChoice()=="2"){
-            paneQuestion21.setStyle("-fx-background-color: #1E90FF;");
-
+        // Highlight the correct answer in blue
+        switch (currentQuestion.getCorrectChoice()) {
+            case "1":
+                paneQuestion11.setStyle("-fx-background-color: #1E90FF;"); // Blue for correct
+                break;
+            case "2":
+                paneQuestion21.setStyle("-fx-background-color: #1E90FF;"); // Blue for correct
+                break;
+            case "3":
+                paneQuestion31.setStyle("-fx-background-color: #1E90FF;"); // Blue for correct
+                break;
+            case "4":
+                paneQuestion41.setStyle("-fx-background-color: #1E90FF;"); // Blue for correct
+                break;
+            case "5":
+                paneQuestion51.setStyle("-fx-background-color: #1E90FF;"); // Blue for correct
+                break;
+            default:
+                break; // In case of an unexpected value
         }
-        else if(currentQuestion.getCorrectChoice()=="3"){
-            paneQuestion21.setStyle("-fx-background-color:  #1E90FF;");
 
+        // Check the user's response and highlight incorrect ones in red
+        if (currentQuestionStudentResponses != null) {
+            String userResponse = String.valueOf(currentQuestionStudentResponses.getChosenResponse());
+            // If user's response is not correct and not '0' (indicating a response was made)
+            if (!userResponse.equals(currentQuestion.getCorrectChoice()) && !userResponse.equals("0")) {
+                switch (userResponse) {
+                    case "1":
+                        paneQuestion11.setStyle("-fx-background-color: #FF6347;"); // Red for
+                        break;
+                    case "2":
+                        paneQuestion21.setStyle("-fx-background-color: #FF6347;"); // Blue for correct
+                        break;
+                    case "3":
+                        paneQuestion31.setStyle("-fx-background-color: #FF6347;"); // Blue for correct
+                        break;
+                    case "4":
+                        paneQuestion41.setStyle("-fx-background-color: #FF6347;"); // Blue for correct
+                        break;
+                    case "5":
+                        paneQuestion51.setStyle("-fx-background-color: #FF6347;"); // Blue for correct
+                        break;
+                    default:
+                        break; // In case of an unexpected value
+                }
+            }
         }
-        else if(currentQuestion.getCorrectChoice()=="4"){
-            paneQuestion21.setStyle("-fx-background-color:  #1E90FF;");
-
-        }
-        else if(currentQuestion.getCorrectChoice()=="5"){
-            paneQuestion21.setStyle("-fx-background-color:  #1E90FF;");
-
-        }
-
-
     }
 
-    public void handleBtnNextQuestionFoResultsClicked(ActionEvent actionEvent) {
+
+                        public void handleBtnNextQuestionFoResultsClicked(ActionEvent actionEvent) {
 
         // Check if there are more questions
         if (currentQuestionIndex < currentQuizQuestions.size() - 1) {
