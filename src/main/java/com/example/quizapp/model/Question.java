@@ -1,5 +1,6 @@
 package com.example.quizapp.model;
 
+import java.sql.Timestamp;
 import javafx.beans.property.SimpleStringProperty;
 
 import java.sql.ResultSet;
@@ -19,8 +20,10 @@ public class Question {
     private String thirdChoice;
     private String fourthChoice;
     private String fifthChoice;
-    private int questionMarkV;
+    //private int questionMark;
     private String correctChoice;
+    private int questionMarkV;
+
 
 
     // Other fields and methods remain the same...
@@ -33,6 +36,9 @@ public class Question {
         this.quizId = quizId;
         this.text = text;
         this.image = image;
+
+        //this.questionMark = questionMark;
+
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
         this.firstChoice = firstChoice;
@@ -63,6 +69,7 @@ public class Question {
         this.text = questiontext;
         this.questionMarkV=mark;
     }
+
 
     public int getQuestionId() {
         return questionId;
@@ -96,37 +103,31 @@ public class Question {
         this.image = image;
     }
 
+
     public Timestamp getCreatedAt() {
         return createdAt;
     }
 
-    public void setCreatedAt(Timestamp createdAt) {
-        this.createdAt = createdAt;
-    }
 
     public Timestamp getUpdatedAt() {
         return updatedAt;
     }
 
-    public void setUpdatedAt(Timestamp updatedAt) {
-        this.updatedAt = updatedAt;
-    }
+
 
     public String getFirstChoice() {
         return firstChoice;
     }
 
-    public void setFirstChoice(String firstChoice) {
-        this.firstChoice = firstChoice;
-    }
+
 
     public String getSecondChoice() {
         return secondChoice;
     }
 
-    public void setSecondChoice(String secondChoice) {
+   /* public void setSecondChoice(String secondChoice) {
         this.secondChoice = secondChoice;
-    }
+    } */
 
     public String getThirdChoice() {
         return thirdChoice;
@@ -172,9 +173,13 @@ public class Question {
         return correctChoice;
     }
 
+    public void setFirstChoice(String firstChoice) {
+        this.firstChoice = firstChoice;
+    }
     public void setCorrectChoice(String correctChoice) {
         this.correctChoice = correctChoice;
     }
+
 
     @Override
     public String toString() {
@@ -198,10 +203,17 @@ public class Question {
     private final SimpleStringProperty questionMark = new SimpleStringProperty(this, "questionMark");
     private final SimpleStringProperty idQuestion = new SimpleStringProperty(this, "idQuestion");
 
+
     public Question(String questionText, String questionMark,int questionId) {
         this.questionText.set(questionText);
         this.questionMark.set(questionMark);
         this.idQuestion.set(String.valueOf(questionId));
+
+    }
+
+
+    public int getQuestionMark() {
+        return questionMarkV;
     }
 
 

@@ -32,10 +32,12 @@ public class StudentResponseDAO {
 
     public void createStudentResponse(StudentResponse studentResponse) {
         try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " + TABLE_NAME + " (userId, responseId, isMatch) VALUES (?, ?, ?)")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO " + TABLE_NAME + " (userId, quizId, questionId, chosenResponse, createdAt) VALUES (?, ?, ?, ?, ?)")) {
             preparedStatement.setInt(1, studentResponse.getUserId());
-            preparedStatement.setInt(2, studentResponse.getResponseId());
-            preparedStatement.setBoolean(3, studentResponse.isMatch());
+            preparedStatement.setInt(2, studentResponse.getQuizId());
+            preparedStatement.setInt(3, studentResponse.getQuestionId());
+            preparedStatement.setString(4, String.valueOf(studentResponse.getChosenResponse()));
+            preparedStatement.setTimestamp(5, new java.sql.Timestamp(studentResponse.getCreatedAt().getTime()));
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -45,11 +47,12 @@ public class StudentResponseDAO {
 
     public void updateStudentResponse(StudentResponse updatedStudentResponse) {
         try (Connection connection = DatabaseConnector.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE " + TABLE_NAME + " SET userId=?, responseId=?, isMatch=? WHERE studentResponseId=?")) {
+             PreparedStatement preparedStatement = connection.prepareStatement("UPDATE " + TABLE_NAME + " SET userId=?, quizId=?, questionId=?, chosenResponse=?, createdAt=? WHERE studentResponseId=?")) {
             preparedStatement.setInt(1, updatedStudentResponse.getUserId());
-            preparedStatement.setInt(2, updatedStudentResponse.getResponseId());
-            preparedStatement.setBoolean(3, updatedStudentResponse.isMatch());
-            preparedStatement.setInt(4, updatedStudentResponse.getStudentResponseId());
+            preparedStatement.setInt(2, updatedStudentResponse.getQuizId());
+            preparedStatement.setInt(3, updatedStudentResponse.getQuestionId());
+            preparedStatement.setString(4, String.valueOf(updatedStudentResponse.getChosenResponse()));
+            preparedStatement.setTimestamp(5, new java.sql.Timestamp(updatedStudentResponse.getCreatedAt().getTime()));
 
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -83,12 +86,39 @@ public class StudentResponseDAO {
     }
 
     private StudentResponse createStudentResponseFromResultSet(ResultSet resultSet) throws SQLException {
-        int studentResponseId = resultSet.getInt("studentResponseId");
         int userId = resultSet.getInt("userId");
-        int responseId = resultSet.getInt("responseId");
-        boolean isMatch = resultSet.getBoolean("isMatch");
+        int quizId = resultSet.getInt("quizId");
+        int questionId = resultSet.getInt("questionId");
+        char chosenResponse = resultSet.getString("chosenResponse").charAt(0);
         Date createdAt = resultSet.getTimestamp("createdAt");
 
-        return new StudentResponse(studentResponseId, userId, responseId, isMatch, createdAt);
+        return new StudentResponse( userId, quizId, questionId, chosenResponse, createdAt);
     }
+
+    public List<StudentResponse> retrieveSelectedQuizStudentResponses(int quizId, int userId) {
+        List<StudentResponse> studentResponses = new ArrayList<>();
+
+        // Query to retrieve student responses for a specific quiz and user
+        String query = "SELECT * FROM " + TABLE_NAME + " WHERE quizId = ? AND userId = ?";
+
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+
+            // Set parameters for the query
+            preparedStatement.setInt(1, quizId);
+            preparedStatement.setInt(2, userId);
+
+            // Execute the query
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    studentResponses.add(createStudentResponseFromResultSet(resultSet));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return studentResponses;
+    }
+
 }

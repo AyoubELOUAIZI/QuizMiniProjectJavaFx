@@ -4,9 +4,11 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -116,6 +118,64 @@
     <center>
         <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
+            <Pane fx:id="panelAddNewQuiz" layoutX="-3.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <AnchorPane prefHeight="46.0" prefWidth="1054.0">
+                     <children>
+                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
+                        <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="257.0" layoutY="15.0" text="Répondre au QCM">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
+                     <children>
+                        <ImageView fx:id="backgroundImageQuizView11" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
+                           <image>
+                              <Image url="@../images/splash.png" />
+                           </image>
+                        </ImageView>
+                        <Line endX="285.70703125" layoutX="140.0" layoutY="160.0" startX="-10.29296875" stroke="#1699eb" />
+                        <Label ellipsisString="" layoutX="162.0" layoutY="124.0" prefHeight="21.0" prefWidth="232.0" text="Ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="254.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/qcmIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="95.0" layoutY="184.0" text="Le mot de pass du qcm">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="70.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/SC.png" />
+                           </image>
+                        </ImageView>
+                        <Label layoutX="81.0" layoutY="217.0" text="Enter  mot de pass" />
+                        <TextField fx:id="tfQuizPassword" layoutX="81.0" layoutY="239.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
+                        <Label layoutX="81.0" layoutY="286.0" text="Confirm mot de pass" />
+                        <TextField fx:id="tfConfirmQuizPassword" layoutX="81.0" layoutY="308.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm mot de pass" styleClass="input" />
+                        <Button layoutX="402.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleAddNewQuizOperation" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Ajouter" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </Pane>
                 <Pane fx:id="student_notifications" layoutX="579.0" layoutY="223.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <children>
                         <TableView fx:id="notifications_grid" focusTraversable="false" layoutX="20.0" layoutY="20.0" prefHeight="354.0" prefWidth="1010.0" styleClass="gridview">
@@ -154,6 +214,274 @@
                         </Label>
                     </children>
                 </Pane>
+                <Pane fx:id="panelShowSetting" layoutX="-1.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+                    <children>
+                        <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="290.0" prefWidth="495.0" style="-fx-background-color: fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8;">
+                            <children>
+                                <Label layoutX="45.0" layoutY="22.0" text="Le nom complet">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/iconProfile.png" />
+                                    </image>
+                                </ImageView>
+                                <Line endX="189.55322265625" endY="-23.611812591552734" layoutX="-71.0" layoutY="167.0" rotate="90.0" startX="2.353516101837158" startY="-22.156248092651367" stroke="#00000039" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="536.0" layoutY="20.0" prefHeight="595.0" prefWidth="495.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-color: fff; -fx-background-radius: 8;">
+                            <children>
+                                <Label layoutX="45.0" layoutY="322.0" text="Le mot de pass">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/SC.png" />
+                                    </image>
+                                </ImageView>
+                                <Label layoutX="45.0" layoutY="22.0" text="Sécurité">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/lock.png" />
+                                    </image>
+                                </ImageView>
+                                <Label layoutX="53.0" layoutY="55.0" text="E-mail actuel:" />
+                                <Label fx:id="tUserEmail" layoutX="70.0" layoutY="92.0" text="testtest@gmail.com" textFill="#464646" />
+                                <Label layoutX="53.0" layoutY="129.0" text="Nouveau E-mail" />
+                                <TextField fx:id="tfNewEmail" layoutX="53.0" layoutY="151.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau e-mail" styleClass="input" />
+                                <Label layoutX="53.0" layoutY="198.0" text="Confirm E-mail" />
+                                <TextField fx:id="tfConfirmEmail" layoutX="53.0" layoutY="220.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm e-mail" styleClass="input" />
+                                <Button layoutX="374.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleUpdateEmail" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                                <Label layoutX="53.0" layoutY="358.0" text="Mot de pass actuel" />
+                                <Label layoutX="53.0" layoutY="426.0" text="Nouvelle mot de pass" />
+                                <TextField fx:id="tfNewPassword" layoutX="53.0" layoutY="448.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
+                                <Label layoutX="53.0" layoutY="495.0" text="Confirm mot de pass" />
+                                <TextField fx:id="tfConfirmNewPassword" layoutX="53.0" layoutY="517.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm mot de pass" styleClass="input" />
+                                <Button layoutX="374.0" layoutY="517.0" mnemonicParsing="false" onAction="#handleUpdateUserPassword" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                                <TextField fx:id="tfcurrentPassword" layoutX="53.0" layoutY="381.0" prefHeight="30.0" prefWidth="300.0" promptText="mot e pass actuel" styleClass="input" />
+                            </children>
+                        </AnchorPane>
+                        <AnchorPane layoutX="20.0" layoutY="330.0" prefHeight="284.0" prefWidth="495.0" style="-fx-background-color: fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8;">
+                            <children>
+                                <Label layoutX="45.0" layoutY="22.0" text="Supprimer mon compte">
+                                    <font>
+                                        <Font name="Segoe UI Bold" size="14.0" />
+                                    </font>
+                                </Label>
+                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
+                                    <image>
+                                        <Image url="@../images/iconDeleteAccount.png" />
+                                    </image>
+                                </ImageView>
+                                <Label layoutX="50.0" layoutY="55.0" text="Pour le moment, votre compte est actif. Si vous souhaitez supprimer le compte," />
+                                <Label layoutX="67.0" layoutY="92.0" text=" tapez 'supprime mon compte'." textFill="#464646" />
+                                <Label layoutX="50.0" layoutY="129.0" text="Saisissez l'expression" />
+                                <TextField fx:id="tfExpression" layoutX="50.0" layoutY="151.0" prefHeight="30.0" prefWidth="300.0" promptText="saisissez l'expression" styleClass="input" />
+                                <Button layoutX="371.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleDeleteUserAccount" prefHeight="30.0" prefWidth="74.0" styleClass="btn-delete" text="Supprimer" textFill="WHITE">
+                                    <cursor>
+                                        <Cursor fx:constant="HAND" />
+                                    </cursor>
+                                </Button>
+                        <Label layoutX="52.0" layoutY="194.0" text="Mot de pass actuel" />
+                        <TextField fx:id="tfPasswordCurrent" layoutX="52.0" layoutY="216.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
+                        <Line endX="200.0" layoutX="-180.0" layoutY="245.0" startX="200.0" startY="-189.0" stroke="#00000039" />
+                            </children>
+                        </AnchorPane>
+                  <Label layoutX="63.0" layoutY="65.0" text="Nom complet actuel :" />
+                  <Label fx:id="tUserName" layoutX="80.0" layoutY="102.0" text="ELOUAIZI AYOUB" textFill="#464646" />
+                  <Label layoutX="63.0" layoutY="139.0" text="Nouveau nom" />
+                  <TextField fx:id="tfNewlastName" layoutX="63.0" layoutY="161.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau nom" styleClass="input" />
+                  <Label layoutX="63.0" layoutY="208.0" text="Nouveau prénom" />
+                  <TextField fx:id="tfNewFirstName" layoutX="63.0" layoutY="230.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau prénom" styleClass="input" />
+                  <Button layoutX="384.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleUpdateUserName" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                    </children>
+                </Pane>
+            <Pane fx:id="paneQuizTest5choice" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <AnchorPane prefHeight="46.0" prefWidth="1054.0">
+                     <children>
+                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
+                        <Label layoutX="57.0" layoutY="15.0" onMouseClicked="#handOpenQuizDetails" text="Détails du Quiz">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="257.0" layoutY="15.0" text="Répondre au QCM">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="panelAddNewQui11" layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 9; -fx-background-color: fff;">
+                     <children>
+                        <ImageView fitHeight="38.0" fitWidth="35.0" layoutX="53.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/qcmIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnSuivant" layoutX="59.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleBtnNextQuestionClicked" prefHeight="39.0" prefWidth="117.0" style="-fx-background-color: #1E90FF;" text="Suivant &gt;" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="p5tQuizName" layoutX="99.0" layoutY="23.0" text="Java Quiz">
+                           <font>
+                              <Font name="System Bold" size="35.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="53.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="Question">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tfp5Question" layoutX="57.0" layoutY="130.0" text="How do you insert COMMENTS in Java code?" textFill="#8f8989">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Pane layoutX="56.0" layoutY="231.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response1" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <RadioButton fx:id="p5cm1" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                                 <toggleGroup>
+                                    <ToggleGroup fx:id="responce" />
+                                 </toggleGroup>
+                              </RadioButton>
+                           </children>
+                        </Pane>
+                        <Pane layoutX="56.0" layoutY="279.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response2" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <RadioButton fx:id="p5cm2" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </RadioButton>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="paneQuestion3" layoutX="57.0" layoutY="328.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response3" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <RadioButton fx:id="p5cm3" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </RadioButton>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="paneQuestion4" layoutX="57.0" layoutY="377.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response4" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <RadioButton fx:id="p5cm4" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </RadioButton>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="paneQuestion5" layoutX="57.0" layoutY="426.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response5" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                              <RadioButton fx:id="p5cm5" layoutX="15.0" layoutY="10.0" mnemonicParsing="false" textFill="#1db9f2" toggleGroup="$responce">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </RadioButton>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="paneQuestionHider" layoutX="43.0" layoutY="327.0" prefHeight="150.0" prefWidth="919.0" style="-fx-background-color: #ffffff;" />
+                        <Label fx:id="p5QuestionIndex" layoutX="169.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="03">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="202.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="sur">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="p2TotalNumberQuestions" layoutX="243.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="30">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="281.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text=":">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="316.0" layoutY="88.0" onMouseClicked="#handOpenQuizDetails" text="La note :">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tcurrentQuestionMark" layoutX="385.0" layoutY="88.0" onMouseClicked="#handOpenQuizDetails" text="02">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ttotalNotes" layoutX="410.0" layoutY="88.0" onMouseClicked="#handOpenQuizDetails" text="20">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="403.0" layoutY="88.0" onMouseClicked="#handOpenQuizDetails" text="/">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Line endX="74.70703125" layoutX="336.0" layoutY="44.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
+               </children>
+            </Pane>
             <Pane fx:id="panelStartQuizTest" layoutX="-1.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
                <children>
                   <AnchorPane prefHeight="46.0" prefWidth="1054.0">
@@ -173,8 +501,8 @@
                   </AnchorPane>
                   <AnchorPane fx:id="panelAddNewQui1" layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
                      <children>
-                        <Line endX="285.70703125" layoutX="367.0" layoutY="264.0" startX="-10.29296875" stroke="#1699eb" />
-                        <Label ellipsisString="" layoutX="389.0" layoutY="228.0" prefHeight="21.0" prefWidth="232.0" text="Ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                        <Line endX="285.70703125" layoutX="387.0" layoutY="275.0" startX="-36.29296875" stroke="#1699eb" />
+                        <Label ellipsisString="" layoutX="368.0" layoutY="228.0" prefHeight="21.0" prefWidth="274.0" text="Le QCM sera accessible à la date prévue." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -184,11 +512,16 @@
                               <Image url="@../images/qcmIcon.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="changePassBtn11" layoutX="468.0" layoutY="292.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Ajouter" textFill="WHITE">
+                        <Button layoutX="475.0" layoutY="284.0" mnemonicParsing="false" onAction="#handleStartQcmQuiz" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Rafraîchir" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
+                        <Label fx:id="tquizStartDate" layoutX="447.0" layoutY="249.0" text="06-05-2024 10:00">
+                           <font>
+                              <Font name="Segoe UI Bold" size="14.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
                   <Line endX="74.70703125" layoutX="336.0" layoutY="44.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
@@ -317,12 +650,12 @@
                   </AnchorPane>
                </children>
             </Pane>
-            <Pane fx:id="panelAddNewQuiz" layoutX="-3.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+            <Pane fx:id="panelQuizEnded" layoutX="1.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
                <children>
                   <AnchorPane prefHeight="46.0" prefWidth="1054.0">
                      <children>
                         <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
-                        <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
+                        <Label layoutX="57.0" layoutY="15.0" onMouseClicked="#handOpenQuizDetails" text="Détails du Quiz">
                            <font>
                               <Font name="Segoe UI Bold" size="15.0" />
                            </font>
@@ -334,149 +667,187 @@
                         </Label>
                      </children>
                   </AnchorPane>
-                  <AnchorPane layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
+                  <AnchorPane fx:id="panelAddNewQui12" layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
                      <children>
-                        <ImageView fx:id="backgroundImageQuizView11" fitHeight="524.0" fitWidth="457.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="21.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="22.0">
-                           <image>
-                              <Image url="@../images/splash.png" />
-                           </image>
-                        </ImageView>
-                        <Line endX="285.70703125" layoutX="140.0" layoutY="160.0" startX="-10.29296875" stroke="#1699eb" />
-                        <Label ellipsisString="" layoutX="162.0" layoutY="124.0" prefHeight="21.0" prefWidth="232.0" text="Ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                        <Line endX="366.70703125" layoutX="382.0" layoutY="298.0" startX="-109.29296875" stroke="#1699eb" />
+                        <Label ellipsisString="" layoutX="368.0" layoutY="228.0" prefHeight="21.0" prefWidth="274.0" text="Félicitations ! Vous avez terminé le quiz." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
                            <font>
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="254.0" layoutY="68.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="481.0" layoutY="172.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/qcmIcon.png" />
                            </image>
                         </ImageView>
-                        <Label layoutX="95.0" layoutY="184.0" text="Le mot de pass du qcm">
-                           <font>
-                              <Font name="Segoe UI Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="70.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/SC.png" />
-                           </image>
-                        </ImageView>
-                        <Label layoutX="81.0" layoutY="217.0" text="Enter  mot de pass" />
-                        <TextField fx:id="tfQuizPassword" layoutX="81.0" layoutY="239.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
-                        <Label layoutX="81.0" layoutY="286.0" text="Confirm mot de pass" />
-                        <TextField fx:id="tfConfirmQuizPassword" layoutX="81.0" layoutY="308.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm mot de pass" styleClass="input" />
-                        <Button layoutX="402.0" layoutY="308.0" mnemonicParsing="false" onAction="#handleAddNewQuizOperation" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Ajouter" textFill="WHITE">
+                        <Button layoutX="450.0" layoutY="314.0" mnemonicParsing="false" onAction="#handleShowQuizResults" prefHeight="30.0" prefWidth="111.0" style="-fx-background-color: #1E90FF;" text="voir les résultats" textFill="WHITE">
                            <cursor>
                               <Cursor fx:constant="HAND" />
                            </cursor>
                         </Button>
+                        <Label ellipsisString="" layoutX="301.0" layoutY="263.0" prefHeight="21.0" prefWidth="409.0" text=" 🎉 Bravo ! Prenez un moment pour célébrer vos réalisations. " textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
+                  <Line endX="74.70703125" layoutX="336.0" layoutY="44.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
                </children>
             </Pane>
-                <Pane fx:id="panelShowSetting" layoutX="-1.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: fff;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
-                    <children>
-                        <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="290.0" prefWidth="495.0" style="-fx-background-color: fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8;">
-                            <children>
-                                <Label layoutX="45.0" layoutY="22.0" text="Le nom complet">
-                                    <font>
-                                        <Font name="Segoe UI Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/iconProfile.png" />
-                                    </image>
-                                </ImageView>
-                                <Line endX="189.55322265625" endY="-23.611812591552734" layoutX="-71.0" layoutY="167.0" rotate="90.0" startX="2.353516101837158" startY="-22.156248092651367" stroke="#00000039" />
-                            </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="536.0" layoutY="20.0" prefHeight="595.0" prefWidth="495.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-color: fff; -fx-background-radius: 8;">
-                            <children>
-                                <Label layoutX="45.0" layoutY="322.0" text="Le mot de pass">
-                                    <font>
-                                        <Font name="Segoe UI Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/SC.png" />
-                                    </image>
-                                </ImageView>
-                                <Label layoutX="45.0" layoutY="22.0" text="Sécurité">
-                                    <font>
-                                        <Font name="Segoe UI Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/lock.png" />
-                                    </image>
-                                </ImageView>
-                                <Label layoutX="53.0" layoutY="55.0" text="E-mail actuel:" />
-                                <Label fx:id="tUserEmail" layoutX="70.0" layoutY="92.0" text="testtest@gmail.com" textFill="#464646" />
-                                <Label layoutX="53.0" layoutY="129.0" text="Nouveau E-mail" />
-                                <TextField fx:id="tfNewEmail" layoutX="53.0" layoutY="151.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau e-mail" styleClass="input" />
-                                <Label layoutX="53.0" layoutY="198.0" text="Confirm E-mail" />
-                                <TextField fx:id="tfConfirmEmail" layoutX="53.0" layoutY="220.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm e-mail" styleClass="input" />
-                                <Button layoutX="374.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleUpdateEmail" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
-                                    <cursor>
-                                        <Cursor fx:constant="HAND" />
-                                    </cursor>
-                                </Button>
-                                <Label layoutX="53.0" layoutY="358.0" text="Mot de pass actuel" />
-                                <Label layoutX="53.0" layoutY="426.0" text="Nouvelle mot de pass" />
-                                <TextField fx:id="tfNewPassword" layoutX="53.0" layoutY="448.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
-                                <Label layoutX="53.0" layoutY="495.0" text="Confirm mot de pass" />
-                                <TextField fx:id="tfConfirmNewPassword" layoutX="53.0" layoutY="517.0" prefHeight="30.0" prefWidth="300.0" promptText="confirm mot de pass" styleClass="input" />
-                                <Button layoutX="374.0" layoutY="517.0" mnemonicParsing="false" onAction="#handleUpdateUserPassword" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
-                                    <cursor>
-                                        <Cursor fx:constant="HAND" />
-                                    </cursor>
-                                </Button>
-                                <TextField fx:id="tfcurrentPassword" layoutX="53.0" layoutY="381.0" prefHeight="30.0" prefWidth="300.0" promptText="mot e pass actuel" styleClass="input" />
-                            </children>
-                        </AnchorPane>
-                        <AnchorPane layoutX="20.0" layoutY="330.0" prefHeight="284.0" prefWidth="495.0" style="-fx-background-color: fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8;">
-                            <children>
-                                <Label layoutX="45.0" layoutY="22.0" text="Supprimer mon compte">
-                                    <font>
-                                        <Font name="Segoe UI Bold" size="14.0" />
-                                    </font>
-                                </Label>
-                                <ImageView fitHeight="20.0" fitWidth="20.0" layoutX="20.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
-                                    <image>
-                                        <Image url="@../images/iconDeleteAccount.png" />
-                                    </image>
-                                </ImageView>
-                                <Label layoutX="50.0" layoutY="55.0" text="Pour le moment, votre compte est actif. Si vous souhaitez supprimer le compte," />
-                                <Label layoutX="67.0" layoutY="92.0" text=" tapez 'supprime mon compte'." textFill="#464646" />
-                                <Label layoutX="50.0" layoutY="129.0" text="Saisissez l'expression" />
-                                <TextField fx:id="tfExpression" layoutX="50.0" layoutY="151.0" prefHeight="30.0" prefWidth="300.0" promptText="saisissez l'expression" styleClass="input" />
-                                <Button layoutX="371.0" layoutY="220.0" mnemonicParsing="false" onAction="#handleDeleteUserAccount" prefHeight="30.0" prefWidth="74.0" styleClass="btn-delete" text="Supprimer" textFill="WHITE">
-                                    <cursor>
-                                        <Cursor fx:constant="HAND" />
-                                    </cursor>
-                                </Button>
-                        <Label layoutX="52.0" layoutY="194.0" text="Mot de pass actuel" />
-                        <TextField fx:id="tfPasswordCurrent" layoutX="52.0" layoutY="216.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau mot de pass" styleClass="input" />
-                        <Line endX="200.0" layoutX="-180.0" layoutY="245.0" startX="200.0" startY="-189.0" stroke="#00000039" />
-                            </children>
-                        </AnchorPane>
-                  <Label layoutX="63.0" layoutY="65.0" text="Nom complet actuel :" />
-                  <Label fx:id="tUserName" layoutX="80.0" layoutY="102.0" text="ELOUAIZI AYOUB" textFill="#464646" />
-                  <Label layoutX="63.0" layoutY="139.0" text="Nouveau nom" />
-                  <TextField fx:id="tfNewlastName" layoutX="63.0" layoutY="161.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau nom" styleClass="input" />
-                  <Label layoutX="63.0" layoutY="208.0" text="Nouveau prénom" />
-                  <TextField fx:id="tfNewFirstName" layoutX="63.0" layoutY="230.0" prefHeight="30.0" prefWidth="300.0" promptText="nouveau prénom" styleClass="input" />
-                  <Button layoutX="384.0" layoutY="230.0" mnemonicParsing="false" onAction="#handleUpdateUserName" prefHeight="30.0" prefWidth="74.0" style="-fx-background-color: #1E90FF;" text="Change" textFill="WHITE">
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                    </children>
-                </Pane>
+            <Pane fx:id="paneQuizResults" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <AnchorPane prefHeight="46.0" prefWidth="1054.0">
+                     <children>
+                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="3.2928924560546875" />
+                        <Label layoutX="57.0" layoutY="15.0" text="Résultats du quiz">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="panelAddNewQui111" layoutX="19.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 9; -fx-background-color: fff;">
+                     <children>
+                        <ImageView fitHeight="38.0" fitWidth="35.0" layoutX="53.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/qcmIcon.png" />
+                           </image>
+                        </ImageView>
+                        <Button fx:id="btnSuivant1" layoutX="59.0" layoutY="492.0" mnemonicParsing="false" onAction="#handleBtnNextQuestionFoResultsClicked" prefHeight="39.0" prefWidth="117.0" style="-fx-background-color: #1E90FF;" text="Suivant &gt;" textFill="WHITE">
+                           <cursor>
+                              <Cursor fx:constant="HAND" />
+                           </cursor>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Button>
+                        <Label fx:id="p5tQuizName1" layoutX="99.0" layoutY="23.0" text="Java Quiz">
+                           <font>
+                              <Font name="System Bold" size="35.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="53.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="Question">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tfp5Question1" layoutX="57.0" layoutY="130.0" text="How do you insert COMMENTS in Java code?" textFill="#8f8989">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Pane fx:id="paneQuestion11" layoutX="56.0" layoutY="231.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response11" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="paneQuestion21" layoutX="56.0" layoutY="279.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response21" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="paneQuestion31" layoutX="57.0" layoutY="328.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response31" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="paneQuestion41" layoutX="57.0" layoutY="377.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response41" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="paneQuestion51" layoutX="57.0" layoutY="426.0" prefHeight="46.0" prefWidth="898.0" style="-fx-background-color: #dadada;">
+                           <children>
+                              <Label fx:id="tfp5Response51" layoutX="51.0" layoutY="10.0" text="How do you insert COMMENTS in Java code?">
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </Pane>
+                        <Pane fx:id="paneQuestionHider1" layoutX="43.0" layoutY="327.0" prefHeight="150.0" prefWidth="919.0" style="-fx-background-color: #ffffff;" />
+                        <Label fx:id="p5QuestionIndex1" layoutX="169.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="03">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="202.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="sur">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="p2TotalNumberQuestions1" layoutX="243.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text="30">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="281.0" layoutY="81.0" onMouseClicked="#handOpenQuizDetails" text=":">
+                           <font>
+                              <Font name="Segoe UI" size="28.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="316.0" layoutY="88.0" onMouseClicked="#handOpenQuizDetails" text="La note :">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tcurrentQuestionMark1" layoutX="381.0" layoutY="88.0" onMouseClicked="#handOpenQuizDetails" text="02">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ttotalNotes1" layoutX="406.0" layoutY="88.0" onMouseClicked="#handOpenQuizDetails" text="20">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="399.0" layoutY="88.0" onMouseClicked="#handOpenQuizDetails" text="/">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="456.0" layoutY="89.0" onMouseClicked="#handOpenQuizDetails" text="Votre note :">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="tQuizStudentMark" layoutX="542.0" layoutY="89.0" onMouseClicked="#handOpenQuizDetails" text="02" textFill="#2e77e4">
+                           <font>
+                              <Font name="Segoe UI Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ttotalNotes11" layoutX="569.0" layoutY="89.0" onMouseClicked="#handOpenQuizDetails" text="20">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="562.0" layoutY="89.0" onMouseClicked="#handOpenQuizDetails" text="/">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <Line endX="74.70703125" layoutX="125.0" layoutY="44.0" startX="-100.0" stroke="#15b1d0" strokeWidth="7.0" />
+               </children>
+            </Pane>
             <Pane fx:id="panelNoQuizSelected" layoutX="-2.0" layoutY="-1.0" prefHeight="641.0" prefWidth="1054.0" style="-fx-background-color: #ffffff;">
                <children>
                   <AnchorPane prefHeight="46.0" prefWidth="1054.0">

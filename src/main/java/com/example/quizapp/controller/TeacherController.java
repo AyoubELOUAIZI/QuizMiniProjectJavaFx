@@ -416,9 +416,18 @@ public class TeacherController {
             showWarning("Veuillez sélectionner une minute valide (0-59).");
             return;
         }
+        // Get the selected value from the DatePicker
+        LocalDate selectedDate = quizDateField.getValue();
+
+        // Check if a date is selected
+        if (selectedDate == null) {
+            // Handle the case where no date is selected
+            showWarning("La date est invalide !!");
+            return;
+        }
 
         // Combine date and time into LocalDateTime
-        LocalDateTime combinedDateTime = LocalDateTime.of(quizDateField.getValue(), LocalTime.of(selectedHour, selectedMinute));
+        LocalDateTime combinedDateTime = LocalDateTime.of(selectedDate, LocalTime.of(selectedHour, selectedMinute));
 
         // Convert LocalDateTime to Timestamp (java.sql.Timestamp)
         Timestamp timestamp = Timestamp.valueOf(combinedDateTime);
