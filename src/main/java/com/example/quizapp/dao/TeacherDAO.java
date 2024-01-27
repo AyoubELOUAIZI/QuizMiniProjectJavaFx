@@ -1,15 +1,14 @@
 // TeacherDAO.java
 package com.example.quizapp.dao;
 
+import com.example.quizapp.model.Quiz;
 import com.example.quizapp.model.Teacher;
 import com.example.quizapp.database.DatabaseConnector;
 import com.example.quizapp.model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class TeacherDAO extends UserDAO {
@@ -93,5 +92,33 @@ public class TeacherDAO extends UserDAO {
         User user = getUserById(userId);
 
         return new Teacher(userId, user.getFirstname(), user.getLastname(), user.getEmail(),user.getSexe(), user.getPassword());
+    }
+    public List<Quiz> getQuizzesForTeacher(int userId) {
+        List<Quiz> quizzes = new ArrayList<>();
+
+        String query = "SELECT * FROM Quiz WHERE teacherId=?";
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement preparedStatement
+                     = connection.prepareStatement(query)) {
+            preparedStatement.setInt(1, userId);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int quizId = resultSet.getInt("quizId");
+                    int fetchedTeacherId = resultSet.getInt("teacherId");
+                    Timestamp updatedAt = resultSet.getTimestamp("updatedAt");
+                    Timestamp startAt = resultSet.getTimestamp("startAt");
+                    int duration = resultSet.getInt("duration");
+                    String quizName = resultSet.getString("quizName");
+                    String passwordQuiz = resultSet.getString("passwordQuiz");
+
+                    Quiz quiz = new Quiz(quizId, fetchedTeacherId, quizName, null, null, updatedAt, startAt, duration, passwordQuiz);
+                        quizzes.add(quiz);
+
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return quizzes;
     }
 }

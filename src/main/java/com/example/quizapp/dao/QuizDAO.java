@@ -67,7 +67,7 @@ public class QuizDAO {
             preparedStatement.executeUpdate();
 
             // Update questions for the quiz
-            updateQuestionsForQuiz(updatedQuiz);
+           // updateQuestionsForQuiz(updatedQuiz);
         } catch (SQLException e) {
             e.printStackTrace();
         }

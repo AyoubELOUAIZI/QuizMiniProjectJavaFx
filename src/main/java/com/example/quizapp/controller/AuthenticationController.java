@@ -164,7 +164,7 @@ public class AuthenticationController {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/fxml/TeacherScreen.fxml"));
             Parent root = loader.load();
-            Scene scene = new Scene(root);
+            Scene scene = new Scene(root,900,700);
             Stage stage = new Stage();
             stage.setScene(scene);
             stage.show();

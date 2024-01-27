@@ -336,7 +336,7 @@ public class TeacherController {
 
 
     public List<Quiz> retrieveTeacherQuizzes(int teacherId) {
-        return teacherDAO.getQuizzesForUser(teacherId);
+        return  teacherDAO.getQuizzesForTeacher(teacherId);
     }
 
     private Quiz findQuizByName(String quizName) {
@@ -733,7 +733,7 @@ public class TeacherController {
 
 
         // Validate quiz name
-        if (Objects.equals(quizName, "")) {
+        if (quizName.isEmpty()) {
             showWarning("Le nom du quiz ne peut pas être vide.");
             return;
         }
@@ -792,6 +792,7 @@ public class TeacherController {
         Quiz quiz = new Quiz(idQuiz, currentUser.getUserId(), quizName, null, currentDate, timestamp, duration, quizPassword);
 
         // Assuming QuizDAO and loadTeacherQuizzes() methods handle exceptions appropriately
+
         QuizDAO quizDAO = new QuizDAO();
         quizDAO.updateQuiz(quiz);
         loadTeacherQuizzes();
