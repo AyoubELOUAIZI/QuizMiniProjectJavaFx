@@ -2,20 +2,15 @@
 package com.example.quizapp.controller;
 
 import com.example.quizapp.UserSession;
-import com.example.quizapp.dao.QuestionDAO;
-import com.example.quizapp.dao.QuizDAO;
-import com.example.quizapp.dao.TeacherDAO;
-import com.example.quizapp.dao.UserDAO;
-import com.example.quizapp.model.Question;
-import com.example.quizapp.model.Quiz;
-import com.example.quizapp.model.Teacher;
-import com.example.quizapp.model.User;
+import com.example.quizapp.dao.*;
+import com.example.quizapp.model.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
+import javafx.print.*;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -48,10 +43,10 @@ public class TeacherController {
     private TeacherDAO teacherDAO;
 
 
-
     public TeacherController() {
         this.teacherDAO = new TeacherDAO();
     }
+
     @FXML
     private Label fullname_toshow;
     @FXML
@@ -94,64 +89,64 @@ public class TeacherController {
     @FXML
     private HBox quizzesHBox;
     @FXML
-      private ListView<String> quizzesListView;
+    private ListView<String> quizzesListView;
     @FXML
     private Pane panelQuizSelected;
     private List<Quiz> teacherQuizzes;
     private User currentUser;
-    private  Quiz selectedQuiz;
+    private Quiz selectedQuiz;
     @FXML
-      private  Pane panelAddNewQuiz;
+    private Pane panelAddNewQuiz;
     @FXML
-       private Pane panelNoQuizSelected;
+    private Pane panelNoQuizSelected;
     @FXML
-     private Label textQuizName;
+    private Label textQuizName;
     @FXML
-      private  Label textQuizPassword;
+    private Label textQuizPassword;
     @FXML
-       private Label textDuration;
+    private Label textDuration;
     @FXML
-     private Label textDate;
+    private Label textDate;
     @FXML
     private TextField quizDurationField;
     @FXML
-    private  DatePicker quizDateField;
+    private DatePicker quizDateField;
     @FXML
-    private  TextField quizPasswordField;
+    private TextField quizPasswordField;
     @FXML
-    private  TextField quizNameField;
+    private TextField quizNameField;
     @FXML
-      private  TextField hourFieldQuiz ;
+    private TextField hourFieldQuiz;
     @FXML
-      private  TextField minuteFieldQuiz;
+    private TextField minuteFieldQuiz;
     @FXML
-     private  Pane viewUpdateQuiz;
+    private Pane viewUpdateQuiz;
     @FXML
-     private  TextField inputQuestion ;
+    private TextField inputQuestion;
     @FXML
-    private    TextField inputChoiceA;
+    private TextField inputChoiceA;
     @FXML
-    private    TextField inputChoiceB;
+    private TextField inputChoiceB;
     @FXML
-    private    TextField inputChoiceC;
+    private TextField inputChoiceC;
     @FXML
-    private    TextField inputChoiceD;
+    private TextField inputChoiceD;
     @FXML
-    private    TextField inputChoiceE;
+    private TextField inputChoiceE;
     @FXML
-      private   RadioButton radioA;
+    private RadioButton radioA;
     @FXML
-    private   RadioButton radioB;
+    private RadioButton radioB;
     @FXML
-    private   RadioButton radioC;
+    private RadioButton radioC;
     @FXML
-    private   RadioButton radioD;
+    private RadioButton radioD;
     @FXML
-    private   RadioButton radioE;
+    private RadioButton radioE;
     @FXML
     private TextField inputNote;
     @FXML
-     private  ToggleGroup rightChoice;
+    private ToggleGroup rightChoice;
 
 
     @FXML
@@ -164,9 +159,9 @@ public class TeacherController {
     private TableColumn<Question, Integer> markColumn;
     @FXML
     private TableColumn<Question, Integer> idColumn;
-     private Question selectedQuestionGlobal ;
-     @FXML
-       private TextField quizNameInput;
+    private Question selectedQuestionGlobal;
+    @FXML
+    private TextField quizNameInput;
     @FXML
     private TextField quizPasswordInput;
     @FXML
@@ -177,9 +172,33 @@ public class TeacherController {
     private TextField quizHourInput;
     @FXML
     private TextField quizMinuteInput;
+    /////////////////
+    @FXML
+    private Pane panelQuizResult;
+    @FXML
+    private Label quizDateLabel;
+    @FXML
+    private Text nameProfResultat;
+    @FXML
+    private Text nameQuizResultat;
 
+    private QuizDAO quizDAO = new QuizDAO();
+    /////////////////////////////////////////
+    @FXML
+    private TableView<Result> tableViewResult;
 
+    @FXML
+    private TableColumn<Result, String> columnNom;
 
+    @FXML
+    private TableColumn<Result, String> columnPrenom;
+    @FXML
+    private TableColumn<Result, Double> columnNote;
+    //////////////////////////////////////
+    @FXML
+    private Button printBtn;
+    @FXML
+    private Pane panelResultToPrint;
 
     private ObservableList<Question> questionsList = FXCollections.observableArrayList();
 
@@ -206,7 +225,7 @@ public class TeacherController {
             Stage stage = (Stage) teacher_logout.getScene().getWindow(); // replace 'someButton' with any @FXML injected control in your controller
 
             // Set the scene to the stage
-            stage.setScene(new Scene(root,900,700));
+            stage.setScene(new Scene(root, 900, 700));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
@@ -228,8 +247,9 @@ public class TeacherController {
     // Initialize method if needed
     @FXML
     public void initialize() {
+        printBtn.setOnAction(event -> printPanel(panelResultToPrint));
         // Initialization logic here, like setting user details
-         currentUser = UserSession.getCurrentUser();
+        currentUser = UserSession.getCurrentUser();
 
         if (currentUser != null) {
             //load the Teacher Quizzes
@@ -238,13 +258,13 @@ public class TeacherController {
             email_toshow.setText(currentUser.getEmail());
             // ... Set other user details
 
-                if ("female".equals(currentUser.getSexe())) {
-                    // Set the profile image to the female version
-                    profileImageView.setImage(new Image(getClass().getResourceAsStream("/com/example/quizapp/images/teacherFemale.png")));
-                } else {
-                    // Set the profile image to the male version
-                    profileImageView.setImage(new Image(getClass().getResourceAsStream("/com/example/quizapp/images/teacherMale.png")));
-                }
+            if ("female".equals(currentUser.getSexe())) {
+                // Set the profile image to the female version
+                profileImageView.setImage(new Image(getClass().getResourceAsStream("/com/example/quizapp/images/teacherFemale.png")));
+            } else {
+                // Set the profile image to the male version
+                profileImageView.setImage(new Image(getClass().getResourceAsStream("/com/example/quizapp/images/teacherMale.png")));
+            }
 
             // Listen for selection changes in the quizzesListView
             quizzesListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -265,6 +285,7 @@ public class TeacherController {
         // Display quizzes in the ListView
         displayQuizzesInListView(teacherQuizzes);
     }
+
     private void displayQuizzesInListView(List<Quiz> quizzes) {
         // Clear existing items in the ListView
         quizzesListView.getItems().clear();
@@ -275,7 +296,8 @@ public class TeacherController {
         }
 
     }
-    private void handleSelectedQuizChanged(String  quizName) {
+
+    private void handleSelectedQuizChanged(String quizName) {
         // Retrieve the selected quiz details from the list of studentQuizzes
         selectedQuiz = findQuizByName(quizName);
         // Check if the selectedQuiz is not null (for safety)
@@ -285,6 +307,7 @@ public class TeacherController {
             updateAnchorPaneContent(selectedQuiz);
         }
     }
+
     private void updateAnchorPaneContent(Quiz selectedQuiz) {
         textQuizName.setText(selectedQuiz.getQuizName());
         textQuizPassword.setText(selectedQuiz.getPasswordQuiz());
@@ -299,6 +322,7 @@ public class TeacherController {
     public List<Quiz> retrieveTeacherQuizzes(int teacherId) {
         return teacherDAO.getQuizzesForUser(teacherId);
     }
+
     private Quiz findQuizByName(String quizName) {
         for (Quiz quiz : teacherQuizzes) {
             if (quiz.getQuizName().equals(quizName)) {
@@ -307,18 +331,18 @@ public class TeacherController {
         }
         return null; // Quiz not found, handle this case as needed
     }
+
     public Teacher retrieveSelectedQuizTeacher(int teacherId) {
         return teacherDAO.getQuizTeacherByTeacherId(teacherId);
     }
 
 
-        public void handleAddNewQuiz(ActionEvent actionEvent) {
-            panelAddNewQuiz.toFront();
-        }
+    public void handleAddNewQuiz(ActionEvent actionEvent) {
+        panelAddNewQuiz.toFront();
+    }
 
 
-
-    public void handleDeleteQuiz(ActionEvent actionEvent) {
+    public void handleDeleteQuiz() {
         // Create a confirmation dialog with OK and Cancel buttons
         Alert alert = new Alert(Alert.AlertType.WARNING);
         alert.setTitle("Dialog de Confirmation");
@@ -338,33 +362,34 @@ public class TeacherController {
                 // teacherDAO.deleteStudentQuiz(currentUser.getUserId(), selectedQuiz.getQuizId());
                 quizDAO.deleteQuiz(selectedQuiz.getQuizId());
                 // Retrieve the Quizzes again to refresh the data
-                loadTeacherQuizzes();
-
                 // Show the "No Quiz Selected" panel
                 panelNoQuizSelected.toFront();
+                loadTeacherQuizzes();
+
             }
             // If the user clicked Cancel or closed the dialog, do nothing
         });
     }
 
 
-   private void showWarning(String message) {
-       Alert alert = new Alert(Alert.AlertType.WARNING);
-       alert.setTitle("Warning");
-       alert.setHeaderText(null);
-       alert.setContentText(message);
+    private void showWarning(String message) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
 
-       ButtonType okButton = new ButtonType("OK");
-       alert.getButtonTypes().setAll(okButton);
+        ButtonType okButton = new ButtonType("OK");
+        alert.getButtonTypes().setAll(okButton);
 
-       alert.showAndWait();
-   }
+        alert.showAndWait();
+    }
+
     public void saveQuizTeacher() {
         String quizName = quizNameField.getText().trim();
         String quizPassword = quizPasswordField.getText().trim();
         String durationText = quizDurationField.getText().trim();
-        String   hourQuiz=hourFieldQuiz.getText();
-        String   minuteQuiz=minuteFieldQuiz.getText();
+        String hourQuiz = hourFieldQuiz.getText();
+        String minuteQuiz = minuteFieldQuiz.getText();
 
 
         // Validate quiz name
@@ -392,7 +417,7 @@ public class TeacherController {
             showWarning("Format de durée invalide. Veuillez entrer un nombre valide.");
             return;
         }
-           int selectedHour,selectedMinute;
+        int selectedHour, selectedMinute;
         try {
             selectedHour = Integer.parseInt(hourQuiz);
         } catch (NumberFormatException e) {
@@ -436,8 +461,9 @@ public class TeacherController {
         Quiz quiz = new Quiz(0, currentUser.getUserId(), quizName, null, null, timestamp, duration, quizPassword);
 
         // Save the quiz
-        QuizDAO quizDAO = new QuizDAO();
+
         quizDAO.createQuiz(quiz);
+        loadTeacherQuizzes();
 
         // Show success message
         Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
@@ -450,21 +476,21 @@ public class TeacherController {
 
         successAlert.showAndWait();
 
-        // Reload quizzes and update UI
-        loadTeacherQuizzes();
+        // and update UI
         panelNoQuizSelected.toFront();
     }
-    public void cancelQuizAdding(){
+
+    public void cancelQuizAdding() {
         panelNoQuizSelected.toFront();
     }
 
     public void displayQuestions(int quizId) {
-        tableViewQuestions.getSelectionModel().setSelectionMode(SelectionMode.SINGLE); // For single selection
 
         // Assume you have a method to retrieve questions, replace it with your logic
         QuestionDAO questionDAO = new QuestionDAO();
         List<Question> questionss = questionDAO.retrieveSelectedQuizQuestions(quizId);
 
+        tableViewQuestions.getSelectionModel().setSelectionMode(SelectionMode.SINGLE); // For single selection
 // Initialize the columns
         idColumn.setCellValueFactory(new PropertyValueFactory<>("questionId"));
         questionColumn.setCellValueFactory(new PropertyValueFactory<>("text"));
@@ -478,115 +504,56 @@ public class TeacherController {
 
         // Set items in the TableView
         tableViewQuestions.setItems(questions);
-   }
-   public void  updateQcmLabelClicked(){
-       viewUpdateQuiz.toFront();
-       displayQuestions(selectedQuiz.getQuizId());
-       fillQuizInfoInputs();
+    }
 
-       tableViewQuestions.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
-           if (newSelection != null) {
-               Question selectedQuestion = tableViewQuestions.getSelectionModel().getSelectedItem();
-               System.out.println("Selected Question: " + selectedQuestion.getIdQuestion());
-               // You can now use selectedQuestion object to get details about the selected question
-               fillInputsQuestion(selectedQuestion);
-               selectedQuestionGlobal = selectedQuestion;
-           }
-       });
+    public void updateQcmLabelClicked() {
+        viewUpdateQuiz.toFront();
+        fillQuizInfoInputs();
+        displayQuestions(selectedQuiz.getQuizId());
+        if (tableViewQuestions != null) {
+            tableViewQuestions.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
+                if (newSelection != null) {
+                    Question selectedQuestion = tableViewQuestions.getSelectionModel().getSelectedItem();
+                    //You can now use selectedQuestion object to get details about the selected question
+                    fillInputsQuestion(selectedQuestion);
+                    selectedQuestionGlobal = selectedQuestion;
+                }
+            });
+        }
+
 
     }
 
     private void fillInputsQuestion(Question question) {
-         inputQuestion.setText(question.getText());
-         inputChoiceA.setText(question.getFirstChoice());
-         inputChoiceB.setText(question.getSecondChoice());
-         inputChoiceC.setText(question.getThirdChoice());
-         inputChoiceD.setText(question.getFourthChoice());
-         inputChoiceE.setText(question.getFifthChoice());
-         inputNote.setText(String.valueOf(question.getQuestionMarkV()));
-         switch (question.getCorrectChoice()){
-             case "1": radioA.setSelected(true); break;
-             case "2": radioB.setSelected(true); break;
-             case "3": radioC.setSelected(true); break;
-             case "4": radioD.setSelected(true); break;
-             case "5": radioE.setSelected(true); break;
-             default: showWarning("tous les choix incorrect");
-         }
-
-    }
-
-
- public void AddNewQuestionToQuiz() {
-     int quizId = selectedQuiz != null ? selectedQuiz.getQuizId() : -1; // Ensure selectedQuiz is not null
-     String quest = inputQuestion.getText();
-     String A = inputChoiceA.getText();
-     String B = inputChoiceB.getText();
-     String C = inputChoiceC.getText();
-     String D = inputChoiceD.getText();
-     String E = inputChoiceE.getText();
-     String NStr = inputNote.getText();
-     int N;
-     // Check if the strings are not empty
-     if (quest.isEmpty() || A.isEmpty() || B.isEmpty() ) {
-         showWarning("Veuillez remplir la question et minimum 2 choix .");
-         return; // Exit the method to prevent further processing
-     }
-
-     try {
-         N = Integer.parseInt(NStr);
-     } catch (NumberFormatException e) {
-         showWarning("La note doit être un nombre entier.");
-         return; // Exit the method if the note is not a valid integer
-     }
-     // Ensure a correct answer is selected
-     if (rightChoice.getSelectedToggle() == null) {
-         showWarning("Veuillez choisir le choix correct.");
-         return;
-     }
-
-     RadioButton selectedRadioButton = (RadioButton) rightChoice.getSelectedToggle();
-     String correctAnswer = getCorrectAnswer(selectedRadioButton);
-
-
-     // Now create the Question object and persist it
-     Question question = new Question(0, quizId, quest, null, null, null, A, B, C, D, E, N, correctAnswer);
-     QuestionDAO questionDAO = new QuestionDAO();
-     questionDAO.createQuestion(question);
-     // Show success message
-     Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-     successAlert.setTitle("Succès");
-     successAlert.setHeaderText(null);
-     successAlert.setContentText("Question ajouté avec succès.");
-     ButtonType okButton = new ButtonType("OK");
-     successAlert.getButtonTypes().setAll(okButton);
-
-     successAlert.showAndWait();
-
-     // Update the UI or perform any other necessary actions
-     displayQuestions(selectedQuiz.getQuizId());
- }
-
-    private String getCorrectAnswer(RadioButton selectedRadioButton) {
-        switch (selectedRadioButton.getId()) {
-            case "radioA": return "1";
-            case "radioB": return "2";
-            case "radioC": return "3";
-            case "radioD": return "4";
-            case "radioE": return "5";
-            default: return null; // Consider handling this case
+        inputQuestion.setText(question.getText());
+        inputChoiceA.setText(question.getFirstChoice());
+        inputChoiceB.setText(question.getSecondChoice());
+        inputChoiceC.setText(question.getThirdChoice());
+        inputChoiceD.setText(question.getFourthChoice());
+        inputChoiceE.setText(question.getFifthChoice());
+        inputNote.setText(String.valueOf(question.getQuestionMarkV()));
+        switch (question.getCorrectChoice()) {
+            case "1":
+                radioA.setSelected(true);
+                break;
+            case "2":
+                radioB.setSelected(true);
+                break;
+            case "3":
+                radioC.setSelected(true);
+                break;
+            case "4":
+                radioD.setSelected(true);
+                break;
+            case "5":
+                radioE.setSelected(true);
+                break;
         }
-    }
-    public void deleteQuestion(){
-     if(selectedQuestionGlobal==null){
-           showWarning("selectioner la question à supprimé");
-     }else{
-         QuestionDAO questionDAO = new QuestionDAO();
-         questionDAO.deleteQuestion(selectedQuestionGlobal.getQuestionId());
-         displayQuestions(selectedQuiz.getQuizId());
-     }
 
     }
-    public void updateQuestion(){
+
+
+    public void AddNewQuestionToQuiz() {
         int quizId = selectedQuiz != null ? selectedQuiz.getQuizId() : -1; // Ensure selectedQuiz is not null
         String quest = inputQuestion.getText();
         String A = inputChoiceA.getText();
@@ -596,13 +563,91 @@ public class TeacherController {
         String E = inputChoiceE.getText();
         String NStr = inputNote.getText();
         int N;
-        if (selectedQuestionGlobal==null) {
+        // Check if the strings are not empty
+        if (quest.isEmpty() || A.isEmpty() || B.isEmpty()) {
+            showWarning("Veuillez remplir la question et minimum 2 choix .");
+            return; // Exit the method to prevent further processing
+        }
+
+        try {
+            N = Integer.parseInt(NStr);
+        } catch (NumberFormatException e) {
+            showWarning("La note doit être un nombre entier.");
+            return; // Exit the method if the note is not a valid integer
+        }
+        // Ensure a correct answer is selected
+        if (rightChoice.getSelectedToggle() == null) {
+            showWarning("Veuillez choisir le choix correct.");
+            return;
+        }
+
+        RadioButton selectedRadioButton = (RadioButton) rightChoice.getSelectedToggle();
+        String correctAnswer = getCorrectAnswer(selectedRadioButton);
+
+
+        // Now create the Question object and persist it
+        Question question = new Question(0, quizId, quest, null, null, null, A, B, C, D, E, N, correctAnswer);
+        QuestionDAO questionDAO = new QuestionDAO();
+        questionDAO.createQuestion(question);
+        // Show success message
+        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+        successAlert.setTitle("Succès");
+        successAlert.setHeaderText(null);
+        successAlert.setContentText("Question ajouté avec succès.");
+        ButtonType okButton = new ButtonType("OK");
+        successAlert.getButtonTypes().setAll(okButton);
+
+        successAlert.showAndWait();
+
+        // Update the UI or perform any other necessary actions
+        displayQuestions(selectedQuiz.getQuizId());
+    }
+
+    private String getCorrectAnswer(RadioButton selectedRadioButton) {
+        switch (selectedRadioButton.getId()) {
+            case "radioA":
+                return "1";
+            case "radioB":
+                return "2";
+            case "radioC":
+                return "3";
+            case "radioD":
+                return "4";
+            case "radioE":
+                return "5";
+            default:
+                return null; // Consider handling this case
+        }
+    }
+
+    public void deleteQuestion() {
+        if (selectedQuestionGlobal == null) {
+            showWarning("selectioner la question à supprimé");
+        } else {
+            QuestionDAO questionDAO = new QuestionDAO();
+            questionDAO.deleteQuestion(selectedQuestionGlobal.getQuestionId());
+            displayQuestions(selectedQuiz.getQuizId());
+        }
+
+    }
+
+    public void updateQuestion() {
+        int quizId = selectedQuiz != null ? selectedQuiz.getQuizId() : -1; // Ensure selectedQuiz is not null
+        String quest = inputQuestion.getText();
+        String A = inputChoiceA.getText();
+        String B = inputChoiceB.getText();
+        String C = inputChoiceC.getText();
+        String D = inputChoiceD.getText();
+        String E = inputChoiceE.getText();
+        String NStr = inputNote.getText();
+        int N;
+        if (selectedQuestionGlobal == null) {
             showWarning("selectioner une question à modifier");
             return;
 
         }
         // Check if the strings are not empty
-        if (quest.isEmpty() || A.isEmpty() || B.isEmpty() ) {
+        if (quest.isEmpty() || A.isEmpty() || B.isEmpty()) {
             showWarning("Veuillez remplir la question et minimum 2 choix .");
             return; // Exit the method to prevent further processing
         }
@@ -622,126 +667,210 @@ public class TeacherController {
         String correctAnswer = getCorrectAnswer(selectedRadioButton);
         Question question = new Question(selectedQuestionGlobal.getIdQuestion(), quizId, quest, null, null, null, A, B, C, D, E, N, correctAnswer);
         QuestionDAO questionDAO = new QuestionDAO();
-          boolean  modified = questionDAO.updateQuestion(question);
-          if(modified){
-              // Show success message
-              Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-              successAlert.setTitle("Succès");
-              successAlert.setHeaderText(null);
-              successAlert.setContentText("Question modifier avec succès.");
-              ButtonType okButton = new ButtonType("OK");
-              successAlert.getButtonTypes().setAll(okButton);
-              successAlert.showAndWait();
+        boolean modified = questionDAO.updateQuestion(question);
+        if (modified) {
+            // Show success message
+            Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+            successAlert.setTitle("Succès");
+            successAlert.setHeaderText(null);
+            successAlert.setContentText("Question modifier avec succès.");
+            ButtonType okButton = new ButtonType("OK");
+            successAlert.getButtonTypes().setAll(okButton);
+            successAlert.showAndWait();
 
-              // Update the UI or perform any other necessary actions
-              displayQuestions(selectedQuiz.getQuizId());
-          }else{
-              showWarning("on ne peut pas la modifier");
-          }
+            // Update the UI or perform any other necessary actions
+            displayQuestions(selectedQuiz.getQuizId());
+        } else {
+            showWarning("on ne peut pas la modifier");
+        }
 
 
     }
 
- public void fillQuizInfoInputs(){
-     quizNameInput.setText(selectedQuiz.getQuizName());
-     quizPasswordInput.setText(selectedQuiz.getPasswordQuiz());
-     quizDurationInput.setText(String.valueOf(selectedQuiz.getDuration()));
-     Date date = selectedQuiz.getStartAt();
-     // Create a Calendar instance and set it to the given Date
-     Calendar calendar = Calendar.getInstance();
-     calendar.setTime(date);
-     // Extract the parts
-    /* int year = calendar.get(Calendar.YEAR);
-     int month = calendar.get(Calendar.MONTH) + 1; // Month is zero-based, so add 1
-     int day = calendar.get(Calendar.DAY_OF_MONTH);*/
-     int hour = calendar.get(Calendar.HOUR_OF_DAY);
-     int minute = calendar.get(Calendar.MINUTE);
-     // Convert Date to LocalDate
-     LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
-     quizDateInput.setValue(localDate);
-     quizHourInput.setText(String.valueOf(hour));
-     quizMinuteInput.setText(String.valueOf(minute));
-     loadTeacherQuizzes();
-
- }
- public  void updateQuizInfo(){
-     int idQuiz = selectedQuiz.getQuizId();
-     String quizName = quizNameInput.getText();
-     String quizPassword = quizPasswordInput.getText();
-     String hour = quizHourInput.getText();
-     String minute = quizMinuteInput.getText();
-     String durationText = quizDurationInput.getText().trim();
+    public void fillQuizInfoInputs() {
+        quizNameInput.setText(selectedQuiz.getQuizName());
+        quizPasswordInput.setText(selectedQuiz.getPasswordQuiz());
+        quizDurationInput.setText(String.valueOf(selectedQuiz.getDuration()));
+        Date date = selectedQuiz.getStartAt();
+        // Create a Calendar instance and set it to the given Date
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        // Extract the parts
+        int hour = calendar.get(Calendar.HOUR_OF_DAY);
+        int minute = calendar.get(Calendar.MINUTE);
+        // Convert Date to LocalDate
+        LocalDate localDate = date.toInstant().atZone(ZoneId.systemDefault()).toLocalDate();
+        quizDateInput.setValue(localDate);
+        quizHourInput.setText(String.valueOf(hour));
+        quizMinuteInput.setText(String.valueOf(minute));
 
 
-
-     // Validate quiz name
-     if (Objects.equals(quizName, "")) {
-         showWarning("Le nom du quiz ne peut pas être vide.");
-         return;
-     }
-
-     // Validate password
-     if (quizPassword.equals("")) {
-         showWarning("Le mot de passe ne peut pas être vide.");
-         return;
-     }
-
-     // Validate duration
-     if (durationText.isEmpty()) {
-         showWarning("La durée ne peut pas être vide.");
-         return;
-     }
-
-     int duration;
-     try {
-         duration = Integer.parseInt(durationText);
-     } catch (NumberFormatException e) {
-         showWarning("Format de durée invalide. Veuillez entrer un nombre valide.");
-         return;
-     }
-     int selectedHour,selectedMinute;
-     try {
-         selectedHour = Integer.parseInt(hour);
-     } catch (NumberFormatException e) {
-         showWarning("Format d'heure invalide! Veuillez entrer un nombre valide.");
-         return;
-     }
-     try {
-         selectedMinute = Integer.parseInt(minute);
-     } catch (NumberFormatException e) {
-         showWarning("Format de minute invalide ! Veuillez entrer un nombre valide.");
-         return;
-     }
-     // Validate selected hour
-     if (selectedHour < 1 || selectedHour > 23 ) {
-         showWarning("Veuillez sélectionner une heure valide (1-23).");
-         return;
-     }
-
-     // Validate selected minute
-     if (selectedMinute < 0 || selectedMinute > 59) {
-         showWarning("Veuillez sélectionner une minute valide (0-59).");
-         return;
-     }
-
-     // Combine date and time into LocalDateTime
-     LocalDateTime combinedDateTime = LocalDateTime.of(quizDateInput.getValue(), LocalTime.of(selectedHour, selectedMinute));
-
-     // Convert LocalDateTime to Timestamp (java.sql.Timestamp)
-     Timestamp timestamp = Timestamp.valueOf(combinedDateTime);
-     Date currentDate = new Date();
-
-     Quiz quiz = new Quiz(idQuiz, currentUser.getUserId(), quizName, null, currentDate, timestamp, duration, quizPassword);
-
-     // Assuming QuizDAO and loadTeacherQuizzes() methods handle exceptions appropriately
-     QuizDAO quizDAO = new QuizDAO();
-     quizDAO.updateQuiz(quiz);
-     loadTeacherQuizzes();
-
- }
-
-    public  void PanelQuizSelectedTofront(){
-      panelQuizSelected.toFront();
     }
 
+    public void updateQuizInfo() {
+        int idQuiz = selectedQuiz.getQuizId();
+        String quizName = quizNameInput.getText();
+        String quizPassword = quizPasswordInput.getText();
+        String hour = quizHourInput.getText();
+        String minute = quizMinuteInput.getText();
+        String durationText = quizDurationInput.getText().trim();
+
+
+        // Validate quiz name
+        if (Objects.equals(quizName, "")) {
+            showWarning("Le nom du quiz ne peut pas être vide.");
+            return;
+        }
+
+        // Validate password
+        if (quizPassword.equals("")) {
+            showWarning("Le mot de passe ne peut pas être vide.");
+            return;
+        }
+
+        // Validate duration
+        if (durationText.isEmpty()) {
+            showWarning("La durée ne peut pas être vide.");
+            return;
+        }
+
+        int duration;
+        try {
+            duration = Integer.parseInt(durationText);
+        } catch (NumberFormatException e) {
+            showWarning("Format de durée invalide. Veuillez entrer un nombre valide.");
+            return;
+        }
+        int selectedHour, selectedMinute;
+        try {
+            selectedHour = Integer.parseInt(hour);
+        } catch (NumberFormatException e) {
+            showWarning("Format d'heure invalide! Veuillez entrer un nombre valide.");
+            return;
+        }
+        try {
+            selectedMinute = Integer.parseInt(minute);
+        } catch (NumberFormatException e) {
+            showWarning("Format de minute invalide ! Veuillez entrer un nombre valide.");
+            return;
+        }
+        // Validate selected hour
+        if (selectedHour < 1 || selectedHour > 23) {
+            showWarning("Veuillez sélectionner une heure valide (1-23).");
+            return;
+        }
+
+        // Validate selected minute
+        if (selectedMinute < 0 || selectedMinute > 59) {
+            showWarning("Veuillez sélectionner une minute valide (0-59).");
+            return;
+        }
+
+        // Combine date and time into LocalDateTime
+        LocalDateTime combinedDateTime = LocalDateTime.of(quizDateInput.getValue(), LocalTime.of(selectedHour, selectedMinute));
+
+        // Convert LocalDateTime to Timestamp (java.sql.Timestamp)
+        Timestamp timestamp = Timestamp.valueOf(combinedDateTime);
+        Date currentDate = new Date();
+
+        Quiz quiz = new Quiz(idQuiz, currentUser.getUserId(), quizName, null, currentDate, timestamp, duration, quizPassword);
+
+        // Assuming QuizDAO and loadTeacherQuizzes() methods handle exceptions appropriately
+        QuizDAO quizDAO = new QuizDAO();
+        quizDAO.updateQuiz(quiz);
+        loadTeacherQuizzes();
+
+    }
+
+    public void PanelQuizSelectedTofront() {
+        panelQuizSelected.toFront();
+    }
+
+    public void showResultSelectedQuiz() {
+        if (selectedQuiz != null) {
+            panelQuizResult.toFront();
+            nameProfResultat.setText(currentUser.getFullName());
+            nameQuizResultat.setText(selectedQuiz.getQuizName());
+            // Get the Date object from selectedQuiz.getStartAt()
+            Date startDate = selectedQuiz.getStartAt();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+            String formattedDate = dateFormat.format(startDate);
+            quizDateLabel.setText(formattedDate);
+            // showTableResult(selectedQuiz.getQuizId());
+            System.out.println("Quiz selected id : " + selectedQuiz.getQuizId());
+            showTableResult(selectedQuiz.getQuizId());
+
+        }
+
+
+    }
+
+    public void showTableResult(int quizId) {
+        tableViewResult.getSelectionModel().setSelectionMode(SelectionMode.SINGLE); // For single selection
+
+        // Assume you have a method to retrieve questions, replace it with your logic
+        QuizResultDAO quizResultDAO = new QuizResultDAO();
+        List<Result> resultsS = quizResultDAO.getQuizResultByQuizIdStudentId(quizId);
+        System.out.println(" resultss is empty : " + resultsS.isEmpty());
+// Initialize the columns
+        columnNom.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+        columnPrenom.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+        columnNote.setCellValueFactory(new PropertyValueFactory<>("mark"));
+        // Set the placeholder text when the TableView is empty
+        Label placeholderLabel = new Label("Aucun étudiant n'a passé le quiz");
+        tableViewResult.setPlaceholder(placeholderLabel);
+
+        // Example data
+        ObservableList<Result> results = FXCollections.observableArrayList(
+                resultsS
+
+        );
+
+        // Set items in the TableView
+        tableViewResult.setItems(results);
+
+    }
+
+    /* private void printPanel(Pane panel) {
+         PrinterJob job = PrinterJob.createPrinterJob();
+         if (job != null) {
+             boolean success = job.showPrintDialog(panelResultToPrint.getScene().getWindow());
+             if (success) {
+                 PageLayout pageLayout = job.getPrinter().createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.DEFAULT);
+                 job.getJobSettings().setPageLayout(pageLayout);
+                 boolean printed = job.printPage(panelResultToPrint);
+                 if (printed) {
+                     job.endJob();
+                 }
+             }
+         }
+
+     }
+     */
+    private void printPanel(Pane panel) {
+        PrinterJob job = PrinterJob.createPrinterJob();
+        if (job != null) {
+            boolean success = job.showPrintDialog(panelResultToPrint.getScene().getWindow());
+
+            if (success) {
+                PageLayout pageLayout = job.getPrinter().createPageLayout(Paper.A4, PageOrientation.PORTRAIT, Printer.MarginType.DEFAULT);
+
+                // Calculate the translation to center the content
+                double translateX = (pageLayout.getPrintableWidth() - panelResultToPrint.getBoundsInParent().getWidth())-50 ;
+
+                // Apply the translation to the Pane
+                panelResultToPrint.setTranslateX(translateX);
+
+
+                boolean printed = job.printPage(panelResultToPrint);
+                if (printed) {
+                    job.endJob();
+                }
+
+                // Reset the translation after printing
+                panelResultToPrint.setTranslateX(0);
+                panelResultToPrint.setTranslateY(0);
+            }
+        }
+    }
 }

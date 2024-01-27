@@ -3,6 +3,7 @@ package com.example.quizapp.dao;
 
 import com.example.quizapp.model.QuizResult;
 import com.example.quizapp.database.DatabaseConnector;
+import com.example.quizapp.model.Result;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -59,5 +60,39 @@ public class QuizResultDAO {
         Timestamp createdAt = resultSet.getTimestamp("createdAt");
 
         return new QuizResult(quizResultId, studentId, quizId, mark, new Date(createdAt.getTime()));
+    }
+
+    public List<Result> getQuizResultByQuizIdStudentId(int quizId) {
+
+        List<Result> resultList = new ArrayList<>();
+
+        try (Connection connection = DatabaseConnector.getConnection()) {
+            String sql = "SELECT QuizResult.mark, User.firstname, User.lastname " +
+                    "FROM QuizResult " +
+                    "INNER JOIN User ON QuizResult.studentId = User.userId " +
+                    "WHERE QuizResult.quizId = ? AND LOWER(User.role) = 'student'";
+
+            try (PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                preparedStatement.setInt(1, quizId);
+
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    while (resultSet.next()) {
+                        // Récupérer les résultats de la requête
+                        double mark = resultSet.getDouble("mark");
+                        String firstname = resultSet.getString("firstname");
+                        String lastname = resultSet.getString("lastname");
+
+                        // Créer un objet Result et l'ajouter à la liste
+                        Result result = new Result(mark, firstname, lastname);
+                        resultList.add(result);
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return resultList;
+
     }
 }

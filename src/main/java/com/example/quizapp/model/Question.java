@@ -199,7 +199,7 @@ public class Question {
                 ", correctChoice='" + correctChoice + '\'' +
                 '}';
     }
-    private final SimpleStringProperty questionText = new SimpleStringProperty(this, "questionText");
+   /* private final SimpleStringProperty questionText = new SimpleStringProperty(this, "questionText");
     private final SimpleStringProperty questionMark = new SimpleStringProperty(this, "questionMark");
     private final SimpleStringProperty idQuestion = new SimpleStringProperty(this, "idQuestion");
 
@@ -209,7 +209,7 @@ public class Question {
         this.questionMark.set(questionMark);
         this.idQuestion.set(String.valueOf(questionId));
 
-    }
+    }*/
 
 
     public int getQuestionMark() {
@@ -217,14 +217,14 @@ public class Question {
     }
 
 
-    public String getQuestionText() {
+    /*public String getQuestionText() {
         return questionText.get();
-    }
+    }*/
 
-    public SimpleStringProperty questionTextProperty() {
+  /*  public SimpleStringProperty questionTextProperty() {
         return questionText;
     }
-
+*/
    /* public String getQuestionMark() {
         return questionMark.get();
     }
