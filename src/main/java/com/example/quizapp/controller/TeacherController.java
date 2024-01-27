@@ -40,11 +40,26 @@ import java.util.Objects;
 
 public class TeacherController {
     public ImageView profileImageView;
+    public Label tUserEmail;
+    public TextField tfNewEmail;
+    public TextField tfConfirmEmail;
+    public TextField tfNewPassword;
+    public TextField tfConfirmNewPassword;
+    public TextField tfcurrentPassword;
+    public TextField tfExpression;
+    public TextField tfPasswordCurrent;
+    public Label tUserName;
+    public TextField tfNewlastName;
+    public TextField tfNewFirstName;
+    public Pane panelShowSetting;
     private TeacherDAO teacherDAO;
+    private UserDAO userDAO;
 
 
     public TeacherController() {
+
         this.teacherDAO = new TeacherDAO();
+        this.userDAO = new UserDAO();
     }
 
     @FXML
@@ -256,6 +271,7 @@ public class TeacherController {
             loadTeacherQuizzes();
             fullname_toshow.setText(currentUser.getFullName());
             email_toshow.setText(currentUser.getEmail());
+            tUserEmail.setText(currentUser.getEmail());
             // ... Set other user details
 
             if ("female".equals(currentUser.getSexe())) {
@@ -786,6 +802,196 @@ public class TeacherController {
         panelQuizSelected.toFront();
     }
 
+
+    //---------------------------------------Functions for Setting they can work also for Teacher--------------------------------------------//
+    public void handShowSetting(ActionEvent actionEvent) {
+        panelShowSetting.toFront();
+    }
+
+    public void handleUpdateEmail(ActionEvent actionEvent) {
+        String newEmail = tfNewEmail.getText();
+        String confirmNewEmail = tfConfirmEmail.getText();
+
+        // Validate email format
+        if (!isValidEmail(newEmail)) {
+            // Show an error message for invalid email format
+            showErrorMessage("Veuillez entrer une adresse e-mail valide.");
+            return;
+        }
+
+        // Validate that new email and confirm email match
+        if (!newEmail.equals(confirmNewEmail)) {
+            // Show an error message for email mismatch
+            showErrorMessage("Les adresses e-mail ne correspondent pas. Veuillez entrer des adresses e-mail correspondantes.");
+            return;
+        }
+
+        // If the data is valid, update the email using the userDAO
+        boolean isEmailUpdated = userDAO.updateStudentUserEmail(currentUser.getUserId(), newEmail);
+
+        if (isEmailUpdated) {
+            // If updating is successful, update the displayed email in the screen
+            email_toshow.setText(newEmail);
+            tUserEmail.setText(newEmail);
+
+            // Optionally, you can show a success message to the user
+            showSuccessMessage("L'adresse e-mail a été mise à jour avec succès.");
+        } else {
+            // If updating fails, show an error message
+            showErrorMessage("Échec de la mise à jour de l'adresse e-mail. Veuillez réessayer.");
+        }
+    }
+
+    // Helper method to validate email format
+    private boolean isValidEmail(String email) {
+        // You can implement a more sophisticated email validation based on your requirements
+        // This is a simple example, you may need to use a regular expression for more precise validation
+        return email != null && email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}");
+    }
+
+
+    public void handleUpdateUserPassword(ActionEvent actionEvent) {
+        String currentPassword = tfcurrentPassword.getText();
+        String newPassword = tfNewPassword.getText();
+        String confirmNewPassword = tfConfirmNewPassword.getText();
+
+        // Validate the data
+        if (currentPassword.isEmpty() || newPassword.isEmpty() || confirmNewPassword.isEmpty()) {
+            // Show an error message to the user indicating that all password fields are required
+            showErrorMessage("Les champs du mot de passe actuel, du nouveau mot de passe et de la confirmation du nouveau mot de passe sont requis.");
+            return;
+        }
+
+        // Compare the currentPassword with User.getPassword() (replace 'currentUser' with the actual instance)
+        if (!currentPassword.equals(currentUser.getPassword())) {
+            // Show an error message indicating that the current password is incorrect
+            showErrorMessage("Le mot de passe actuel est incorrect. Veuillez entrer le mot de passe actuel correct.");
+            return;
+        }
+
+        // Check if the new password and confirm new password match
+        if (!newPassword.equals(confirmNewPassword)) {
+            // Show an error message indicating that the new passwords do not match
+            showErrorMessage("Les nouveaux mots de passe ne correspondent pas. Veuillez entrer des mots de passe correspondants.");
+            return;
+        }
+
+        // If all validations pass, update the password in the database
+        boolean isPasswordUpdated = userDAO.updateStudentUserPassword(currentUser.getUserId(), newPassword);
+
+        if (isPasswordUpdated) {
+            // Optionally, you can show a success message to the user
+            showSuccessMessage("Le mot de passe a été mis à jour avec succès.");
+        } else {
+            // If updating fails, show an error message
+            showErrorMessage("Échec de la mise à jour du mot de passe. Veuillez réessayer.");
+        }
+    }
+
+    public void handleDeleteUserAccount(ActionEvent actionEvent) {
+        String expression = tfExpression.getText();
+        String userPassword = tfPasswordCurrent.getText();
+
+        // Validate data
+        if (expression.isEmpty() || userPassword.isEmpty()) {
+            // Show an error message to the user indicating that both expression and password are required
+            showErrorMessage("Les champs de l'expression et du mot de passe sont requis.");
+            return;
+        }
+
+        // Validate the expression to be "supprime mon compte" (case-insensitive)
+        if (!expression.equalsIgnoreCase("supprime mon compte")) {
+            // Show an error message indicating that the expression is incorrect
+            showErrorMessage("L'expression est incorrecte. Veuillez entrer la bonne expression pour supprimer votre compte.");
+            return;
+        }
+
+        // Compare the userPassword with User.getPassword() (replace 'currentUser' with the actual instance)
+        if (!userPassword.equals(currentUser.getPassword())) {
+            // Show an error message indicating that the password is incorrect
+            showErrorMessage("Le mot de passe est incorrect. Veuillez entrer le mot de passe correct pour supprimer votre compte.");
+            return;
+        }
+
+        // If all validations pass, proceed with deleting the user account
+        boolean isUserDeleted = userDAO.deleteStudentUser(currentUser.getUserId());
+
+        if (isUserDeleted) {
+            // Optionally, you can show a success message to the user
+            showSuccessMessage("Votre compte a été supprimé avec succès.");
+
+            // Navigate to the login screen (you need to implement this based on your UI design)
+            navigateToLoginScreen();
+        } else {
+            // If deletion fails, show an error message
+            showErrorMessage("Échec de la suppression du compte. Veuillez réessayer.");
+        }
+    }
+
+    // Helper method to navigate to the login screen
+    private void navigateToLoginScreen() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/quizapp/fxml/AuthenticationScreen.fxml")); // replace with your actual path
+            Parent root = loader.load();
+
+            // Get the current stage from any control, like a button
+            Stage stage = (Stage) teacher_logout.getScene().getWindow(); // replace 'someButton' with any @FXML injected control in your controller
+
+            // Set the scene to the stage
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+            // Handle the exception, perhaps show an error dialog
+        }
+    }
+
+
+    public void handleUpdateUserName(ActionEvent actionEvent) {
+        String firstName = tfNewFirstName.getText();
+        String lastName = tfNewlastName.getText();
+
+        // Validate data
+        if (firstName.isEmpty() || lastName.isEmpty()) {
+            // Show an error message to the user indicating that both first name and last name are required
+            showErrorMessage("Les champs du prénom et du nom de famille sont requis.");
+            return;
+        }
+
+        // If the data is valid, update the userName using the studentDAO
+        boolean isUserNameUpdated = userDAO.updateStudentUserName(currentUser.getUserId(), firstName, lastName);
+
+        if (isUserNameUpdated) {
+            // If updating is successful, update the displayed name in the screen
+            fullname_toshow.setText(firstName + " " + lastName);
+            tUserName.setText(firstName + " " + lastName);
+
+            // Optionally, you can show a success message to the user
+            showSuccessMessage("Le nom d'utilisateur a été mis à jour avec succès.");
+        } else {
+            // If updating fails, show an error message
+            showErrorMessage("Échec de la mise à jour du nom d'utilisateur. Veuillez réessayer.");
+        }
+    }
+
+    private void showSuccessMessage(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Succès");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
+
+    private void showErrorMessage(String message) {
+        // Implement this method to show an error message to the user (you can use an Alert)
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Erreur");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+
     public void showResultSelectedQuiz() {
         if (selectedQuiz != null) {
             panelQuizResult.toFront();
@@ -873,4 +1079,5 @@ public class TeacherController {
             }
         }
     }
+
 }
