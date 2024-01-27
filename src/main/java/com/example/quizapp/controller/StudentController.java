@@ -804,7 +804,21 @@ public class StudentController {
 
             //set the Student Mark 19/20 now I need to define the function calculateCurrentQuizStudentMark correctly
             tQuizStudentMark.setText(String.valueOf(calculateCurrentQuizStudentMark()));
+
+            //insert the Student mark for the Quiz
+            //this means the student mark will be stored not after he finish the qcm but after he check his mark
+            //witch is a bit ward but this is just mini project
+            //inser to QuizResult table I will just use the studentDAO to avoid git issue
+           boolean isMarkAdded= studentDAO.addStudentQuizResultDatabase(currentUser.getUserId(),selectedQuiz.getQuizId(),Integer.parseInt(tQuizStudentMark.getText()));
+           if(isMarkAdded){
+               System.out.println("🎈🥽💖mark added ");
+           }else{
+               System.out.println("mark not added Probably already added before do not wary if you see error ");
+           }
+
+           //now after trying to add the mark it will show the question results
             showCurrentQuestionFoResults();
+
         } else {
             System.out.println("No questions found for the selected quiz.");
         }

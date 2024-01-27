@@ -196,5 +196,29 @@ public class StudentDAO extends UserDAO {
         }
     }
 
+    public boolean addStudentQuizResultDatabase(int studentId, int quizId, float mark) {
+        // Query to insert a new row in the QuizResult table
+        String insertQuizResultQuery = "INSERT INTO QuizResult (studentId, quizId, mark) VALUES (?, ?, ?)";
+
+        try (Connection connection = DatabaseConnector.getConnection();
+             PreparedStatement insertQuizResultStatement = connection.prepareStatement(insertQuizResultQuery)) {
+
+            // Set parameters for the query
+            insertQuizResultStatement.setInt(1, studentId);
+            insertQuizResultStatement.setInt(2, quizId);
+            insertQuizResultStatement.setFloat(3, mark);
+
+            // Execute the query to insert the student's mark for the quiz
+            int rowsAffected = insertQuizResultStatement.executeUpdate();
+
+            // Return true if the insert operation was successful (rowsAffected > 0)
+            return rowsAffected > 0;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // If there was an error or the insert operation failed, return false
+        return false;
+    }
 
 }
