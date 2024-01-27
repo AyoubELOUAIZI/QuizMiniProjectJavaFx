@@ -152,6 +152,7 @@ public class StudentController {
         if (currentUser != null) {
             fullname_toshow.setText(currentUser.getFullName());
             email_toshow.setText(currentUser.getEmail());
+            tUserEmail.setText(currentUser.getEmail());
 
             //set the data for the Setting//
             tUserName.setText(currentUser.getFullName());
@@ -441,6 +442,7 @@ public class StudentController {
         if (isEmailUpdated) {
             // If updating is successful, update the displayed email in the screen
             email_toshow.setText(newEmail);
+            tUserEmail.setText(newEmail);
 
             // Optionally, you can show a success message to the user
             showSuccessMessage("L'adresse e-mail a été mise à jour avec succès.");
