@@ -469,45 +469,6 @@
                      </children></AnchorPane>
                     </children>
                 </Pane>
-            <Pane fx:id="panelNoQuizSelected" layoutX="9.0" layoutY="1.0" prefHeight="640.0" prefWidth="1041.0" style="-fx-background-color: #ffffff;">
-               <children>
-                  <AnchorPane layoutX="-8.0" prefHeight="48.0" prefWidth="1036.0">
-                     <children>
-                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="2.0" />
-                        <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
-                           <font>
-                              <Font name="Segoe UI Bold" size="15.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="257.0" layoutY="15.0" text="Mis à jours avancés du Quiz">
-                           <font>
-                              <Font name="Segoe UI Bold" size="15.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane layoutX="15.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
-                     <children>
-                        <ImageView fx:id="backgroundImageQuizView1" fitHeight="501.0" fitWidth="446.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="22.0">
-                           <image>
-                              <Image url="@../images/noquizselected.jpg" />
-                           </image>
-                        </ImageView>
-                        <Line endX="285.70703125" layoutX="185.0" layoutY="261.0" startX="-100.0" stroke="#1739eb" />
-                        <Label ellipsisString="" layoutX="112.0" layoutY="225.0" prefHeight="21.0" prefWidth="333.0" text="Sélectionne ou ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="254.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/qcmIcon.png" />
-                           </image>
-                        </ImageView>
-                     </children>
-                  </AnchorPane>
-               </children>
-            </Pane>
             <Pane fx:id="panelShowSetting" prefHeight="636.0" prefWidth="1063.0" style="-fx-background-color: fff;">
                <children>
                   <AnchorPane layoutX="20.0" layoutY="20.0" prefHeight="290.0" prefWidth="495.0" style="-fx-background-color: fff; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8;">
@@ -608,6 +569,45 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+               </children>
+            </Pane>
+            <Pane fx:id="panelNoQuizSelected" layoutX="9.0" layoutY="1.0" prefHeight="640.0" prefWidth="1041.0" style="-fx-background-color: #ffffff;">
+               <children>
+                  <AnchorPane layoutX="-8.0" prefHeight="48.0" prefWidth="1036.0">
+                     <children>
+                        <Line endX="751.0" endY="2.0" layoutX="303.0" layoutY="44.0" startX="-303.0" startY="2.0" />
+                        <Label layoutX="57.0" layoutY="15.0" text="Détails du Quiz">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="257.0" layoutY="15.0" text="Mis à jours avancés du Quiz">
+                           <font>
+                              <Font name="Segoe UI Bold" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane layoutX="15.0" layoutY="61.0" maxHeight="600.0" minHeight="558.0" prefHeight="567.0" prefWidth="1010.0" style="-fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 3, 0, 0, 0); -fx-background-radius: 8; -fx-background-color: fff;">
+                     <children>
+                        <ImageView fx:id="backgroundImageQuizView1" fitHeight="501.0" fitWidth="446.0" layoutX="539.0" layoutY="22.0" pickOnBounds="true" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="539.0" AnchorPane.rightAnchor="25.0" AnchorPane.topAnchor="22.0">
+                           <image>
+                              <Image url="@../images/noquizselected.jpg" />
+                           </image>
+                        </ImageView>
+                        <Line endX="285.70703125" layoutX="185.0" layoutY="261.0" startX="-100.0" stroke="#1739eb" />
+                        <Label ellipsisString="" layoutX="112.0" layoutY="225.0" prefHeight="21.0" prefWidth="333.0" text="Sélectionne ou ajoute un nouveau questionnaire." textFill="#7b7b7b" textOverrun="WORD_ELLIPSIS" wrapText="true">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="48.0" fitWidth="63.0" layoutX="254.0" layoutY="169.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/qcmIcon.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </AnchorPane>
                </children>
             </Pane>
             </children>
