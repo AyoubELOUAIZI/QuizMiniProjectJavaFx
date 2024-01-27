@@ -240,7 +240,7 @@ public class TeacherController {
             Stage stage = (Stage) teacher_logout.getScene().getWindow(); // replace 'someButton' with any @FXML injected control in your controller
 
             // Set the scene to the stage
-            stage.setScene(new Scene(root, 900, 700));
+            stage.setScene(new Scene(root));
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
